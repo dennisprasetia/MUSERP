@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:padding="10dp"
+	tools:context=".menu.work.DocResultFragment">
+
+	<TextView
+		android:id="@+id/tvNoBapDoc"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@android:color/holo_green_light"
+		android:text="No. BAPDOC0191101"
+		android:textAlignment="center"
+		android:textSize="20sp"
+		android:textStyle="bold" />
+
+	<TableLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="10dp">
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="0.5"
+				android:text="Mitra"/>
+			<TextView
+				android:id="@+id/tvResultMitra"
+				android:layout_weight="0.5"
+				android:text="mitra"/>
+		</TableRow>
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="0.5"
+				android:text="No Reg"/>
+			<TextView
+				android:id="@+id/tvResultNoreg"
+				android:layout_weight="0.5"
+				android:text="no reg"/>
+		</TableRow>
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="0.5"
+				android:text="No SJ"/>
+			<TextView
+				android:id="@+id/tvResultNoSj"
+				android:layout_weight="0.5"
+				android:text="no sj"/>
+		</TableRow>
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="0.5"
+				android:text="No Polisi"/>
+			<TextView
+				android:id="@+id/tvResultNopol"
+				android:layout_weight="0.5"
+				android:text="no polisi"/>
+		</TableRow>
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="0.5"
+				android:text="Sopir"/>
+			<TextView
+				android:id="@+id/tvResultSopir"
+				android:layout_weight="0.5"
+				android:text="sopir"/>
+		</TableRow>
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="0.5"
+				android:text="Kedatangan"/>
+			<TextView
+				android:id="@+id/tvResultKedatangan"
+				android:layout_weight="0.5"
+				android:text="kedatangan"/>
+		</TableRow>
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="0.5"
+				android:text="Penerimaan"/>
+			<TextView
+				android:id="@+id/tvResultPenerimaan"
+				android:layout_weight="0.5"
+				android:text="penerimaan"/>
+		</TableRow>
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="0.5"
+				android:text="Jenis DOC"/>
+
+			<TextView
+				android:id="@+id/tvResultJenisDoc"
+				android:layout_weight="0.5"
+				android:text="jenis doc" />
+		</TableRow>
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="0.5"
+				android:text="Jumlah Box"/>
+			<TextView
+				android:id="@+id/tvResultJumlahBox"
+				android:layout_weight="0.5"
+				android:text="jumlah box"/>
+		</TableRow>
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="0.5"
+				android:text="Mati (Ekor)"/>
+			<TextView
+				android:id="@+id/tvResultMati"
+				android:layout_weight="0.5"
+				android:text="mati"/>
+		</TableRow>
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="0.5"
+				android:text="Jumlah Terima (Ekor)"/>
+			<TextView
+				android:id="@+id/tvResultJumlahTerima"
+				android:layout_weight="0.5"
+				android:text="jumlah terima"/>
+		</TableRow>
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="0.5"
+				android:text="BB Rata-rata (gr)"/>
+			<TextView
+				android:id="@+id/tvResultBB"
+				android:layout_weight="0.5"
+				android:text="bb rata-rata"/>
+		</TableRow>
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="0.5"
+				android:text="Keterangan"/>
+			<TextView
+				android:id="@+id/tvResultKeterangan"
+				android:layout_weight="0.5"
+				android:text="keterangan"/>
+		</TableRow>
+	</TableLayout>
+
+	<ImageView
+		android:id="@+id/ivShowSign"
+		android:layout_width="180dp"
+		android:layout_height="130dp"
+		android:visibility="gone" />
+
+	<Button
+		android:id="@+id/btnDone"
+		android:layout_width="100dp"
+		android:layout_height="wrap_content"
+		android:layout_gravity="end"
+		android:text="OK"/>
+
+</LinearLayout>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:paddingStart="15dp"
+	android:paddingTop="15dp"
+	android:paddingEnd="15dp"
+	tools:context=".menu.daily.entry.PartnerFormFragment">
+
+	<LinearLayout
+		android:id="@+id/linearLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.0">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/mitra"
+			android:textSize="18sp" />
+
+		<Spinner
+			android:id="@+id/spMitra"
+			android:layout_width="match_parent"
+			android:layout_height="45dp"
+			android:spinnerMode="dropdown" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/noreg"
+			android:textSize="18sp" />
+
+		<Spinner
+			android:id="@+id/spNoreg"
+			android:layout_width="match_parent"
+			android:layout_height="45dp"
+			android:spinnerMode="dropdown" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/kandang"
+			android:textSize="18sp" />
+
+		<EditText
+			android:id="@+id/etKandang"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:clickable="false"
+			android:contextClickable="false"
+			android:cursorVisible="false"
+			android:focusable="false"
+			android:focusableInTouchMode="false"
+			android:inputType="number"
+			android:linksClickable="false"
+			android:longClickable="false" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/populasi"
+			android:textSize="18sp" />
+
+		<EditText
+			android:id="@+id/etPopulasi"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:clickable="false"
+			android:contextClickable="false"
+			android:cursorVisible="false"
+			android:focusable="false"
+			android:focusableInTouchMode="false"
+			android:inputType="number"
+			android:linksClickable="false"
+			android:longClickable="false" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/umur"
+			android:textSize="18sp" />
+
+		<EditText
+			android:id="@+id/etUmur"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:clickable="false"
+			android:contextClickable="false"
+			android:cursorVisible="false"
+			android:focusable="false"
+			android:focusableInTouchMode="false"
+			android:inputType="number"
+			android:linksClickable="false"
+			android:longClickable="false" />
+	</LinearLayout>
+
+	<ImageButton
+		android:id="@+id/btnNextPartner"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:layout_marginEnd="1dp"
+		android:layout_marginBottom="16dp"
+		android:background="@drawable/bg_button_2"
+		android:rotation="180"
+		android:src="@drawable/ic_arrow_2_blue"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="1.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

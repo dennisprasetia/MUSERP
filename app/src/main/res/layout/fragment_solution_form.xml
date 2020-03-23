@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".menu.daily.entry.SolutionFormFragment">
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:background="#f5c400"
+		android:gravity="center_vertical"
+		android:paddingStart="15dp"
+		android:paddingEnd="15dp"
+		android:text="@string/choose_solution"
+		android:textSize="28sp"
+		android:textStyle="bold"
+		android:layout_marginBottom="15dp"/>
+
+	<CheckBox
+		android:id="@+id/cbSolution1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="10dp"
+		android:layout_marginEnd="10dp"
+		android:layoutDirection="rtl"
+		android:paddingStart="15dp"
+		android:paddingEnd="15dp"
+		android:text="@string/solusi_1"
+		android:textSize="18sp" />
+
+	<CheckBox
+		android:id="@+id/cbSolution2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="10dp"
+		android:layout_marginEnd="10dp"
+		android:layoutDirection="rtl"
+		android:paddingStart="15dp"
+		android:paddingEnd="15dp"
+		android:text="@string/solusi_2"
+		android:textSize="18sp" />
+
+	<CheckBox
+		android:id="@+id/cbSolution3"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="10dp"
+		android:layout_marginEnd="10dp"
+		android:layoutDirection="rtl"
+		android:paddingStart="15dp"
+		android:paddingEnd="15dp"
+		android:text="@string/solusi_3"
+		android:textSize="18sp" />
+
+	<CheckBox
+		android:id="@+id/cbSolution4"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="10dp"
+		android:layout_marginEnd="10dp"
+		android:layoutDirection="rtl"
+		android:paddingStart="15dp"
+		android:paddingEnd="15dp"
+		android:text="@string/solusi_4"
+		android:textSize="18sp" />
+
+	<Button
+		android:id="@+id/btnDoneSave"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="15dp"
+		android:layout_marginTop="15dp"
+		android:layout_marginEnd="15dp"
+		android:text="@string/done_save" />
+
+</LinearLayout>

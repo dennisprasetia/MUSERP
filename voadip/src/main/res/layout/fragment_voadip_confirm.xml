@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:padding="15dp"
+	tools:context=".menu.work.VoadipConfirmFragment">
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="Informasi OP"
+		android:textSize="20sp"
+		android:textStyle="bold"
+		android:textAlignment="center"
+		android:background="@android:color/holo_green_light"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:padding="10dp">
+
+		<TableLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<TableRow>
+
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="Mitra" />
+
+				<TextView
+					android:id="@+id/tvMitra"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1" />
+			</TableRow>
+
+			<TableRow>
+
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="No Reg" />
+
+				<TextView
+					android:id="@+id/tvNoreg"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1" />
+			</TableRow>
+
+			<TableRow>
+
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="Alamat" />
+
+				<TextView
+					android:id="@+id/tvAlamat"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1" />
+			</TableRow>
+
+			<TableRow>
+
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="No OP" />
+
+				<TextView
+					android:id="@+id/tvNoOp"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1" />
+			</TableRow>
+
+			<TableRow>
+
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="Supplier" />
+
+				<TextView
+					android:id="@+id/tvSupplier"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1" />
+			</TableRow>
+
+			<TableRow>
+
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="Tgl Kirim" />
+
+				<TextView
+					android:id="@+id/tvTglKirim"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1" />
+			</TableRow>
+		</TableLayout>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="10dp"
+			android:text="Detail Penerimaan Barang"
+			android:textStyle="bold"/>
+
+		<TableLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<TableRow>
+
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="0.3"
+					android:text="No"
+					android:textStyle="bold" />
+
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="Barang"
+					android:textStyle="bold" />
+
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="0.5"
+					android:text="Kemasan"
+					android:textStyle="bold" />
+
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="0.4"
+					android:text="Jumlah"
+					android:textStyle="bold" />
+			</TableRow>
+		</TableLayout>
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/rvItemVoadip"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+		</androidx.recyclerview.widget.RecyclerView>
+
+	</LinearLayout>
+
+	<Button
+		android:id="@+id/btnNextCaptureSj"
+		android:layout_width="100dp"
+		android:layout_height="wrap_content"
+		android:layout_gravity="end"
+		android:text="Next"
+		android:drawableEnd="@drawable/ic_arrow_right_voadip"/>
+
+</LinearLayout>

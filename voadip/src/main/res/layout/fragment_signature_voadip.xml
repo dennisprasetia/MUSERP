@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/black_overlay"
+	tools:context=".feature.SignatureFragment">
+
+	<com.github.gcacace.signaturepad.views.SignaturePad
+		android:id="@+id/signPadVoadip"
+		android:layout_width="match_parent"
+		android:layout_height="280dp"
+		android:background="@color/design_default_color_background" />
+
+	<ImageView
+		android:id="@+id/ivRefreshVoadip"
+		android:layout_width="60dp"
+		android:layout_height="60dp"
+		android:layout_below="@+id/signPadVoadip"
+		android:layout_alignStart="@+id/signPadVoadip"
+		android:layout_marginStart="50dp"
+		android:layout_marginTop="50dp"
+		android:src="@drawable/ic_refresh_voadip"
+		android:contentDescription="@string/reset_sign_pad"/>
+
+	<ImageView
+		android:id="@+id/ivSendEntryVoadip"
+		android:layout_width="60dp"
+		android:layout_height="60dp"
+		android:layout_below="@+id/signPadVoadip"
+		android:layout_alignEnd="@+id/signPadVoadip"
+		android:layout_marginTop="50dp"
+		android:layout_marginEnd="50dp"
+		android:src="@drawable/ic_send_voadip"
+		android:contentDescription="@string/send_signature"/>
+
+</RelativeLayout>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".menu.prep.DocDetailPrepFragment">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<TextView
+				android:id="@+id/tvShowDetailDoc"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@android:color/holo_blue_bright"
+				android:gravity="center"
+				android:padding="10dp"
+				android:text="Persiapan Penerimaan DOC"
+				android:textSize="28sp"
+				android:textStyle="bold" />
+
+			<LinearLayout
+				android:id="@+id/llChildDetail"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:padding="15dp"
+				android:visibility="visible">
+
+				<TableLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
+
+					<TableRow>
+						<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="0.5"
+							android:text="No OP DOC"
+							android:textSize="20sp" />
+
+						<TextView
+							android:id="@+id/tvNoOpDoc"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center"
+							android:layout_weight="1"
+							android:paddingStart="5dp"
+							android:paddingEnd="0dp"
+							android:textSize="17sp" />
+					</TableRow>
+
+					<TableRow>
+						<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="0.5"
+							android:text="Tgl DOC In"
+							android:textSize="20sp" />
+
+						<TextView
+							android:id="@+id/tvTglDoc"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center"
+							android:layout_weight="1"
+							android:paddingStart="5dp"
+							android:paddingEnd="0dp"
+							android:textSize="17sp" />
+					</TableRow>
+
+					<TableRow>
+						<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="0.5"
+							android:text="Mitra"
+							android:textSize="20sp" />
+
+						<TextView
+							android:id="@+id/tvMitraDoc"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center"
+							android:layout_weight="1"
+							android:paddingStart="5dp"
+							android:paddingEnd="0dp"
+							android:textSize="17sp" />
+					</TableRow>
+
+					<TableRow>
+						<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="0.5"
+							android:text="Noreg"
+							android:textSize="20sp" />
+
+						<TextView
+							android:id="@+id/tvNoregDoc"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center"
+							android:layout_weight="1"
+							android:paddingStart="5dp"
+							android:paddingEnd="0dp"
+							android:textSize="17sp" />
+					</TableRow>
+
+					<TableRow>
+						<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="0.5"
+							android:text="Kandang"
+							android:textSize="20sp" />
+
+						<TextView
+							android:id="@+id/tvKandangDoc"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center"
+							android:layout_weight="1"
+							android:paddingStart="5dp"
+							android:paddingEnd="0dp"
+							android:textSize="17sp" />
+					</TableRow>
+
+					<TableRow>
+						<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="0.5"
+							android:text="Alamat"
+							android:textSize="20sp" />
+
+						<TextView
+							android:id="@+id/tvAlamatDoc"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center"
+							android:layout_weight="1"
+							android:paddingStart="5dp"
+							android:paddingEnd="0dp"
+							android:textSize="17sp" />
+					</TableRow>
+
+					<TableRow>
+						<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="0.5"
+							android:text="Populasi"
+							android:textSize="20sp" />
+
+						<TextView
+							android:id="@+id/tvPopulasiDoc"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center"
+							android:layout_weight="1"
+							android:paddingStart="5dp"
+							android:paddingEnd="0dp"
+							android:textSize="17sp" />
+					</TableRow>
+
+					<TableRow>
+						<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="0.5"
+							android:text="Jumlah Box"
+							android:textSize="20sp" />
+
+						<TextView
+							android:id="@+id/tvJumlahBox"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center"
+							android:layout_weight="1"
+							android:paddingStart="5dp"
+							android:paddingEnd="0dp"
+							android:textSize="17sp" />
+					</TableRow>
+
+					<TableRow>
+						<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="0.5"
+							android:text="Rencana Tiba"
+							android:textSize="20sp" />
+
+						<TextView
+							android:id="@+id/tvRencanaTiba"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center"
+							android:layout_weight="1"
+							android:paddingStart="5dp"
+							android:paddingEnd="0dp"
+							android:textSize="17sp" />
+					</TableRow>
+
+					<TableRow>
+						<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="0.5"
+							android:text="Ke Kandang"
+							android:textSize="20sp" />
+
+						<TextView
+							android:id="@+id/tvKeKandang"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center"
+							android:layout_weight="1"
+							android:paddingStart="5dp"
+							android:paddingEnd="0dp"
+							android:text="-"
+							android:textSize="17sp" />
+					</TableRow>
+
+					<TableRow>
+						<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="0.5"
+							android:text="Check In"
+							android:textSize="20sp" />
+
+						<TextView
+							android:id="@+id/tvCheckIn"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center"
+							android:layout_weight="1"
+							android:text="-"
+							android:textSize="17sp"
+							android:paddingStart="5dp"
+							android:paddingEnd="0dp" />
+					</TableRow>
+
+				</TableLayout>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+		<Button
+			android:id="@+id/btnKeKandang"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_gravity="end"
+			android:layout_marginTop="15dp"
+			android:layout_marginEnd="10dp"
+			android:drawableEnd="@drawable/ic_arrow_right_doc"
+			android:text="Ke Kandang"
+			android:textSize="18sp" />
+
+		<Button
+			android:id="@+id/btnSelesai"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_gravity="end"
+			android:layout_marginTop="15dp"
+			android:layout_marginEnd="10dp"
+			android:text="Selesai"
+			android:textSize="18sp"
+			android:visibility="gone"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			android:padding="10dp"
+			android:visibility="gone">
+
+			<TextView
+				android:id="@+id/tvShowDetailVoadip"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@android:color/holo_blue_bright"
+				android:drawableEnd="@drawable/ic_arrow_up_doc"
+				android:padding="5dp"
+				android:text="Rencana Penerimaan Voadip" />
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/rvVoadip"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:visibility="visible"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+			</androidx.recyclerview.widget.RecyclerView>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</ScrollView>

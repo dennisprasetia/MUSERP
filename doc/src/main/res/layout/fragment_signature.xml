@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/black_overlay"
+	tools:context=".feature.SignatureFragment">
+
+	<com.github.gcacace.signaturepad.views.SignaturePad
+		android:id="@+id/signPad"
+		android:layout_width="match_parent"
+		android:layout_height="280dp"
+		android:background="@color/design_default_color_background" />
+
+	<ImageView
+		android:id="@+id/ivRefresh"
+		android:layout_width="60dp"
+		android:layout_height="60dp"
+		android:layout_below="@+id/signPad"
+		android:layout_alignStart="@+id/signPad"
+		android:layout_marginStart="50dp"
+		android:layout_marginTop="50dp"
+		android:src="@drawable/ic_refresh_doc"
+		android:contentDescription="@string/reset_sign_pad"/>
+
+	<ImageView
+		android:id="@+id/ivSendEntry"
+		android:layout_width="60dp"
+		android:layout_height="60dp"
+		android:layout_below="@+id/signPad"
+		android:layout_alignEnd="@+id/signPad"
+		android:layout_marginTop="50dp"
+		android:layout_marginEnd="50dp"
+		android:src="@drawable/ic_send_doc"
+		android:contentDescription="@string/send_signature"/>
+
+</RelativeLayout>

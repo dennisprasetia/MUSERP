@@ -1,0 +1,17 @@
+<resources>
+	<string name="app_name">voadip</string>
+
+	<string name="hello_blank_fragment">Hello blank fragment</string>
+
+	<string name="image_icon">Image Icon</string>
+	<string name="rencana_voadip">Look Voadip Plan</string>
+	<string name="catatan_voadip">Entry BPB Voadip</string>
+	<string name="kemasan">Kemasan</string>
+	<string name="jumlah">Jumlah</string>
+	<string name="keterangan">Keterangan</string>
+	<string name="next">Next</string>
+
+	<string name="verify_finger">Verify Finger</string>
+	<string name="reset_sign_pad">Reset Sign Pad</string>
+	<string name="send_signature">Send Signature</string>
+</resources>

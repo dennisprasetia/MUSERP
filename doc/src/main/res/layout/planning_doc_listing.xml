@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/cvPlanning"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_margin="10dp"
+	app:cardCornerRadius="8dp">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@drawable/side_nav_bar"
+		android:orientation="vertical"
+		android:padding="10dp">
+
+		<TextView
+			android:id="@+id/tvDate"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:drawableEnd="@drawable/ic_arrow_right_yellow"
+			android:paddingTop="5dp"
+			android:paddingBottom="5dp"
+			android:text="1 November 2019"
+			android:textColor="@android:color/background_light" />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@android:color/background_light"
+			android:orientation="vertical"
+			android:padding="10dp">
+
+			<TextView
+				android:id="@+id/tvMitraNoreg"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Judo Pranata (1104843101)" />
+
+			<TextView
+				android:id="@+id/tvPopulation"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Populasi 20,000 ekor" />
+
+		</LinearLayout>
+
+	</LinearLayout>
+</androidx.cardview.widget.CardView>

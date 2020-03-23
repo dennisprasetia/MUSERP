@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_doc_graph"
+	app:startDestination="@id/docHomeFragment">
+
+	<fragment
+		android:id="@+id/docHomeFragment"
+		android:name="com.wonokoyo.doc.menu.DocHomeFragment"
+		android:label="Home"
+		tools:layout="@layout/fragment_doc_home" >
+		<deepLink
+			android:id="@+id/deepLink"
+			app:uri="app://doc_home" />
+		<action
+			android:id="@+id/action_home_to_doc_prep"
+			app:destination="@id/docPrepFragment" />
+		<action
+			android:id="@+id/action_home_to_doc_scan"
+			app:destination="@id/docScanFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/docPrepFragment"
+		android:name="com.wonokoyo.doc.menu.prep.DocPrepFragment"
+		android:label="Prep Doc In"
+		tools:layout="@layout/fragment_doc_prep">
+		<action
+			android:id="@+id/action_doc_plan_to_doc_detail_prep"
+			app:destination="@id/docDetailPrepFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/docDetailPrepFragment"
+		android:name="com.wonokoyo.doc.menu.prep.DocDetailPrepFragment"
+		android:label="Detail Prep"
+		tools:layout="@layout/fragment_doc_detail_prep">
+		<argument
+			android:name="doc"
+			app:argType="com.wonokoyo.doc.model.Doc" />
+		<action
+			android:id="@+id/action_doc_detail_prep_to_doc_track_prep"
+			app:destination="@id/docTrackPrepFragment" />
+		<action
+			android:id="@+id/action_doc_detail_prep_to_doc_home"
+			app:destination="@id/docHomeFragment"
+			app:popUpTo="@id/docHomeFragment"
+			app:popUpToInclusive="true" />
+	</fragment>
+	<fragment
+		android:id="@+id/docScanFragment"
+		android:name="com.wonokoyo.doc.menu.work.DocScanFragment"
+		android:label="Scan SJ"
+		tools:layout="@layout/fragment_doc_scan">
+		<action
+			android:id="@+id/action_doc_scan_to_doc_confirm"
+			app:destination="@id/docConfirmFragment" />
+		<action
+			android:id="@+id/action_doc_scan_to_doc_entry_op"
+			app:destination="@id/docEntryOpFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/docConfirmFragment"
+		android:name="com.wonokoyo.doc.menu.work.DocConfirmFragment"
+		android:label="Confirm SJ"
+		tools:layout="@layout/fragment_doc_confirm">
+		<action
+			android:id="@+id/action_doc_confirm_to_camera_doc"
+			app:destination="@id/cameraFragment" />
+		<action
+			android:id="@+id/action_doc_confirm_to_doc_weigh"
+			app:destination="@id/docWeighFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/cameraFragment"
+		android:name="com.wonokoyo.doc.feature.CameraFragment"
+		android:label="CameraFragment"
+		tools:layout="@layout/fragment_camera_doc">
+		<action
+			android:id="@+id/action_camera_doc_to_camera_doc_result"
+			app:destination="@id/cameraResultFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/cameraResultFragment"
+		android:name="com.wonokoyo.doc.feature.CameraResultFragment"
+		android:label="CameraResultFragment"
+		tools:layout="@layout/fragment_camera_doc_result">
+		<action
+			android:id="@+id/action_camera_doc_result_to_doc_weigh"
+			app:destination="@+id/docWeighFragment" />
+		<action
+			android:id="@+id/action_camera_doc_result_to_doc_entry_form"
+			app:destination="@id/docEntryFormFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/docEntryFormFragment"
+		android:name="com.wonokoyo.doc.menu.work.DocEntryFormFragment"
+		android:label="DocEntryFormFragment"
+		tools:layout="@layout/fragment_doc_entry_form">
+		<action
+			android:id="@+id/action_doc_entry_form_to_finger_verify"
+			app:destination="@id/fingerVerifyFragment" />
+		<action
+			android:id="@+id/action_doc_entry_form_to_signature"
+			app:destination="@id/signatureFragment" />
+		<action
+			android:id="@+id/action_doc_entry_form_to_doc_result"
+			app:destination="@id/docResultFragment" />
+		<action
+			android:id="@+id/action_doc_entry_form_to_camera"
+			app:destination="@id/cameraFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/fingerVerifyFragment"
+		android:name="com.wonokoyo.doc.feature.FingerVerifyFragment"
+		android:label="FingerVerifyFragment"
+		tools:layout="@layout/fragment_finger_verify">
+		<action
+			android:id="@+id/action_finger_verify_to_signature"
+			app:destination="@id/signatureFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/signatureFragment"
+		android:name="com.wonokoyo.doc.feature.SignatureFragment"
+		android:label="SignatureFragment"
+		tools:layout="@layout/fragment_signature">
+		<action
+			android:id="@+id/action_signature_to_doc_result"
+			app:destination="@id/docResultFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/docResultFragment"
+		android:name="com.wonokoyo.doc.menu.work.DocResultFragment"
+		android:label="DocResultFragment"
+		tools:layout="@layout/fragment_doc_result">
+		<action
+			android:id="@+id/action_doc_result_to_doc_home"
+			app:destination="@id/docHomeFragment"
+			app:popUpTo="@id/docHomeFragment"
+			app:popUpToInclusive="true" />
+	</fragment>
+	<fragment
+		android:id="@+id/docEntryOpFragment"
+		android:name="com.wonokoyo.doc.menu.work.DocEntryOpFragment"
+		android:label="DocEntryOpFragment"
+		tools:layout="@layout/fragment_doc_entry_op">
+		<action
+			android:id="@+id/action_doc_entry_op_to_doc_confirm"
+			app:destination="@id/docConfirmFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/docTrackPrepFragment"
+		android:name="com.wonokoyo.doc.menu.prep.DocTrackPrepFragment"
+		android:label="DocTrackPrepFragment" >
+		<action
+			android:id="@+id/action_doc_track_prep_to_doc_detail_prep"
+			app:destination="@id/docDetailPrepFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/docWeighFragment"
+		android:name="com.wonokoyo.doc.menu.work.DocWeighFragment"
+		android:label="DocWeighFragment"
+		tools:layout="@layout/fragment_doc_weigh">
+		<action
+			android:id="@+id/action_doc_weigh_to_doc_entry_form"
+			app:destination="@id/docEntryFormFragment" />
+	</fragment>
+</navigation>

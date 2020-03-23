@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".menu.work.DocConfirmFragment"
+	android:padding="15dp">
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@android:color/holo_green_light"
+		android:text="Informasi Mitra"
+		android:textAlignment="center"
+		android:textSize="20sp"
+		android:textStyle="bold" />
+
+	<TableLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="15dp">
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="No Op"/>
+			<TextView
+				android:id="@+id/tvInfoNoOp"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="No Op"/>
+		</TableRow>
+
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="Mitra"/>
+			<TextView
+				android:id="@+id/tvInfoMitra"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="Mitra"/>
+		</TableRow>
+
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="No Reg"/>
+			<TextView
+				android:id="@+id/tvInfoNoreg"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="No Reg"/>
+		</TableRow>
+
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="Kandang"/>
+			<TextView
+				android:id="@+id/tvInfoKandang"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="Kandang"/>
+		</TableRow>
+
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="Alamat"/>
+			<TextView
+				android:id="@+id/tvInfoAlamat"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="Alamat"/>
+		</TableRow>
+
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="Jumlah Box"/>
+			<TextView
+				android:id="@+id/tvInfoJumlahBox"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="Jumlah Box"/>
+		</TableRow>
+
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="No Polisi"/>
+			<TextView
+				android:id="@+id/tvInfoNopol"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="No Polisi"/>
+		</TableRow>
+
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="Sopir"/>
+			<TextView
+				android:id="@+id/tvInfoSopir"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="Sopir"/>
+		</TableRow>
+
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="Kedatangan"/>
+			<TextView
+				android:id="@+id/tvInfoKedatangan"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="Kedatangan"/>
+		</TableRow>
+	</TableLayout>
+
+	<Button
+		android:id="@+id/btnNextCaptureSj"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="end"
+		android:drawableEnd="@drawable/ic_arrow_right_doc"
+		android:text="Next" />
+</LinearLayout>

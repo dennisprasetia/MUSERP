@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".menu.work.DocEntryFormFragment">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:padding="10dp">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Informasi SJ DOC"
+			android:textSize="20sp"
+			android:textStyle="bold"
+			android:paddingStart="10dp"/>
+
+		<TableLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="10dp">
+			<TableRow>
+				<TextView
+					android:layout_weight="1"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:text="No SJ"/>
+			</TableRow>
+
+			<TableRow>
+				<EditText
+					android:id="@+id/etNoSjDoc"
+					android:layout_weight="1"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:clickable="false"
+					android:longClickable="false"
+					android:contextClickable="false"
+					android:cursorVisible="false"
+					android:focusable="false"
+					android:inputType="textPersonName" />
+			</TableRow>
+
+			<TableRow>
+				<TextView
+					android:layout_weight="1"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:text="Jenis DOC"/>
+			</TableRow>
+
+			<TableRow>
+
+				<EditText
+					android:id="@+id/etJenisDoc"
+					android:layout_weight="1"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:inputType="textPersonName" />
+			</TableRow>
+
+			<TableRow>
+				<TextView
+					android:layout_weight="0.5"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:text="Jumlah Box"/>
+				<TextView
+					android:layout_weight="0.5"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:text="Ekor Terima"/>
+			</TableRow>
+
+			<TableRow>
+
+				<EditText
+					android:id="@+id/etJumlahBox"
+					android:layout_weight="0.5"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:clickable="false"
+					android:longClickable="false"
+					android:contextClickable="false"
+					android:cursorVisible="false"
+					android:focusable="false"
+					android:inputType="number" />
+
+				<EditText
+					android:id="@+id/etEkorTerima"
+					android:layout_weight="0.5"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:clickable="false"
+					android:longClickable="false"
+					android:contextClickable="false"
+					android:cursorVisible="false"
+					android:focusable="false"
+					android:inputType="number" />
+			</TableRow>
+
+			<TableRow>
+				<TextView
+					android:layout_weight="0.5"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:text="Mati (Ekor)"/>
+				<TextView
+					android:layout_weight="0.5"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:text="BB Rata-rata (gr)"/>
+			</TableRow>
+
+			<TableRow>
+				<EditText
+					android:id="@+id/etMatiEkor"
+					android:layout_weight="0.5"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:inputType="number" />
+
+				<EditText
+					android:id="@+id/etBbRata"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="0.5"
+					android:clickable="false"
+					android:longClickable="false"
+					android:contextClickable="false"
+					android:cursorVisible="false"
+					android:focusable="false"
+					android:inputType="number|numberDecimal" />
+			</TableRow>
+
+			<TableRow>
+
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="0.5"
+					android:text="Tara Box" />
+			</TableRow>
+
+			<TableRow>
+				<EditText
+					android:id="@+id/etBbTara"
+					android:layout_weight="0.5"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:clickable="false"
+					android:longClickable="false"
+					android:contextClickable="false"
+					android:cursorVisible="false"
+					android:focusable="false"
+					android:inputType="number|numberDecimal"/>
+
+				<EditText
+					android:visibility="invisible"
+					android:layout_weight="0.5"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content" />
+			</TableRow>
+
+			<TableRow>
+				<TextView
+					android:layout_weight="1"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:text="Keterangan"/>
+			</TableRow>
+
+			<TableRow>
+
+				<EditText
+					android:id="@+id/etKeteranganDoc"
+					android:layout_weight="1"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:inputType="textPersonName" />
+			</TableRow>
+		</TableLayout>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Foto Kematian Doc"
+			android:paddingStart="10dp"
+			android:paddingEnd="10dp"/>
+
+		<ImageView
+			android:id="@+id/ivSjDoc"
+			android:layout_width="match_parent"
+			android:layout_height="425dp"
+			android:layout_margin="5dp" />
+
+		<Button
+			android:id="@+id/btnNextToFinger"
+			android:layout_width="100dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="end"
+			android:layout_marginTop="10dp"
+			android:drawableEnd="@drawable/ic_arrow_right_doc"
+			android:text="Next" />
+
+	</LinearLayout>
+
+</ScrollView>

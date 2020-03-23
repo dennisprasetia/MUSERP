@@ -1,0 +1,42 @@
+<resources>
+	<string name="app_name">MUS ERP</string>
+
+	<string name="menu_home">Beranda</string>
+	<string name="menu_daily">Harian Kandang</string>
+	<string name="menu_team">Tim Panen</string>
+	<string name="menu_sales">Penjualan</string>
+
+	<string name="hello_blank_fragment">Hello blank fragment</string>
+	<string name="jumlah_sekat">Jumlah Sekat</string>
+	<string name="bb_rata_gr">BB Rata (gr)</string>
+	<string name="next">Next</string>
+	<string name="image_button">image button</string>
+	<string name="mitra">Mitra</string>
+	<string name="kandang">Kandang</string>
+	<string name="populasi">Populasi (ekor)</string>
+	<string name="umur">Umur (hari)</string>
+	<string name="penerimaan_pakan">Penerimaan Pakan</string>
+	<string name="penerimaan_zak">Penerimaan Pakan (Zak)</string>
+	<string name="sisa_pakan_zak">Sisa Pakan di Kandang (Zak)</string>
+	<string name="kematian_ayam">Kematian Ayam</string>
+	<string name="keterangan">Keterangan</string>
+	<string name="angka_kematian">Angka Kematian (Ekor)</string>
+	<string name="check_list">Check List Necropsy</string>
+	<string name="parameter">Parameter</string>
+	<string name="check">Check</string>
+	<string name="description">Description</string>
+	<string name="retake">Retake</string>
+	<string name="choose_solution">Choose Solution</string>
+
+	<string name="solusi_1">1. Perbaikan manajemen pemeliharaan</string>
+	<string name="solusi_2">2. Perbaikan manajemen pemeliharaan dan terapi</string>
+	<string name="solusi_3">3. Ketepatan diagnosa dan terapi dijalankan</string>
+	<string name="solusi_4">4. Panen dini</string>
+	<string name="noreg">Noreg</string>
+	<string name="entry">Entry RHK</string>
+	<string name="report">Report RHK</string>
+	<string name="confirmation">Confirmation H-1</string>
+	<string name="play_and_pause">Button for Play and Pause</string>
+	<string name="done_save"><![CDATA[Done & Save]]></string>
+	<string name="title_login">User Login</string>
+</resources>

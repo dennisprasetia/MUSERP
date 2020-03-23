@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+
+	<TextView
+		android:id="@+id/tvNumber"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="0.3"
+		android:text="No"
+		android:textColor="#FFFFFF"
+		android:textSize="18sp" />
+
+	<TextView
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="Sekat :"
+		android:textColor="#FFFFFF"
+		android:textSize="18sp" />
+
+	<TextView
+		android:id="@+id/tvScreenNumber"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="Jml Sekat"
+		android:textColor="#FFFFFF"
+		android:textSize="18sp" />
+
+	<TextView
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="Bb Rata :"
+		android:textColor="#FFFFFF"
+		android:textSize="18sp" />
+
+	<TextView
+		android:id="@+id/tvScreenWeight"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="BB"
+		android:textColor="#FFFFFF"
+		android:textSize="18sp" />
+
+</LinearLayout>

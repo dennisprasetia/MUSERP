@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="10dp">
+
+	<TextView
+		android:id="@+id/tvFormNamaItem"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingTop="0dp"
+		android:paddingBottom="5dp"
+		android:text="Nama Item"
+		android:textSize="16sp"
+		android:textStyle="bold" />
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:paddingStart="3dp"
+			android:paddingEnd="3dp"
+			android:text="Kemasan" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:paddingStart="3dp"
+			android:paddingEnd="3dp"
+			android:text="Jumlah" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<EditText
+			android:id="@+id/etFormKemasan"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:hint="1000 mL"
+			android:inputType="textPersonName|text" />
+
+		<EditText
+			android:id="@+id/etFormJumlah"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:hint="1"
+			android:inputType="number" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingStart="3dp"
+			android:paddingEnd="3dp"
+			android:text="Keterangan" />
+
+		<EditText
+			android:id="@+id/etFormKeterangan"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="Keterangan"
+			android:inputType="text" />
+	</LinearLayout>
+
+</LinearLayout>

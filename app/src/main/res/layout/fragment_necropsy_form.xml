@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".menu.daily.entry.NecropsyFormFragment">
+
+	<TextView
+		android:id="@+id/textView3"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:gravity="center_vertical"
+		android:paddingStart="15dp"
+		android:paddingEnd="15dp"
+		android:text="@string/check_list"
+		android:textSize="28sp"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.0" />
+
+	<TableRow
+		android:id="@+id/tableRow"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/textView3"
+		app:layout_constraintVertical_bias="0.0">
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.425"
+			android:background="#f5c400"
+			android:paddingStart="10dp"
+			android:paddingEnd="10dp"
+			android:text="@string/parameter"
+			android:textSize="18sp" />
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.2"
+			android:background="#f5c400"
+			android:paddingStart="7dp"
+			android:paddingEnd="5dp"
+			android:text="@string/check"
+			android:textSize="18sp" />
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.425"
+			android:background="#f5c400"
+			android:paddingStart="10dp"
+			android:paddingEnd="10dp"
+			android:text="@string/description"
+			android:textSize="18sp" />
+	</TableRow>
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/rvNecropsy"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_marginBottom="8dp"
+		app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+		app:layout_constraintBottom_toTopOf="@+id/btnNextNecropsy"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/tableRow" />
+
+	<ImageButton
+		android:id="@+id/btnNextNecropsy"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:layout_marginEnd="16dp"
+		android:layout_marginBottom="16dp"
+		android:background="@drawable/bg_button_2"
+		android:rotation="180"
+		android:src="@drawable/ic_arrow_2_blue"
+		android:contentDescription="@string/next"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="1.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

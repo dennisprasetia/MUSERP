@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/drawer_navigation"
+	app:startDestination="@id/nav_home">
+
+	<include app:graph="@navigation/nav_doc_graph" />
+	<include app:graph="@navigation/nav_voadip_graph" />
+
+	<fragment
+		android:id="@id/nav_home"
+		android:name="com.wonokoyo.muserp.menu.HomeFragment"
+		android:label="MUS ERP"
+		tools:layout="@layout/fragment_home" >
+		<deepLink
+			android:id="@+id/deepLink2"
+			app:uri="app://homeCore" />
+	</fragment>
+	<dialog
+		android:id="@id/nav_daily"
+		android:name="com.wonokoyo.muserp.menu.daily.DailyShedFragment"
+		android:label="Daily Shed"
+		tools:layout="@layout/fragment_daily_shed" >
+		<action
+			android:id="@+id/action_daily_shed_to_partner_form"
+			app:destination="@id/partnerFormFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" />
+	</dialog>
+	<dialog
+		android:id="@id/nav_team"
+		android:name="com.wonokoyo.muserp.menu.team.HarverstTeamFragment"
+		android:label="Harvest Team"
+		tools:layout="@layout/fragment_harverst_team" />
+	<fragment
+		android:id="@id/nav_sales"
+		android:name="com.wonokoyo.muserp.menu.sales.SalesFragment"
+		android:label="Sales"
+		tools:layout="@layout/fragment_sales" />
+	<fragment
+		android:id="@+id/partnerFormFragment"
+		android:name="com.wonokoyo.muserp.menu.daily.entry.PartnerFormFragment"
+		android:label="Entry RHK"
+		tools:layout="@layout/fragment_partner_form" >
+		<action
+			android:id="@+id/action_partner_form_to_screen_form"
+			app:destination="@id/screenFormFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" />
+	</fragment>
+	<fragment
+		android:id="@+id/screenFormFragment"
+		android:name="com.wonokoyo.muserp.menu.daily.entry.ScreenFormFragment"
+		android:label="Entry RHK Screen"
+		tools:layout="@layout/fragment_screen_form" >
+		<action
+			android:id="@+id/action_screen_form_to_feed_and_dead_form"
+			app:destination="@id/feedAndDeadFormFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" />
+	</fragment>
+	<fragment
+		android:id="@+id/feedAndDeadFormFragment"
+		android:name="com.wonokoyo.muserp.menu.daily.entry.FeedAndDeadFormFragment"
+		android:label="Entry RHK Feed &amp; Dead"
+		tools:layout="@layout/fragment_feed_and_dead_form" >
+		<action
+			android:id="@+id/action_feed_and_dead_form_to_necropsy_form"
+			app:destination="@id/necropsyFormFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" />
+	</fragment>
+	<fragment
+		android:id="@+id/necropsyFormFragment"
+		android:name="com.wonokoyo.muserp.menu.daily.entry.NecropsyFormFragment"
+		android:label="Entry RHK Necropsy"
+		tools:layout="@layout/fragment_necropsy_form" >
+		<action
+			android:id="@+id/action_necropsy_form_to_daily_entry_attachment"
+			app:destination="@id/dailyEntryAttachmentFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" />
+	</fragment>
+	<fragment
+		android:id="@+id/dailyEntryAttachmentFragment"
+		android:name="com.wonokoyo.muserp.menu.daily.entry.DailyEntryAttachmentFragment"
+		android:label="Entry RHK Attachment"
+		tools:layout="@layout/fragment_daily_entry_attachment" >
+		<action
+			android:id="@+id/action_daily_entry_attachment_to_camera"
+			app:destination="@id/cameraFragment" />
+		<action
+			android:id="@+id/action_daily_entry_attachment_to_solution_form"
+			app:destination="@id/solutionFormFragment" />
+		<action
+			android:id="@+id/action_daily_entry_attachment_to_video"
+			app:destination="@id/videoFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/cameraFragment"
+		android:name="com.wonokoyo.muserp.feature.CameraFragment"
+		android:label="Camera"
+		tools:layout="@layout/fragment_camera" >
+		<action
+			android:id="@+id/action_camera_to_camera_result"
+			app:destination="@id/cameraResultFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/cameraResultFragment"
+		android:name="com.wonokoyo.muserp.feature.CameraResultFragment"
+		android:label="Camera Result"
+		tools:layout="@layout/fragment_camera_result" >
+		<action
+			android:id="@+id/action_camera_result_to_daily_entry_attachment"
+			app:destination="@id/dailyEntryAttachmentFragment"
+			app:popUpTo="@id/dailyEntryAttachmentFragment"
+			app:popUpToInclusive="true"/>
+	</fragment>
+	<fragment
+		android:id="@+id/solutionFormFragment"
+		android:name="com.wonokoyo.muserp.menu.daily.entry.SolutionFormFragment"
+		android:label="Entry RHK Solution"
+		tools:layout="@layout/fragment_solution_form" >
+		<action
+			android:id="@+id/action_solution_form_to_home"
+			app:destination="@id/nav_home"
+			app:enterAnim="@anim/slide_in_down"
+			app:exitAnim="@anim/slide_out_down"
+			app:popEnterAnim="@anim/slide_in_down"
+			app:popExitAnim="@anim/slide_out_up"
+			app:popUpTo="@id/nav_daily"
+			app:popUpToInclusive="true" />
+	</fragment>
+	<fragment
+		android:id="@+id/videoFragment"
+		android:name="com.wonokoyo.muserp.feature.VideoFragment"
+		android:label="fragment_video"
+		tools:layout="@layout/fragment_video" >
+		<action
+			android:id="@+id/action_video_to_video_result"
+			app:destination="@id/videoResultFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/videoResultFragment"
+		android:name="com.wonokoyo.muserp.feature.VideoResultFragment"
+		android:label="fragment_video_result"
+		tools:layout="@layout/fragment_video_result" >
+		<action
+			android:id="@+id/action_video_result_to_daily_entry_attachment"
+			app:destination="@id/dailyEntryAttachmentFragment" />
+	</fragment>
+</navigation>

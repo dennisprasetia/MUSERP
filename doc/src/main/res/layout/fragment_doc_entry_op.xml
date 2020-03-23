@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:gravity="center"
+	android:paddingStart="25dp"
+	android:paddingEnd="25dp"
+	tools:context=".menu.work.DocEntryOpFragment">
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="Entry No. OP : "
+		android:textSize="20sp"
+		android:textStyle="bold" />
+
+	<EditText
+		android:id="@+id/etNoOpDoc"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:inputType="text" />
+
+	<Button
+		android:id="@+id/btnSearch"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="SEARCH" />
+
+</LinearLayout>

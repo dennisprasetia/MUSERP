@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:orientation="vertical"
+	tools:context=".menu.work.VoadipEntryFormFragment">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:padding="15dp">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Realisasi Penerimaan Voadip"
+			android:textSize="20sp"
+			android:textStyle="bold" />
+
+		<ImageView
+			android:id="@+id/ivSjVoadip"
+			android:layout_width="match_parent"
+			android:layout_height="425dp" />
+
+		<TableLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<TableRow>
+				<TextView
+					android:layout_weight="1"
+					android:text="No SJ"
+					android:textSize="18sp"
+					android:textStyle="bold" />
+			</TableRow>
+
+			<TableRow>
+				<EditText
+					android:id="@+id/etNoSjVoadip"
+					android:layout_weight="1"
+					android:inputType="textPersonName" />
+			</TableRow>
+
+			<TableRow>
+				<TextView
+					android:layout_weight="1"
+					android:text="Penerima"
+					android:textSize="18sp"
+					android:textStyle="bold" />
+			</TableRow>
+
+			<TableRow>
+				<EditText
+					android:id="@+id/etPenerima"
+					android:layout_weight="1"
+					android:inputType="textPersonName" />
+			</TableRow>
+
+			<TableRow>
+				<TextView
+					android:layout_marginBottom="5dp"
+					android:layout_weight="1"
+					android:text="Detail Barang"
+					android:textSize="18sp"
+					android:textStyle="bold" />
+			</TableRow>
+		</TableLayout>
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/rvFormVoadip"
+			android:layout_width="match_parent"
+			android:layout_height="300dp"
+			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+			tools:listitem="@layout/voadip_form_detail_item"/>
+
+		<Button
+			android:id="@+id/btnNextVoadipToFinger"
+			android:layout_width="100dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="end"
+			android:layout_marginTop="10dp"
+			android:drawableEnd="@drawable/ic_arrow_right_voadip"
+			android:text="@string/next" />
+
+	</LinearLayout>
+
+</ScrollView>
