@@ -1,14 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:orientation="vertical"
 	tools:context=".menu.RhkHomeFragment">
-
-	<!-- TODO: Update blank fragment layout -->
-	<TextView
+	<androidx.gridlayout.widget.GridLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:text="@string/hello_blank_fragment" />
+		app:columnCount="1">
+		<androidx.cardview.widget.CardView
+			android:id="@+id/cvCatatan"
+			android:elevation="8dp"
+			android:layout_margin="20dp"
+			app:cardCornerRadius="15dp"
+			app:layout_column="0"
+			app:layout_columnWeight="1"
+			app:layout_row="0"
+			app:layout_rowWeight="1">
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:paddingStart="20dp"
+				android:paddingEnd="20dp"
+				android:paddingTop="10dp">
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentTop="true"
+					android:layout_marginTop="0dp"
+					android:text="Catatan RHK"
+					android:textSize="28sp"
+					android:textStyle="bold" />
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:text="@string/keterangan_catatan" />
+				<ImageView
+					android:layout_width="70dp"
+					android:layout_height="70dp"
+					android:layout_centerVertical="true"
+					android:layout_alignParentEnd="true"
+					android:src="@drawable/ic_note" />
+			</RelativeLayout>
+		</androidx.cardview.widget.CardView>
 
-</FrameLayout>
+		<androidx.cardview.widget.CardView
+			android:id="@+id/cvLaporan"
+			android:elevation="8dp"
+			android:layout_margin="20dp"
+			app:cardCornerRadius="15dp"
+			app:layout_column="0"
+			app:layout_columnWeight="1"
+			app:layout_row="1"
+			app:layout_rowWeight="1">
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:paddingStart="20dp"
+				android:paddingEnd="20dp"
+				android:paddingTop="10dp">
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentTop="true"
+					android:layout_marginTop="0dp"
+					android:text="Laporan RHK"
+					android:textSize="28sp"
+					android:textStyle="bold" />
+				<ImageView
+					android:layout_width="70dp"
+					android:layout_height="70dp"
+					android:layout_centerVertical="true"
+					android:layout_alignParentEnd="true"
+					android:src="@drawable/ic_note" />
+			</RelativeLayout>
+		</androidx.cardview.widget.CardView>
+
+		<androidx.cardview.widget.CardView
+			android:id="@+id/cvKonfirmasi"
+			android:elevation="8dp"
+			android:layout_margin="20dp"
+			app:cardCornerRadius="15dp"
+			app:layout_column="0"
+			app:layout_columnWeight="1"
+			app:layout_row="2"
+			app:layout_rowWeight="1">
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:paddingStart="20dp"
+				android:paddingEnd="20dp"
+				android:paddingTop="10dp">
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentTop="true"
+					android:layout_marginTop="0dp"
+					android:text="Konfirmasi H-1 RHK"
+					android:textSize="28sp"
+					android:textStyle="bold" />
+				<ImageView
+					android:layout_width="70dp"
+					android:layout_height="70dp"
+					android:layout_centerVertical="true"
+					android:layout_alignParentEnd="true"
+					android:src="@drawable/ic_note" />
+			</RelativeLayout>
+		</androidx.cardview.widget.CardView>
+	</androidx.gridlayout.widget.GridLayout>
+</LinearLayout>
