@@ -266,8 +266,8 @@ public class DocDetailPrepFragment extends Fragment implements BiometricCallback
 
         Loc loc = new Loc();
         loc.setId_doc(mDoc.getId());
-        loc.setLatAwal("-7.2496219");
-        loc.setLngAwal("112.7493753");
+        loc.setLatAwal(lat);
+        loc.setLngAwal(lng);
 
         docViewModel.saveLocDoc(loc);
 
