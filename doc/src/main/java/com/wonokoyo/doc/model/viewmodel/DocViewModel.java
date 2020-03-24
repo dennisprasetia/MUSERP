@@ -149,6 +149,8 @@ public class DocViewModel extends ViewModel {
                         JSONObject jsonObject = new JSONObject(response.body().string());
                         if (jsonObject.getInt("status") == 1) {
                             eventLiveData.setValue("saved");
+                        } else {
+                            eventLiveData.setValue("notfound");
                         }
 
                         System.out.println(response.body().string());
@@ -182,6 +184,8 @@ public class DocViewModel extends ViewModel {
                         JSONObject jsonObject = new JSONObject(response.body().string());
                         if (jsonObject.getInt("status") == 1) {
                             eventLiveData.setValue("saved");
+                        } else {
+                            eventLiveData.setValue("notfound");
                         }
                         System.out.println(response.body().string());
                     } catch (IOException e) {

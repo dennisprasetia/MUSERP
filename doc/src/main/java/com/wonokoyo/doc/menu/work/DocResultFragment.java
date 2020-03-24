@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,8 @@ public class DocResultFragment extends Fragment implements BiometricCallback {
     DocViewModel docViewModel;
 
     SharedPrefManager spm;
+
+    Handler handler;
 
     public DocResultFragment() {
         // Required empty public constructor
@@ -127,12 +130,18 @@ public class DocResultFragment extends Fragment implements BiometricCallback {
                 if (s.equalsIgnoreCase("saved")) {
                     Toast.makeText(getContext(), "UPLOAD SERVER SELESAI", Toast.LENGTH_SHORT);
 
-                    // SEND DOC TO SHOW THE RESULT
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("doc", mDoc);
+                    handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            NavHostFragment.findNavController(getParentFragment())
+                                    .navigate(R.id.action_doc_result_to_doc_home);
+                        }
+                    }, 1000);
+                }
 
-                    NavHostFragment.findNavController(getParentFragment())
-                            .navigate(R.id.action_doc_result_to_doc_home, bundle);
+                if (s.equalsIgnoreCase("notfound")) {
+                    Toast.makeText(getContext(), "DOC BELUM SIAP", Toast.LENGTH_SHORT);
                 }
             }
         });
