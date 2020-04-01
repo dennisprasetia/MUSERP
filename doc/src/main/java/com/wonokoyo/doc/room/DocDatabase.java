@@ -16,7 +16,7 @@ import com.wonokoyo.doc.room.dao.DocDao;
 import com.wonokoyo.doc.room.dao.LocDao;
 import com.wonokoyo.doc.room.dao.VoadipDao;
 
-@Database(entities = {Doc.class, Voadip.class, ItemVoadip.class, Loc.class}, version = 5, exportSchema = false)
+@Database(entities = {Doc.class, Voadip.class, ItemVoadip.class, Loc.class}, version = 6, exportSchema = false)
 public abstract class DocDatabase extends RoomDatabase {
 
     private static volatile DocDatabase INSTANCE;

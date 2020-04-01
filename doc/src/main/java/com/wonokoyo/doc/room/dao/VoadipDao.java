@@ -27,8 +27,8 @@ public interface VoadipDao {
     void insert(List<Voadip> voadips);
 
     @Transaction
-    @Query("SELECT * FROM voadip_doc WHERE id_doc = :id_doc")
-    LiveData<List<VoadipDetail>> loadVoadipWithDetailByDoc(String id_doc);
+    @Query("SELECT * FROM voadip_doc WHERE noreg_doc = :noreg_doc")
+    LiveData<List<VoadipDetail>> loadVoadipWithDetailByDoc(String noreg_doc);
 
     // ITEM VOADIP
     @Transaction

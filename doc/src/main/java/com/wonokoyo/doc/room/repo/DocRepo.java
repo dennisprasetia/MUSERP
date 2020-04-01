@@ -17,12 +17,10 @@ import java.util.List;
 
 public class DocRepo {
     private DocDao docDao;
-    private VoadipDao voadipDao;
     private LocDao locDao;
 
     public DocRepo(Application application) {
         docDao = DocDatabase.getInstance(application).docDao();
-        voadipDao = DocDatabase.getInstance(application).voadipDao();
         locDao = DocDatabase.getInstance(application).locDao();
     }
 
@@ -68,6 +66,10 @@ public class DocRepo {
 
     public LiveData<List<Doc>> getAllDoc() {
         return docDao.loadAllDoc();
+    }
+
+    public LiveData<List<DocWithLoc>> getAllDocWithLoc() {
+        return docDao.loadAllDocWithDetail();
     }
 
     public LiveData<List<Doc>> getAllDocByDate(String date) {

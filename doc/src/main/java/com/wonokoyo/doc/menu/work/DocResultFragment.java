@@ -127,8 +127,8 @@ public class DocResultFragment extends Fragment implements BiometricCallback {
         docViewModel.getEvent().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                if (s.equalsIgnoreCase("saved")) {
-                    Toast.makeText(getContext(), "UPLOAD SERVER SELESAI", Toast.LENGTH_SHORT);
+                if (s.equalsIgnoreCase("saved_lokal")) {
+                    Toast.makeText(getContext(), "SELESAI SIMPAN", Toast.LENGTH_SHORT);
 
                     handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -215,10 +215,11 @@ public class DocResultFragment extends Fragment implements BiometricCallback {
             mDoc.setStat_entry(1);
 
             docViewModel.savePrepDoc(mDoc);
-            docViewModel.saveDoc(mDoc, idUser);
+//            docViewModel.saveDoc(mDoc, idUser);
         } finally {
-            docViewModel.uploadAttachment(mDoc.getUrl());
-//                    docViewModel.uploadAttachment(mDoc.getUrlSign());
+            if (mDoc.getUrl() != "" || mDoc.getUrl() != null) {
+                docViewModel.uploadAttachment(mDoc.getUrl());
+            }
         }
     }
 

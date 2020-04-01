@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.gson.Gson;
 import com.wonokoyo.doc.model.Doc;
 import com.wonokoyo.doc.model.DocDetail;
 import com.wonokoyo.doc.model.DocWithLoc;
@@ -13,12 +14,15 @@ import com.wonokoyo.doc.model.Loc;
 import com.wonokoyo.doc.model.repository.DocRepository;
 import com.wonokoyo.doc.room.repo.DocRepo;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -67,27 +71,44 @@ public class DocViewModel extends ViewModel {
         return docRepo.getAllDoc();
     }
 
+    public LiveData<List<DocWithLoc>> getAllDocWithLoc() {
+        return docRepo.getAllDocWithLoc();
+    }
+
     public void syncDocToPhone(String id_user) {
-        Callback<List<Doc>> listener = new Callback<List<Doc>>() {
+        Callback<ResponseBody> listener = new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<List<Doc>> call, Response<List<Doc>> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    mutableLiveData.setValue(response.body());
-                    docRepo.saveAllDoc(response.body());
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        int status = jsonObject.getInt("status");
+                        if (status == 1) {
+                            JSONArray jsonArray = jsonObject.getJSONArray("content");
+                            List<Doc> docs = Arrays.asList(new Gson().fromJson(jsonArray.toString(), Doc[].class));
+                            docRepo.saveAllDoc(docs);
+                            eventLiveData.setValue("sync");
+                        } else {
+                            eventLiveData.setValue("notsync");
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Doc>> call, Throwable t) {
-                System.out.println("failed");
-                mutableLiveData.setValue(new ArrayList<Doc>());
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
             }
         };
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dateFormat.format(new Date());
 
-        docRepository.getAllDoc("2020-02-20", id_user, listener);
+        docRepository.getAllDoc(date, id_user, listener);
     }
 
     public LiveData<Doc> loadDocByOp(String op) {
@@ -96,6 +117,7 @@ public class DocViewModel extends ViewModel {
 
     public void savePrepDoc(Doc doc) {
         docRepo.updateDoc(doc);
+        eventLiveData.setValue("saved_lokal");
     }
 
     public void saveLocDoc(Loc loc) {
@@ -114,26 +136,12 @@ public class DocViewModel extends ViewModel {
         return eventLiveData;
     }
 
-    public void resetEvent() {
-        eventLiveData.setValue("");
+    public void setEventLiveData(String status) {
+        this.eventLiveData.setValue(status);
     }
 
-    public void getDocByOp(String noOp) {
-        Callback<Doc> listener = new Callback<Doc>() {
-            @Override
-            public void onResponse(Call<Doc> call, Response<Doc> response) {
-                if (response.isSuccessful())
-                    docMutableLiveData.setValue(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<Doc> call, Throwable t) {
-                System.out.println("failed");
-                docMutableLiveData.setValue(null);
-            }
-        };
-
-        docRepository.getDocByNoOp(noOp, listener);
+    public void resetEvent() {
+        eventLiveData.setValue("");
     }
 
     public void deleteDocByOp() {
@@ -175,7 +183,7 @@ public class DocViewModel extends ViewModel {
         docRepo.updateDoc(doc);
     }
 
-    public void saveSpjDoc(Doc doc) {
+    public void saveSpjTsLoc(Doc doc) {
         Callback<ResponseBody> listener = new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -205,7 +213,7 @@ public class DocViewModel extends ViewModel {
             }
         };
 
-        docRepository.saveSpjDoc(doc, listener);
+        docRepository.saveSpjTsLoc(doc, listener);
     }
 
     public void uploadAttachment(String path) {

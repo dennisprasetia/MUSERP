@@ -1,5 +1,6 @@
 package com.wonokoyo.doc.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -12,8 +13,8 @@ import java.util.List;
 
 @Entity(tableName = "doc")
 public class Doc implements Serializable {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+//    @PrimaryKey(autoGenerate = true)
+//    private int id;
 
     @SerializedName("noOpDoc")
     @Expose
@@ -27,6 +28,8 @@ public class Doc implements Serializable {
     @Expose
     private String mitra;
 
+    @PrimaryKey
+    @NonNull
     @SerializedName("noreg")
     @Expose
     private String noreg;
@@ -129,13 +132,13 @@ public class Doc implements Serializable {
 
     }
 
-    public int getId() {
-        return id;
-    }
+//    public int getId() {
+//        return id;
+//    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public String getNoOpDoc() {
         return noOpDoc;

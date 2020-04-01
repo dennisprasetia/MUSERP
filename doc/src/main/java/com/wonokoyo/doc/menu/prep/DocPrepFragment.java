@@ -89,16 +89,26 @@ public class DocPrepFragment extends Fragment {
             public void onChanged(List<Doc> docs) {
                 if (docs.size() > 0) {
                     docViewModel.setMutableLiveData(docs);
-
                     tvSyncDate.setText("* Sinkronisasi terakhir " + spm.getSpLastSync());
                 } else {
+                    docViewModel.syncDocToPhone(spm.getSpIdUser());
+                }
+            }
+        });
+
+        docViewModel.getEvent().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if (s.equalsIgnoreCase("sync")) {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String date = dateFormat.format(new Date());
                     spm.saveSPString(SharedPrefManager.SP_LAST_SYNC, date);
 
-                    docViewModel.syncDocToPhone(spm.getSpIdUser());
-
                     tvSyncDate.setText("* Sinkronisasi terakhir " + date);
+                }
+
+                if (s.equalsIgnoreCase("notsync")) {
+                    tvSyncDate.setText("* Sinkronisasi terakhir " + spm.getSpLastSync());
                 }
             }
         });

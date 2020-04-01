@@ -35,7 +35,7 @@ public interface DocDao {
 
     @Transaction
     @Query("SELECT * FROM doc")
-    LiveData<List<DocDetail>> loadAllDocWithDetail();
+    LiveData<List<DocWithLoc>> loadAllDocWithDetail();
 
     @Transaction
     @Query("SELECT * FROM doc WHERE stat_track <> 1 OR stat_entry <> 1")

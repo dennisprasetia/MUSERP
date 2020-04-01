@@ -163,7 +163,8 @@ public class DocDetailPrepFragment extends Fragment implements BiometricCallback
                         docLoc.setStat_track(1);
 
                         docViewModel.savePrepDoc(docLoc);
-                        docViewModel.saveSpjDoc(docLoc);
+                        docViewModel.setEventLiveData("selesai");
+//                        docViewModel.saveSpjTsLoc(docLoc);
                     }
                 });
             }
@@ -172,7 +173,8 @@ public class DocDetailPrepFragment extends Fragment implements BiometricCallback
         docViewModel.getEvent().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                if (s.equalsIgnoreCase("saved")) {
+                if (s.equalsIgnoreCase("selesai")) {
+                    docViewModel.resetEvent();
                     NavHostFragment.findNavController(getParentFragment())
                             .navigate(R.id.action_doc_detail_prep_to_doc_home);
                 }
@@ -265,7 +267,7 @@ public class DocDetailPrepFragment extends Fragment implements BiometricCallback
         mDoc.setKeKandang(spf.format(new Date()));
 
         Loc loc = new Loc();
-        loc.setId_doc(mDoc.getId());
+        loc.setNoreg_doc(mDoc.getNoreg());
         loc.setLatAwal(lat);
         loc.setLngAwal(lng);
 

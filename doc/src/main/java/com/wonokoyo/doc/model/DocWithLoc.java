@@ -9,7 +9,7 @@ public class DocWithLoc {
     @Embedded
     private Doc doc;
 
-    @Relation(parentColumn = "id", entityColumn = "id_doc", entity = Loc.class)
+    @Relation(parentColumn = "noreg", entityColumn = "noreg_doc", entity = Loc.class)
     Loc loc;
 
     public Doc getDoc() {

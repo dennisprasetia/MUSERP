@@ -36,7 +36,7 @@
 			android:layout_marginTop="8dp"
 			android:layout_marginEnd="8dp"
 			android:layout_marginBottom="8dp"
-			android:text="* Sinkronisasi terakhir 1 November 2019"
+			android:text="* Sinkronisasi terakhir"
 			android:textColor="@android:color/holo_red_dark"
 			android:textStyle="italic"
 			app:layout_constraintBottom_toBottomOf="parent"

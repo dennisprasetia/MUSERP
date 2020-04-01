@@ -20,6 +20,9 @@
 		<action
 			android:id="@+id/action_home_to_doc_scan"
 			app:destination="@id/docScanFragment" />
+		<action
+			android:id="@+id/action_docHomeFragment_to_checkDocFragment"
+			app:destination="@id/checkDocFragment" />
 	</fragment>
 	<fragment
 		android:id="@+id/docPrepFragment"
@@ -165,4 +168,9 @@
 			android:id="@+id/action_doc_weigh_to_doc_entry_form"
 			app:destination="@id/docEntryFormFragment" />
 	</fragment>
+	<fragment
+		android:id="@+id/checkDocFragment"
+		android:name="com.wonokoyo.doc.menu.CheckDocFragment"
+		android:label="fragment_check_doc"
+		tools:layout="@layout/fragment_check_doc" />
 </navigation>

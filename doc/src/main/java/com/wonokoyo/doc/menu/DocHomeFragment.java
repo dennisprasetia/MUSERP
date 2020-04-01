@@ -50,7 +50,7 @@ public class DocHomeFragment extends Fragment {
         cvEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_home_to_doc_scan);
+                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_docHomeFragment_to_checkDocFragment);
             }
         });
     }

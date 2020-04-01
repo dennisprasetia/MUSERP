@@ -9,7 +9,7 @@ public class DocDetail {
     @Embedded
     private Doc doc;
 
-    @Relation(parentColumn = "id", entityColumn = "id_doc", entity = Voadip.class)
+    @Relation(parentColumn = "noreg", entityColumn = "noreg_doc", entity = Voadip.class)
     List<VoadipDetail> voadips;
 
     public Doc getDoc() {

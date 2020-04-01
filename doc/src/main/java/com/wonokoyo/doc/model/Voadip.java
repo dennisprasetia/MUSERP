@@ -17,8 +17,8 @@ public class Voadip implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ForeignKey(entity = Doc.class, parentColumns = "id", childColumns = "id_doc")
-    private int id_doc;
+    @ForeignKey(entity = Doc.class, parentColumns = "noreg", childColumns = "noreg_doc")
+    private String noreg_doc;
 
     @Ignore
     private Doc doc;
@@ -52,12 +52,12 @@ public class Voadip implements Serializable {
         this.id = id;
     }
 
-    public int getId_doc() {
-        return id_doc;
+    public String getNoreg_doc() {
+        return noreg_doc;
     }
 
-    public void setId_doc(int id_doc) {
-        this.id_doc = id_doc;
+    public void setNoreg_doc(String noreg_doc) {
+        this.noreg_doc = noreg_doc;
     }
 
     public Doc getDoc() {

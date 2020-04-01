@@ -7,7 +7,7 @@ public class Url {
     public static final String GET_PLANNING_DOC = "get_planning_doc";
     public static final String GET_DOC_BY_NO_OP = "get_doc_by_op";
     public static final String SAVE_DOC = "save_doc";
-    public static final String SAVE_SPJ_DOC = "update_spj_doc";
+    public static final String SAVE_SPJ_TS_LOC = "update_spj_ts_loc";
 
     // voadip
     public static final String GET_VOADIP_BY_NOREG = "get_voadip_by_noreg";

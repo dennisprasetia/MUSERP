@@ -26,13 +26,8 @@ public class DocRepository {
         return docRepository;
     }
 
-    public void getAllDoc(String date, String id_user, Callback<List<Doc>> listener) {
-        Call<List<Doc>> docCall = RetrofitInstance.docService().getPlanningDoc(date, id_user);
-        docCall.enqueue(listener);
-    }
-
-    public void getDocByNoOp(String noOp, Callback<Doc> listener) {
-        Call<Doc> docCall = RetrofitInstance.docService().getDocByOp(noOp);
+    public void getAllDoc(String date, String id_user, Callback<ResponseBody> listener) {
+        Call<ResponseBody> docCall = RetrofitInstance.docService().getPlanningDoc(date, id_user);
         docCall.enqueue(listener);
     }
 
@@ -41,8 +36,8 @@ public class DocRepository {
         docCall.enqueue(listener);
     }
 
-    public void saveSpjDoc(Doc doc, Callback<ResponseBody> listener) {
-        Call<ResponseBody> docCall = RetrofitInstance.docService().saveSpjDoc(new Gson().toJson(doc));
+    public void saveSpjTsLoc(Doc doc, Callback<ResponseBody> listener) {
+        Call<ResponseBody> docCall = RetrofitInstance.docService().saveSpjTsLoc(new Gson().toJson(doc));
         docCall.enqueue(listener);
     }
 
