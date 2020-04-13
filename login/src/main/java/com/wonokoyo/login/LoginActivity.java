@@ -64,6 +64,10 @@ public class LoginActivity extends AppCompatActivity implements BiometricCallbac
                         String deviceId = manager.getImei(0);
 
                         loginUser(etUsername.getText().toString(), etPassword.getText().toString(), deviceId);
+                    } else {
+                        String deviceId = manager.getDeviceId();
+
+                        loginUser(etUsername.getText().toString(), etPassword.getText().toString(), deviceId);
                     }
                 }
             }
@@ -134,6 +138,10 @@ public class LoginActivity extends AppCompatActivity implements BiometricCallbac
         if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 String deviceId = manager.getImei(0);
+
+                loginUser("", "", deviceId);
+            } else {
+                String deviceId = manager.getDeviceId();
 
                 loginUser("", "", deviceId);
             }
