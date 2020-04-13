@@ -1,6 +1,7 @@
 package com.wonokoyo.doc.model.viewmodel;
 
 import android.app.Application;
+import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -108,7 +109,7 @@ public class DocViewModel extends ViewModel {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dateFormat.format(new Date());
 
-        docRepository.getAllDoc(date, id_user, listener);
+        docRepository.getAllDoc("2020-03-24", id_user, listener);
     }
 
     public LiveData<Doc> loadDocByOp(String op) {
@@ -148,6 +149,7 @@ public class DocViewModel extends ViewModel {
         docMutableLiveData.setValue(null);
     }
 
+    // Save akses ke server
     public void saveDoc(Doc doc, String idUser) {
         Callback<ResponseBody> listener = new Callback<ResponseBody>() {
             @Override
@@ -222,8 +224,15 @@ public class DocViewModel extends ViewModel {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     try {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        if (jsonObject.getInt("status") == 1) {
+                            eventLiveData.setValue("file_uploaded");
+                        } else {
+                            eventLiveData.setValue("file_not_uploaded");
+                        }
+
                         System.out.println(response.body().string());
-                    } catch (IOException e) {
+                    } catch (IOException | JSONException e) {
                         e.printStackTrace();
                     }
                     System.out.println("success upload");
@@ -237,5 +246,40 @@ public class DocViewModel extends ViewModel {
         };
 
         docRepository.uploadAttachment(path, listener);
+    }
+
+    public void uploadFromLokal(List<Doc> docs) {
+        Callback<ResponseBody> listener = new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        String result = response.body().string();
+                        JSONObject jsonObject = new JSONObject(result);
+                        if (jsonObject.getInt("status") == 1) {
+                            eventLiveData.setValue("uploaded");
+                        } else {
+                            eventLiveData.setValue("notfound");
+                        }
+
+                        System.out.println(response.body().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+//                    System.out.println("success");
+                } else {
+                    System.out.println(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                System.out.println("failed");
+            }
+        };
+
+        docRepository.uploadFromLokal(docs, listener);
     }
 }

@@ -15,4 +15,7 @@ public class Url {
 
     // upload attachment
     public static final String UPLOAD_ATTACHMENT = "upload_attachment";
+
+    // upload semua data dari lokal
+    public static final String UPLOAD_FROM_LOKAL = "upload_from_lokal";
 }

@@ -17,6 +17,9 @@
 		<deepLink
 			android:id="@+id/deepLink2"
 			app:uri="app://homeCore" />
+		<action
+			android:id="@+id/action_nav_home_to_test_timbangan"
+			app:destination="@id/testTimbanganFragment" />
 	</fragment>
 	<dialog
 		android:id="@id/nav_daily"
@@ -161,4 +164,9 @@
 			android:id="@+id/action_video_result_to_daily_entry_attachment"
 			app:destination="@id/dailyEntryAttachmentFragment" />
 	</fragment>
+	<fragment
+		android:id="@+id/testTimbanganFragment"
+		android:name="com.wonokoyo.muserp.menu.TestTimbanganFragment"
+		android:label="MUS ERP"
+		tools:layout="@layout/fragment_test_timbangan" />
 </navigation>

@@ -47,6 +47,8 @@ public class DocWeighFragment extends Fragment {
 
     Doc mDoc;
 
+    Thread thread;
+
     public DocWeighFragment() {
         // Required empty public constructor
     }
@@ -86,8 +88,22 @@ public class DocWeighFragment extends Fragment {
         startThread();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        stopThread();
+    }
+
     public void startThread() {
-        new Thread(new RunTimbang()).start();
+        thread = new Thread(new RunTimbang());
+        thread.start();
+    }
+
+    public void stopThread() {
+        if (thread.isAlive()) {
+            thread.interrupt();
+        }
     }
 
     public void startHitung() {
@@ -134,7 +150,6 @@ public class DocWeighFragment extends Fragment {
                         tvTimbang1.post(new Runnable() {
                             @Override
                             public void run() {
-
                                 tvTimbang1.setText(String.format("%.2f", dec));
                                 indexTimbang++;
                             }
@@ -169,7 +184,7 @@ public class DocWeighFragment extends Fragment {
                                 NavHostFragment.findNavController(getParentFragment())
                                         .navigate(R.id.action_doc_weigh_to_doc_entry_form, bundle);
                             }
-                        }, 15000);
+                        }, 10000);
                     }
                 }
 

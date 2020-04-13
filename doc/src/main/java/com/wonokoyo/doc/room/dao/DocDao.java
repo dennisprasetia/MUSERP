@@ -34,7 +34,7 @@ public interface DocDao {
     void delete(Doc doc);
 
     @Transaction
-    @Query("SELECT * FROM doc")
+    @Query("SELECT * FROM doc WHERE stat_track = 1 AND stat_entry = 1")
     LiveData<List<DocWithLoc>> loadAllDocWithDetail();
 
     @Transaction

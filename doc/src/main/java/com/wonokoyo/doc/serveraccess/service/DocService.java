@@ -25,4 +25,7 @@ public interface DocService {
     @Multipart
     @POST(Url.UPLOAD_ATTACHMENT)
     Call<ResponseBody> uploadAttachment(@Part MultipartBody.Part photo, @Query("type") String type);
+
+    @GET(Url.UPLOAD_FROM_LOKAL)
+    Call<ResponseBody> uploadFromLokal(@Query("docs") String docs);
 }

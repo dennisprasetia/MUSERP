@@ -217,9 +217,9 @@ public class DocResultFragment extends Fragment implements BiometricCallback {
             docViewModel.savePrepDoc(mDoc);
 //            docViewModel.saveDoc(mDoc, idUser);
         } finally {
-            if (mDoc.getUrl() != "" || mDoc.getUrl() != null) {
-                docViewModel.uploadAttachment(mDoc.getUrl());
-            }
+//            if (mDoc.getUrl() != "" && mDoc.getUrl() != null) {
+//                docViewModel.uploadAttachment(mDoc.getUrl());
+//            }
         }
     }
 

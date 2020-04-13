@@ -29,6 +29,7 @@ public class HomeFragment extends Fragment {
     private CardView cvVoadip;
     private CardView cvRhk;
     private CardView cvPanen;
+    private CardView cvTestTimbang;
     private GridLayout gridLayout;
     private TextView tvNamaUser;
 
@@ -107,6 +108,14 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 NavHostFragment.findNavController(getParentFragment()).navigate(R.id.nav_team);
 //                onFocus(v);
+            }
+        });
+
+        cvTestTimbang = view.findViewById(R.id.cvTestTimbangan);
+        cvTestTimbang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_nav_home_to_test_timbangan);
             }
         });
     }
