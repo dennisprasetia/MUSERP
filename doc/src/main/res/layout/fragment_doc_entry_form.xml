@@ -61,7 +61,13 @@
 					android:layout_weight="1"
 					android:layout_width="0dp"
 					android:layout_height="wrap_content"
-					android:inputType="textPersonName" />
+					android:clickable="false"
+					android:longClickable="false"
+					android:contextClickable="false"
+					android:cursorVisible="false"
+					android:focusable="false"
+					android:inputType="textPersonName"
+					android:text="Wonchick"/>
 			</TableRow>
 
 			<TableRow>
