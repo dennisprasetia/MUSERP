@@ -3,6 +3,7 @@ package com.wonokoyo.muserp.menu.daily.model.viewmodel;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.wonokoyo.muserp.menu.daily.model.Attachment;
@@ -26,12 +27,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EntryViewModel extends ViewModel {
+    private MutableLiveData<String> event;
+
     EntryRepository entryRepository;
 
     public void init() {
         if (entryRepository != null)
             return;
 
+        event = new MutableLiveData<>();
         entryRepository = EntryRepository.getInstance();
     }
 
@@ -125,6 +129,7 @@ public class EntryViewModel extends ViewModel {
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
                     System.out.println("failed");
+                    System.out.println(t.getMessage());
                 }
             };
 

@@ -49,8 +49,16 @@ public class AppRepo {
         }.execute();
     }
 
-    public LiveData<List<VoadipWithItem>> getAllVoadip() {
+    public LiveData<List<Voadip>> getAllVoadip() {
         return mAppDao.loadVoadip();
+    }
+
+    public LiveData<List<VoadipWithItem>> getAllVoadipWithItem() {
+        return mAppDao.loadVoadipWithItem();
+    }
+
+    public LiveData<List<VoadipWithItem>> getVoadipWithItemToUpload() {
+        return mAppDao.getVoadipWithItem();
     }
 
     public LiveData<VoadipWithItem> getVoadipByOp(String op) {

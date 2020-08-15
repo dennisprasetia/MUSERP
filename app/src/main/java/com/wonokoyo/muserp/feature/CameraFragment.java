@@ -130,8 +130,8 @@ public class CameraFragment extends Fragment {
     public void startCamera() {
         CameraX.unbindAll();
 
-        Rational aspecRatio = new Rational(viewCamera.getWidth(), viewCamera.getHeight());
-        Size screenSize = new Size(viewCamera.getWidth(), viewCamera.getHeight());
+        Rational aspecRatio = new Rational(viewCamera.getWidth()/2, viewCamera.getHeight()/2);
+        Size screenSize = new Size(viewCamera.getWidth()/4, viewCamera.getHeight()/4);
 
         PreviewConfig pConfig = new PreviewConfig.Builder()
                 .setTargetAspectRatio(aspecRatio)
@@ -193,7 +193,7 @@ public class CameraFragment extends Fragment {
 
     private void createImageFolder() {
         File imageFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        imageFolder = new File(imageFile, "MUS ERP");
+        imageFolder = new File(imageFile, "RHK");
         if (!imageFolder.exists()) {
             imageFolder.mkdirs();
         }

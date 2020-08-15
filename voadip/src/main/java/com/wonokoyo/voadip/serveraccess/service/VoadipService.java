@@ -15,8 +15,8 @@ import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface VoadipService {
-    @GET(Url.GET_VOADIP_BY_DATE)
-    Call<List<Voadip>> getVoadipByDate(@Query("date") String date);
+    @GET(Url.GET_VOADIP_BY_USER)
+    Call<ResponseBody> getVoadipByUser(@Query("id_user") String user);
 
     @GET(Url.GET_VOADIP_BY_NOREG)
     Call<List<Voadip>> getVoadipByNoreg(@Query("noreg") String noreg, @Query("tgldocin") String date);
@@ -26,6 +26,9 @@ public interface VoadipService {
 
     @GET(Url.SAVE_VOADIP)
     Call<ResponseBody> saveVoadip(@Query("voadip") String voadip, @Query("id_user") String idUser);
+
+    @GET(Url.UPLOAD_FROM_LOCAL)
+    Call<ResponseBody> uploadFromLocal(@Query("voadips") String voadips, @Query("id_user") String idUser);
 
     @Multipart
     @POST(Url.UPLOAD_ATTACHMENT)

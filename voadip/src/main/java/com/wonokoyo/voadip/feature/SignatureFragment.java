@@ -22,7 +22,6 @@ import com.wonokoyo.voadip.R;
 import com.wonokoyo.voadip.VoadipActivity;
 import com.wonokoyo.voadip.model.Voadip;
 import com.wonokoyo.voadip.model.viewmodel.VoadipViewModel;
-import com.wonokoyo.voadip.serveraccess.sqlite.DbServiceVoadip;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,8 +40,6 @@ public class SignatureFragment extends Fragment {
 
     VoadipViewModel voadipViewModel;
 
-    DbServiceVoadip serviceVoadip;
-
     public SignatureFragment() {
         // Required empty public constructor
     }
@@ -53,8 +50,6 @@ public class SignatureFragment extends Fragment {
 
         voadipViewModel = ((VoadipActivity) getActivity()).getVoadipViewModel();
         voadipViewModel.init(getActivity().getApplication());
-
-        serviceVoadip = new DbServiceVoadip(getContext());
     }
 
     @Override

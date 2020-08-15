@@ -60,20 +60,20 @@ public class LoginActivity extends AppCompatActivity implements BiometricCallbac
             @Override
             public void onClick(View v) {
                 if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+                    String deviceId = "";
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        String deviceId = manager.getImei(0);
-
-                        loginUser(etUsername.getText().toString(), etPassword.getText().toString(), deviceId);
+//                        deviceId = manager.getImei(0);
                     } else {
-                        String deviceId = manager.getDeviceId();
-
-                        loginUser(etUsername.getText().toString(), etPassword.getText().toString(), deviceId);
+//                        deviceId = manager.getDeviceId();
                     }
+
+                    loginUser(etUsername.getText().toString(), etPassword.getText().toString(), deviceId);
                 }
             }
         });
 
         ivFP = findViewById(R.id.ivFP);
+        ivFP.setVisibility(View.GONE);
         ivFP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,15 +136,14 @@ public class LoginActivity extends AppCompatActivity implements BiometricCallbac
     @Override
     public void onAuthenticationSuccessful() {
         if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+            String deviceId = "";
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                String deviceId = manager.getImei(0);
-
-                loginUser("", "", deviceId);
+//                deviceId = manager.getImei(0);
             } else {
-                String deviceId = manager.getDeviceId();
-
-                loginUser("", "", deviceId);
+//                deviceId = manager.getDeviceId();
             }
+
+            loginUser("", "", deviceId);
         }
     }
 

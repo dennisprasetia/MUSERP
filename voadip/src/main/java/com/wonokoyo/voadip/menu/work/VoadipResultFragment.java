@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,16 +18,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wonokoyo.voadip.R;
 import com.wonokoyo.voadip.VoadipActivity;
 import com.wonokoyo.voadip.model.Voadip;
 import com.wonokoyo.voadip.model.adapter.VoadipItemAdapter;
 import com.wonokoyo.voadip.model.viewmodel.VoadipViewModel;
+import com.wonokoyo.voadip.util.biometric.BiometricCallback;
+import com.wonokoyo.voadip.util.biometric.BiometricManager;
 
 import java.io.File;
 
-public class VoadipResultFragment extends Fragment {
+public class VoadipResultFragment extends Fragment implements BiometricCallback {
+
+    BiometricManager mBiometricManager;
 
     private TextView tvHead;
     private TextView tvMitra;
@@ -45,6 +51,8 @@ public class VoadipResultFragment extends Fragment {
 
     VoadipViewModel voadipViewModel;
 
+    Handler handler;
+
     public VoadipResultFragment() {
         // Required empty public constructor
     }
@@ -57,6 +65,13 @@ public class VoadipResultFragment extends Fragment {
         voadipViewModel.init(getActivity().getApplication());
 
         adapter = new VoadipItemAdapter(getContext(), getActivity());
+
+        mBiometricManager = new BiometricManager.BiometricBuilder(getContext())
+                .setTitle("Verifikasi")
+                .setSubtitle("Verifikasi Fingerprint")
+                .setDescription("Lakukan verifikasi finger untuk memulai perjalanan !")
+                .setNegativeButtonText("Batal")
+                .build();
     }
 
     @Override
@@ -92,26 +107,97 @@ public class VoadipResultFragment extends Fragment {
         rvDetailResult = view.findViewById(R.id.rvItemVoadipResult);
         rvDetailResult.setAdapter(adapter);
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                adapter.syncItemDetailVoadip(voadip.getItemVoadips());
-            }
-        },500);
+        adapter.syncItemDetailVoadip(voadip.getItemVoadips());
 
+        /* TIDAK PAKAI TTD
         File file = new File(voadip.getUrlSign());
         Bitmap bitmap = new BitmapDrawable(getContext().getResources(), file.getAbsolutePath()).getBitmap();
 
         ivSignResult = view.findViewById(R.id.ivSignResult);
         ivSignResult.setImageBitmap(bitmap);
+        */
 
         btnDone = view.findViewById(R.id.btnDoneResult);
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_voadip_result_to_voadip_home);
+                mBiometricManager.authenticate(VoadipResultFragment.this);
             }
         });
+
+        voadipViewModel.getEvent().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if (s.equalsIgnoreCase("saved_lokal")) {
+                    Toast.makeText(getContext(), "BERHASIL SIMPAN LOKAL", Toast.LENGTH_SHORT).show();
+
+                    handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_voadip_result_to_voadip_home);
+                        }
+                    }, 500);
+                }
+            }
+        });
+    }
+
+    // Authentication
+    @Override
+    public void onSdkVersionNotSupported() {
+        Toast.makeText(getActivity().getApplicationContext(),
+                "SDK Version is not supported", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBiometricAuthenticationNotSupported() {
+        Toast.makeText(getActivity().getApplicationContext(),
+                "Device doesn't support Biometric Authentication", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBiometricAuthenticationNotAvailable() {
+        Toast.makeText(getActivity().getApplicationContext(),
+                "No Fingeprint is registered in device", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBiometricAuthenticationPermissionNotGranted() {
+        Toast.makeText(getActivity().getApplicationContext(),
+                "Permission is not granted by User", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBiometricAuthenticationInternalError(String error) {
+        Toast.makeText(getActivity().getApplicationContext(), error, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onAuthenticationFailed() {
+        Toast.makeText(getActivity().getApplicationContext(),
+                "Failed to login", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onAuthenticationCancelled() {
+        Toast.makeText(getActivity().getApplicationContext(),
+                "Authentication is canceled by User", Toast.LENGTH_LONG).show();
+        mBiometricManager.cancelAuthentication();
+    }
+
+    @Override
+    public void onAuthenticationSuccessful() {
+        voadipViewModel.saveVoadipLocaly();
+    }
+
+    @Override
+    public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
+
+    }
+
+    @Override
+    public void onAuthenticationError(int errorCode, CharSequence errString) {
+
     }
 }

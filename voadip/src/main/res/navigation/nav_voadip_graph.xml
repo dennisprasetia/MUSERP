@@ -21,15 +21,24 @@
 	<fragment
 		android:id="@+id/voadipPlanFragment"
 		android:name="com.wonokoyo.voadip.menu.plan.VoadipPlanFragment"
-		android:label="VoadipPlanFragment" >
+		android:label="VoadipPlanFragment"
+		tools:layout="@layout/fragment_voadip_plan">
 		<action
 			android:id="@+id/action_voadip_plan_to_voadip_detail_plan"
 			app:destination="@id/voadipDetailPlanFragment" />
+		<argument
+			android:name="voadip"
+			app:argType="com.wonokoyo.voadip.model.Voadip" />
 	</fragment>
 	<fragment
 		android:id="@+id/voadipDetailPlanFragment"
 		android:name="com.wonokoyo.voadip.menu.plan.VoadipDetailPlanFragment"
-		android:label="VoadipDetailPlanFragment" />
+		android:label="VoadipDetailPlanFragment"
+		tools:layout="@layout/fragment_voadip_detail_plan">
+		<argument
+			android:name="voadip"
+			app:argType="com.wonokoyo.voadip.model.Voadip" />
+	</fragment>
 	<fragment
 		android:id="@+id/voadipScanFragment"
 		android:name="com.wonokoyo.voadip.menu.work.VoadipScanFragment"
@@ -62,6 +71,9 @@
 		<action
 			android:id="@+id/action_voadip_entry_form_to_signature"
 			app:destination="@id/signatureFragment" />
+		<action
+			android:id="@+id/action_voadip_entry_form_to_voadip_result"
+			app:destination="@id/voadipResultFragment" />
 	</fragment>
 	<fragment
 		android:id="@+id/cameraFragment"

@@ -45,7 +45,8 @@ public class VoadipFormAdapter extends RecyclerView.Adapter<VoadipFormAdapter.It
         ItemVoadip item = listItemVoadip.get(position);
 
         holder.txtNamaItem.setText(item.getName());
-        holder.etJumlah.setText("0");
+        holder.etKemasan.setText(item.getPacking());
+        holder.etJumlah.setText(String.valueOf(item.getAmmount()));
 
         holder.etKeterangan.addTextChangedListener(new TextWatcher() {
             @Override

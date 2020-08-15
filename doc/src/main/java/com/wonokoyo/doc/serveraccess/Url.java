@@ -1,7 +1,7 @@
 package com.wonokoyo.doc.serveraccess;
 
 public class Url {
-    public static final String BASE_PATH = "http://vpn.wonokoyo.co.id:8099/mus.erp/api/mobile/";
+    public static final String BASE_PATH = "http://vpn.wonokoyo.co.id:8099/mus.erp2/api/mobile/";
 
     // doc in
     public static final String GET_PLANNING_DOC = "get_planning_doc";

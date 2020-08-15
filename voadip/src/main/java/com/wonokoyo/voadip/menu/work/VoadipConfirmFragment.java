@@ -59,7 +59,7 @@ public class VoadipConfirmFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        final Voadip voadip = voadipViewModel.getLiveVoadip().getValue();
+        Voadip voadip = voadipViewModel.getLiveVoadip().getValue();
 
         adapter.syncItemDetailVoadip(voadip.getItemVoadips());
 

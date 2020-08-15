@@ -6,14 +6,22 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.gson.Gson;
 import com.wonokoyo.voadip.model.ItemVoadip;
 import com.wonokoyo.voadip.model.Voadip;
 import com.wonokoyo.voadip.model.VoadipWithItem;
 import com.wonokoyo.voadip.model.repository.VoadipRepository;
 import com.wonokoyo.voadip.room.repo.AppRepo;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -24,6 +32,8 @@ import retrofit2.Response;
 public class VoadipViewModel extends ViewModel {
     private MutableLiveData<List<Voadip>> mutableLiveData;
     private MutableLiveData<Voadip> voadipMutableLiveData;
+    private MutableLiveData<String> eventLiveData;
+    private String message;
     private VoadipRepository voadipRepository;
     private AppRepo appRepo;
 
@@ -33,12 +43,22 @@ public class VoadipViewModel extends ViewModel {
 
         mutableLiveData = new MutableLiveData<>();
         voadipMutableLiveData = new MutableLiveData<>();
+        eventLiveData = new MutableLiveData<>();
+        message = new String();
         voadipRepository = VoadipRepository.getInstance();
         appRepo = new AppRepo(application);
     }
 
     public LiveData<Voadip> getLiveVoadip() {
         return voadipMutableLiveData;
+    }
+
+    public LiveData<String> getEvent() {
+        return eventLiveData;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     public void setVoadipMutableLiveData(Voadip voadip) {
@@ -49,50 +69,47 @@ public class VoadipViewModel extends ViewModel {
         return mutableLiveData;
     }
 
-    public void populateListVoadip(String date) {
-        Callback<List<Voadip>> listener = new Callback<List<Voadip>>() {
+    public LiveData<List<VoadipWithItem>> populateListVoadip() {
+        return appRepo.getAllVoadipWithItem();
+    }
+
+    public void syncVoadipToPhone(String id_user) {
+        Callback<ResponseBody> listener = new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<List<Voadip>> call, Response<List<Voadip>> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    appRepo.saveAllVoadipAndDetail(response.body());
-                    mutableLiveData.setValue(response.body());
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        int status = jsonObject.getInt("status");
+                        message = jsonObject.getString("message");
+
+                        if (status == 1) {
+                            JSONArray jsonArray = jsonObject.getJSONArray("content");
+                            List<Voadip> voadips = Arrays.asList(new Gson().fromJson(jsonArray.toString(), Voadip[].class));
+                            appRepo.saveAllVoadipAndDetail(voadips);
+                            eventLiveData.setValue("sync");
+                        } else {
+                            eventLiveData.setValue("notsync");
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Voadip>> call, Throwable t) {
-                System.out.println("failed");
-                mutableLiveData.setValue(new ArrayList<Voadip>());
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
             }
         };
 
-        voadipRepository.getListVoadip(date, listener);
-    }
-
-    public LiveData<List<VoadipWithItem>> loadAllVoadip() {
-        return appRepo.getAllVoadip();
+        voadipRepository.getListVoadip(id_user, listener);
     }
 
     public LiveData<VoadipWithItem> loadVoadipByOp(String op) {
         return appRepo.getVoadipByOp(op);
-    }
-
-    public void getVoadipByOp(String noOp) {
-        Callback<Voadip> listener = new Callback<Voadip>() {
-            @Override
-            public void onResponse(Call<Voadip> call, Response<Voadip> response) {
-                if (response.isSuccessful())
-                    voadipMutableLiveData.setValue(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<Voadip> call, Throwable t) {
-                System.out.println("failed");
-                voadipMutableLiveData.setValue(null);
-            }
-        };
-
-        voadipRepository.getVoadipByNoOp(noOp, listener);
     }
 
     public void saveVoadipAndDetail(String idUser) {
@@ -101,8 +118,18 @@ public class VoadipViewModel extends ViewModel {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     try {
-                        System.out.println(response.body().string());
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        int status = jsonObject.getInt("status");
+                        message = jsonObject.getString("message");
+
+                        if (status == 1) {
+                            eventLiveData.setValue("saved");
+                        } else {
+                            eventLiveData.setValue("notsaved");
+                        }
                     } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     System.out.println("success");
@@ -167,6 +194,74 @@ public class VoadipViewModel extends ViewModel {
         voadipRepository.uploadAttachment(getLiveVoadip().getValue().getUrlSign(), listener);
     }
 
+    public void uploadVoadipFromLocal(List<Voadip> voadips, String idUser) {
+        Callback<ResponseBody> listener = new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        int status = jsonObject.getInt("status");
+                        message = jsonObject.getString("message");
+
+                        if (status == 1) {
+                            eventLiveData.setValue("uploaded");
+                        } else {
+                            eventLiveData.setValue("notuploaded");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        };
+
+        voadipRepository.uploadFromLocal(voadips, idUser, listener);
+    }
+
+    public void uploadVoadipSj(String url) {
+        Callback<ResponseBody> listener = new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> xcall, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        int status = jsonObject.getInt("status");
+                        message = jsonObject.getString("message");
+
+                        if (status == 1) {
+                            eventLiveData.setValue("sj_uploaded");
+                        } else {
+                            eventLiveData.setValue("sj_notuploaded");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                System.out.println("failed");
+            }
+        };
+
+        voadipRepository.uploadAttachment(url, listener);
+    }
+
+    public LiveData<List<VoadipWithItem>> getVoadipToUpload() {
+        return appRepo.getVoadipWithItemToUpload();
+    }
+
     public void deleteLiveDataVoadip() {
         voadipMutableLiveData.setValue(null);
     }
@@ -209,5 +304,10 @@ public class VoadipViewModel extends ViewModel {
         voadip.setTglTerima(date);
 
         voadipMutableLiveData.setValue(voadip);
+    }
+
+    public void saveVoadipLocaly() {
+        appRepo.updateVoadipAndDetail(getLiveVoadip().getValue());
+        eventLiveData.setValue("saved_lokal");
     }
 }

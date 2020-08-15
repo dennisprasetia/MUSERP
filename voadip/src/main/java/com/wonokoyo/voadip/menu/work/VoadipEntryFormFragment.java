@@ -34,7 +34,9 @@ import com.wonokoyo.voadip.model.adapter.VoadipFormAdapter;
 import com.wonokoyo.voadip.model.viewmodel.VoadipViewModel;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class VoadipEntryFormFragment extends Fragment {
@@ -121,7 +123,11 @@ public class VoadipEntryFormFragment extends Fragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_voadip_entry_form_to_signature);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String date = dateFormat.format(new Date());
+
+                voadipViewModel.saveTglTerima(date);
+                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_voadip_entry_form_to_voadip_result);
             }
         });
 

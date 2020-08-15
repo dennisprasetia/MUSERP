@@ -109,7 +109,7 @@ public class DocViewModel extends ViewModel {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dateFormat.format(new Date());
 
-        docRepository.getAllDoc("2020-03-24", id_user, listener);
+        docRepository.getAllDoc(date, id_user, listener);
     }
 
     public LiveData<Doc> loadDocByOp(String op) {
@@ -261,14 +261,11 @@ public class DocViewModel extends ViewModel {
                         } else {
                             eventLiveData.setValue("notfound");
                         }
-
-                        System.out.println(response.body().string());
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-//                    System.out.println("success");
                 } else {
                     System.out.println(response.body());
                 }

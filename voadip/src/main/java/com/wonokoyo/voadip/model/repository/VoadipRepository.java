@@ -24,8 +24,8 @@ public class VoadipRepository {
         return voadipRepository;
     }
 
-    public void getListVoadip(String date, Callback<List<Voadip>> listener) {
-        Call<List<Voadip>> voadipCall = RetrofitInstance.voadipService().getVoadipByDate(date);
+    public void getListVoadip(String id_user, Callback<ResponseBody> listener) {
+        Call<ResponseBody> voadipCall = RetrofitInstance.voadipService().getVoadipByUser(id_user);
         voadipCall.enqueue(listener);
     }
 
@@ -41,6 +41,11 @@ public class VoadipRepository {
 
     public void saveVoadip(Voadip voadip, String idUser, Callback<ResponseBody> listener) {
         Call<ResponseBody> voadipCall = RetrofitInstance.voadipService().saveVoadip(new Gson().toJson(voadip), idUser);
+        voadipCall.enqueue(listener);
+    }
+
+    public void uploadFromLocal(List<Voadip> voadips, String idUser, Callback<ResponseBody> listener) {
+        Call<ResponseBody> voadipCall = RetrofitInstance.voadipService().uploadFromLocal(new Gson().toJson(voadips), idUser);
         voadipCall.enqueue(listener);
     }
 

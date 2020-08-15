@@ -1,5 +1,7 @@
 package com.wonokoyo.muserp.menu.daily.model.viewmodel;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.wonokoyo.muserp.menu.daily.model.Doc;
@@ -14,7 +16,7 @@ import retrofit2.Response;
 
 public class PartnerViewModel extends ViewModel {
     private List<Doc> docList;
-    private List<String> docMitraList;
+    private MutableLiveData<List<String>> docMitraList;
     private List<String> docNoregList;
     private EntryRepository entryRepository;
 
@@ -23,9 +25,7 @@ public class PartnerViewModel extends ViewModel {
             return;
 
         docList = new ArrayList<>();
-        docMitraList = new ArrayList<>();
-        docMitraList.add("Pilih Mitra");
-
+        docMitraList = new MutableLiveData<>();
         entryRepository = EntryRepository.getInstance();
     }
 
@@ -33,8 +33,19 @@ public class PartnerViewModel extends ViewModel {
         Callback<List<Doc>> listener = new Callback<List<Doc>>() {
             @Override
             public void onResponse(Call<List<Doc>> call, Response<List<Doc>> response) {
-                if (response.isSuccessful())
+                if (response.isSuccessful()) {
                     docList = response.body();
+
+                    List<String> listNamaMitra = new ArrayList<>();
+                    listNamaMitra.add("Pilih Mitra");
+                    for (int i = 0; i < docList.size(); i++) {
+                        if (!listNamaMitra.contains(docList.get(i).getNamaMitra())
+                                && docList.get(i).getNamaMitra() != null)
+                            listNamaMitra.add(docList.get(i).getNamaMitra());
+                    }
+
+                    docMitraList.setValue(listNamaMitra);
+                }
             }
 
             @Override
@@ -46,14 +57,8 @@ public class PartnerViewModel extends ViewModel {
         entryRepository.getListDoc(listener);
     }
 
-    public List<String> populateStringMitra() {
-        for (int i = 0; i < docList.size(); i++) {
-            if (!docMitraList.contains(docList.get(i).getNamaMitra())
-                    && docList.get(i).getNamaMitra() != null)
-                docMitraList.add(docList.get(i).getNamaMitra());
-        }
-
-        return docMitraList;
+    public LiveData<List<String>> getDocMitraList() {
+        return this.docMitraList;
     }
 
     public List<String> populateStringNoreg(String mitra) {

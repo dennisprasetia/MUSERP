@@ -50,10 +50,19 @@ public interface AppDao {
     @Query("SELECT * FROM item")
     LiveData<List<ItemVoadip>> loadAllItem();
 
+    // AMBIL VOADIP TANPA ITEM
+    @Transaction
+    @Query("SELECT * FROM voadip WHERE tglTerima IS NULL")
+    LiveData<List<Voadip>> loadVoadip();
+
     // AMBIL VOADIP DENGAN ITEM
     @Transaction
-    @Query("SELECT * FROM voadip")
-    LiveData<List<VoadipWithItem>> loadVoadip();
+    @Query("SELECT * FROM voadip WHERE tglTerima IS NULL")
+    LiveData<List<VoadipWithItem>> loadVoadipWithItem();
+
+    @Transaction
+    @Query("SELECT * FROM voadip WHERE tglTerima IS NOT NULL AND upload IS NULL")
+    LiveData<List<VoadipWithItem>> getVoadipWithItem();
 
     @Transaction
     @Query("SELECT * FROM voadip WHERE noOp = :op")

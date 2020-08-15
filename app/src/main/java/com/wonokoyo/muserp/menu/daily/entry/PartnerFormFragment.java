@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Handler;
@@ -25,6 +26,9 @@ import com.wonokoyo.muserp.R;
 import com.wonokoyo.muserp.menu.daily.model.Doc;
 import com.wonokoyo.muserp.menu.daily.model.viewmodel.EntryViewModel;
 import com.wonokoyo.muserp.menu.daily.model.viewmodel.PartnerViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PartnerFormFragment extends Fragment {
 
@@ -51,6 +55,8 @@ public class PartnerFormFragment extends Fragment {
         partnerViewModel.init();
 
         entryViewModel = ((MainActivity) getActivity()).getEntryViewModel();
+
+        partnerViewModel.populateDocList();
     }
 
     @Override
@@ -62,24 +68,21 @@ public class PartnerFormFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
-        partnerViewModel.populateDocList();
-
         spMitra = view.findViewById(R.id.spMitra);
         spNoreg = view.findViewById(R.id.spNoreg);
         etKandang = view.findViewById(R.id.etKandang);
         etPopulasi = view.findViewById(R.id.etPopulasi);
         etUmur = view.findViewById(R.id.etUmur);
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        partnerViewModel.getDocMitraList().observe(getViewLifecycleOwner(), new Observer<List<String>>() {
             @Override
-            public void run() {
+            public void onChanged(List<String> strings) {
                 ArrayAdapter<String> adapterMitra = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,
-                        partnerViewModel.populateStringMitra());
+                        strings);
                 adapterMitra.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spMitra.setAdapter(adapterMitra);
             }
-        }, 500);
+        });
 
         spMitra.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -109,7 +112,7 @@ public class PartnerFormFragment extends Fragment {
 
                 Doc doc = partnerViewModel.getDocByNoreg(noreg);
                 if (doc != null) {
-                    etKandang.setText(doc.getKandang());
+                    etKandang.setText(doc.getNoreg().substring(8));
                     etPopulasi.setText(String.valueOf(doc.getPopulasi()));
                     etUmur.setText(String.valueOf(doc.getUmur()));
 

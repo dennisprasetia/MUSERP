@@ -26,7 +26,6 @@ import com.wonokoyo.voadip.VoadipActivity;
 import com.wonokoyo.voadip.model.Voadip;
 import com.wonokoyo.voadip.model.VoadipWithItem;
 import com.wonokoyo.voadip.model.viewmodel.VoadipViewModel;
-import com.wonokoyo.voadip.serveraccess.sqlite.DbServiceVoadip;
 import com.wonokoyo.voadip.util.CustomDialog;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -39,8 +38,6 @@ public class VoadipScanFragment extends Fragment implements ZXingScannerView.Res
     private FrameLayout frameLayout;
 
     VoadipViewModel voadipViewModel;
-
-    DbServiceVoadip serviceVoadip;
 
     int countscan;
 
@@ -56,8 +53,6 @@ public class VoadipScanFragment extends Fragment implements ZXingScannerView.Res
 
         voadipViewModel = ((VoadipActivity) getActivity()).getVoadipViewModel();
         voadipViewModel.init(getActivity().getApplication());
-
-        serviceVoadip = new DbServiceVoadip(getContext());
 
         countscan = 0;
 
@@ -152,7 +147,7 @@ public class VoadipScanFragment extends Fragment implements ZXingScannerView.Res
             }
         });
 
-//        voadipViewModel.getVoadipByOp(noOp);
+        // voadipViewModel.getVoadipByOp(noOp);
 
         // Note:
         // * Wait 2 seconds to resume the preview.

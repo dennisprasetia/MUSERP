@@ -31,6 +31,10 @@ public class Voadip implements Serializable {
     @Expose
     private String noreg;
 
+    @SerializedName("populasi")
+    @Expose
+    private String populasi;
+
     @SerializedName("supplier")
     @Expose
     private String supplier;
@@ -63,6 +67,10 @@ public class Voadip implements Serializable {
     @SerializedName("urlSign")
     @Expose
     private String urlSign;
+
+    @SerializedName("upload")
+    @Expose
+    private int upload;
 
     public Voadip() {
 
@@ -106,6 +114,14 @@ public class Voadip implements Serializable {
 
     public void setNoreg(String noreg) {
         this.noreg = noreg;
+    }
+
+    public String getPopulasi() {
+        return populasi;
+    }
+
+    public void setPopulasi(String populasi) {
+        this.populasi = populasi;
     }
 
     public String getSupplier() {
@@ -170,5 +186,13 @@ public class Voadip implements Serializable {
 
     public void setUrlSign(String urlSign) {
         this.urlSign = urlSign;
+    }
+
+    public int getUpload() {
+        return upload;
+    }
+
+    public void setUpload(int upload) {
+        this.upload = upload;
     }
 }

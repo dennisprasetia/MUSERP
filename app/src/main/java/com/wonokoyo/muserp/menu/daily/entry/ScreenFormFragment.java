@@ -66,7 +66,7 @@ public class ScreenFormFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        screenViewModel.getScreenList().observe(this, new Observer<List<Screen>>() {
+        screenViewModel.getScreenList().observe(getViewLifecycleOwner(), new Observer<List<Screen>>() {
             @Override
             public void onChanged(List<Screen> screens) {
                 screenAdapter.addNewScreen(screens);
@@ -90,8 +90,15 @@ public class ScreenFormFragment extends Fragment {
             public void onClick(View v) {
                 index += 1;
 
-                screenViewModel.populateScreen(index, Integer.valueOf(etQuantity.getText().toString()),
-                        Double.valueOf(etWeight.getText().toString()));
+                if (!etQuantity.getText().toString().equalsIgnoreCase("")
+                        && !etWeight.getText().toString().equalsIgnoreCase("")) {
+                    screenViewModel.populateScreen(index,
+                            Integer.valueOf(etQuantity.getText().toString()),
+                            Double.valueOf(etWeight.getText().toString()));
+                } else {
+                    etQuantity.setError("Harus diisi");
+                    etWeight.setError("Harus diisi");
+                }
             }
         });
 
