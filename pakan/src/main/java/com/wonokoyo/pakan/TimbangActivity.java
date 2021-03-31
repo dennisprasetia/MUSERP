@@ -33,6 +33,7 @@ public class TimbangActivity extends AppCompatActivity {
     private EditText etValue;
     private RecyclerView rvTimbang;
     private Button btnNext;
+    private Button btnRefresh;
     private Button btnDone;
     private TextView tvTotal;
 
@@ -70,6 +71,20 @@ public class TimbangActivity extends AppCompatActivity {
                 if (validate()) {
                     calculate();
                 }
+            }
+        });
+
+        btnRefresh = findViewById(R.id.btnRefresh);
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etValue.setText("");
+
+                if (threadReceive.isAlive()) {
+                    threadReceive.interrupt();
+                }
+                threadReceive = recieve();
+                threadReceive.start();
             }
         });
 

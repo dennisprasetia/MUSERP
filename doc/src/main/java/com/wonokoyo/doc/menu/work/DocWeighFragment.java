@@ -1,5 +1,8 @@
 package com.wonokoyo.doc.menu.work;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -140,27 +143,29 @@ public class DocWeighFragment extends Fragment {
             }
         });
 
+        final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+        alert.setTitle("Peringatan !");
+        alert.setMessage("Apakah anda yakin mengakhiri dengan Tara ?");
+        alert.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                lastTara();
+            }
+        });
+        alert.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
         btnTara = view.findViewById(R.id.btnTara);
         btnTara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (validate()) {
-                    nomor++;
-
-                    Weigh w = new Weigh();
-                    w.setId_spj(mDoc.getId_spj());
-                    w.setNomor(nomor);
-                    w.setTipe("tara");
-                    w.setJmlBox(Integer.valueOf(etBox.getText().toString()));
-                    w.setBerat(Double.valueOf(etBerat.getText().toString()));
-                    weighs.add(w);
-
-                    etBerat.setText("");
-
-                    adapter.update(weighs);
-                    rvTimbang.smoothScrollToPosition(weighs.size() - 1);
-
-                    startHitung();
+                    AlertDialog dialog = alert.create();
+                    dialog.show();
                 }
             }
         });
@@ -184,6 +189,25 @@ public class DocWeighFragment extends Fragment {
 
         etBerat.setError(null);
         return true;
+    }
+
+    public void lastTara() {
+        nomor++;
+
+        Weigh w = new Weigh();
+        w.setId_spj(mDoc.getId_spj());
+        w.setNomor(nomor);
+        w.setTipe("tara");
+        w.setJmlBox(Integer.valueOf(etBox.getText().toString()));
+        w.setBerat(Double.valueOf(etBerat.getText().toString()));
+        weighs.add(w);
+
+        etBerat.setText("");
+
+        adapter.update(weighs);
+        rvTimbang.smoothScrollToPosition(weighs.size() - 1);
+
+        startHitung();
     }
 
     @Override
