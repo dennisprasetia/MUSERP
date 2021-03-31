@@ -1,8 +1,8 @@
 package com.wonokoyo.pakan.serveraccess;
 
 public class Url {
-    public static final String BASE_PATH = "https://vpn.wonokoyo.co.id:8017/mus.erp2/api/mobile/";
-//    public static final String BASE_PATH = "https://vpn.wonokoyo.co.id:8017/mus.erp/api/mobile/";
+//    public static final String BASE_PATH = "https://vpn.wonokoyo.co.id:8017/mus.erp2/api/mobile/";
+    public static final String BASE_PATH = "https://vpn.wonokoyo.co.id:8017/mus.erp/api/mobile/";
 
     public static final String GET_MITRA = "get_mitra";
     public static final String GET_NOREG = "get_noreg_by_mitra";

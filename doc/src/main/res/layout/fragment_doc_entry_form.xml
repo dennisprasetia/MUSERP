@@ -15,6 +15,19 @@
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:text="Foto SJ Doc"
+			android:paddingStart="10dp"
+			android:paddingEnd="10dp"/>
+
+		<ImageView
+			android:id="@+id/ivSjDoc"
+			android:layout_width="match_parent"
+			android:layout_height="425dp"
+			android:layout_margin="5dp" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:text="Informasi SJ DOC"
 			android:textSize="20sp"
 			android:textStyle="bold"
@@ -191,19 +204,6 @@
 					android:inputType="textPersonName" />
 			</TableRow>
 		</TableLayout>
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="Foto SJ Doc"
-			android:paddingStart="10dp"
-			android:paddingEnd="10dp"/>
-
-		<ImageView
-			android:id="@+id/ivSjDoc"
-			android:layout_width="match_parent"
-			android:layout_height="425dp"
-			android:layout_margin="5dp" />
 
 		<Button
 			android:id="@+id/btnNextToFinger"
