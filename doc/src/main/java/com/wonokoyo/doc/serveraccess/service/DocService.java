@@ -6,6 +6,8 @@ import com.wonokoyo.doc.serveraccess.Url;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -26,6 +28,7 @@ public interface DocService {
     @POST(Url.UPLOAD_ATTACHMENT)
     Call<ResponseBody> uploadAttachment(@Part MultipartBody.Part photo, @Query("type") String type);
 
-    @GET(Url.UPLOAD_FROM_LOKAL)
-    Call<ResponseBody> uploadFromLokal(@Query("docs") String docs);
+    @FormUrlEncoded
+    @POST(Url.UPLOAD_FROM_LOKAL)
+    Call<ResponseBody> uploadFromLokal(@Field("docs") String docs, @Field("id_user") String id_user);
 }

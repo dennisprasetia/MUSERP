@@ -19,8 +19,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.wonokoyo.doc.DocActivity;
 import com.wonokoyo.doc.R;
 import com.wonokoyo.doc.model.Doc;
+import com.wonokoyo.doc.model.viewmodel.DocViewModel;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -41,6 +43,8 @@ public class DocEntryFormFragment extends Fragment {
     private Doc mDoc;
     private String tara;
 
+    DocViewModel docViewModel;
+
     public DocEntryFormFragment() {
         // Required empty public constructor
     }
@@ -48,6 +52,9 @@ public class DocEntryFormFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        docViewModel = ((DocActivity) getActivity()).getDocViewModel();
+        docViewModel.init(getActivity().getApplication());
 
         if (getArguments() != null) {
             mDoc = (Doc) getArguments().getSerializable("doc");
@@ -82,17 +89,14 @@ public class DocEntryFormFragment extends Fragment {
         etBbTara = view.findViewById(R.id.etBbTara);
         etKeteranganDoc = view.findViewById(R.id.etKeteranganDoc);
 
-        etNoSjDoc.setText("SJ" + mDoc.getNoOpDoc());
-        etJumlahBox.setText(String.valueOf(mDoc.getJumlahBox()));
-
-        String bbDoc = String.format("%.2f", mDoc.getBbRata());
+        String bbDoc = String.format("%.0f", mDoc.getBbRata());
         etBbRata.setText(bbDoc);
 
-        String taraBox = String.format("%.2f", mDoc.getTaraBox());
+        String taraBox = String.format("%.0f", mDoc.getTaraBox());
         etBbTara.setText(taraBox);
 
-        int ekor = mDoc.getJumlahBox() * 100;
-        etEkorTerima.setText(String.valueOf(ekor));
+        etJumlahBox.setText(String.valueOf(mDoc.getTerimaBox()));
+        etEkorTerima.setText(String.valueOf(mDoc.getEkorTerima()));
 
         btnNext = view.findViewById(R.id.btnNextToFinger);
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +113,9 @@ public class DocEntryFormFragment extends Fragment {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String date = dateFormat.format(new Date());
                 mDoc.setPenerimaan(date);
+                mDoc.setStat_recieve(1);
+
+                docViewModel.savePrepDoc(mDoc);
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("doc", mDoc);

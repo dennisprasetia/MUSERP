@@ -46,25 +46,6 @@ public class CheckDocFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        docViewModel.getAllDocWithLoc().observe(getViewLifecycleOwner(), new Observer<List<DocWithLoc>>() {
-            @Override
-            public void onChanged(List<DocWithLoc> docWithLocs) {
-                /*
-                for (DocWithLoc dwl : docWithLocs) {
-                    if (dwl.getDoc().getId() == 2) {
-                        Doc docLoc = dwl.getDoc();
-                        docLoc.setLoc(dwl.getLoc());
 
-                        docViewModel.saveSpjDoc(docLoc);
-                        docViewModel.saveDoc(docLoc, "");
-                    }
-                }
-                */
-
-                for (DocWithLoc dwl : docWithLocs) {
-                    System.out.println(new Gson().toJson(dwl));
-                }
-            }
-        });
     }
 }

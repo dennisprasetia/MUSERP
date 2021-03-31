@@ -39,6 +39,12 @@
 				android:text="Judo Pranata (1104843101)" />
 
 			<TextView
+				android:id="@+id/tvMitraRit"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Rit" />
+
+			<TextView
 				android:id="@+id/tvPopulation"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"

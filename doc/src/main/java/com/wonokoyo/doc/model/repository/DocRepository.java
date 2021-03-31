@@ -50,8 +50,8 @@ public class DocRepository {
         call.enqueue(listener);
     }
 
-    public void uploadFromLokal(List<Doc> docs, Callback<ResponseBody> listener) {
-        Call<ResponseBody> docCall = RetrofitInstance.docService().uploadFromLokal(new Gson().toJson(docs));
+    public void uploadFromLokal(List<Doc> docs, String id_user, Callback<ResponseBody> listener) {
+        Call<ResponseBody> docCall = RetrofitInstance.docService().uploadFromLokal(new Gson().toJson(docs), id_user);
         docCall.enqueue(listener);
     }
 }

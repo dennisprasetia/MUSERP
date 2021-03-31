@@ -15,7 +15,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.ArraySet;
 import android.view.MenuItem;

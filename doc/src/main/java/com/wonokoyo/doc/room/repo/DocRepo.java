@@ -6,8 +6,10 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 
 import com.wonokoyo.doc.model.Doc;
+import com.wonokoyo.doc.model.DocWeighs;
 import com.wonokoyo.doc.model.DocWithLoc;
 import com.wonokoyo.doc.model.Loc;
+import com.wonokoyo.doc.model.Weigh;
 import com.wonokoyo.doc.room.DocDatabase;
 import com.wonokoyo.doc.room.dao.DocDao;
 import com.wonokoyo.doc.room.dao.LocDao;
@@ -44,6 +46,30 @@ public class DocRepo {
         }.execute();
     }
 
+    public void updateDoc(final List<Doc> docs) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                for (Doc d : docs) {
+                    d.setStat_upload(1);
+                }
+
+                docDao.update(docs);
+                return null;
+            }
+        }.execute();
+    }
+
+    public void saveWeigh(final List<Weigh> weighs) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                docDao.insert_weigh(weighs);
+                return null;
+            }
+        }.execute();
+    }
+
     public void saveLocDoc(final Loc loc) {
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -68,8 +94,8 @@ public class DocRepo {
         return docDao.loadAllDoc();
     }
 
-    public LiveData<List<DocWithLoc>> getAllDocWithLoc() {
-        return docDao.loadAllDocWithDetail();
+    public LiveData<List<DocWeighs>> getAllDocWithWeigh() {
+        return docDao.loadAllDocWithWeigh();
     }
 
     public LiveData<List<Doc>> getAllDocByDate(String date) {
@@ -78,6 +104,10 @@ public class DocRepo {
 
     public LiveData<Doc> getDocByOp(String op) {
         return docDao.loadDocByOp(op);
+    }
+
+    public LiveData<Doc> getDocById(String id) {
+        return docDao.getDocById(id);
     }
 
     public LiveData<DocWithLoc> getDocByNoreg(String noreg) {

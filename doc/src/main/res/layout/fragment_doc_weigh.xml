@@ -10,46 +10,73 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:gravity="center"
-		android:padding="10dp">
-
-		<TextView
-			android:layout_width="wrap_content"
+		android:orientation="vertical">
+		<LinearLayout
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="Berat Timbang :"
-			android:textSize="20sp"
-			android:textStyle="bold"/>
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:padding="10dp">
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Berat Timbang :"
+				android:textSize="20sp"
+				android:textStyle="bold"/>
 
-		<EditText
-			android:id="@+id/etBerat"
-			android:layout_width="80dp"
+			<EditText
+				android:id="@+id/etBerat"
+				android:layout_width="80dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="5dp"
+				android:layout_marginEnd="5dp"
+				android:clickable="false"
+				android:cursorVisible="false"
+				android:contextClickable="false"
+				android:focusable="false"
+				android:inputType="number|numberDecimal"
+				android:gravity="center_horizontal"
+				android:textAlignment="center"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Kg"
+				android:textSize="20sp"
+				android:textStyle="bold"
+				android:gravity="center"/>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="5dp"
-			android:layout_marginEnd="5dp"
-			android:clickable="false"
-			android:cursorVisible="false"
-			android:contextClickable="false"
-			android:focusable="false"
-			android:inputType="number|numberDecimal"
-			android:gravity="center_horizontal"
-			android:textAlignment="center"/>
+			android:orientation="horizontal"
+			android:gravity="center">
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Jumlah Box :"
+				android:textSize="20sp"
+				android:textStyle="bold"/>
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Kg"
-			android:textSize="20sp"
-			android:textStyle="bold"
-			android:gravity="center"/>
-
+			<EditText
+				android:id="@+id/etBox"
+				android:layout_width="80dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="5dp"
+				android:layout_marginEnd="5dp"
+				android:inputType="number|numberDecimal"
+				android:gravity="center_horizontal"
+				android:textAlignment="center"
+				android:text="5"/>
+		</LinearLayout>
 	</LinearLayout>
 
 	<androidx.cardview.widget.CardView
 		android:id="@+id/cvHasilTimbang"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_margin="20dp"
+		android:layout_margin="16dp"
 		app:cardCornerRadius="10dp">
 
 		<LinearLayout
@@ -62,7 +89,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="5dp"
-				android:text="Hasil Timbang"
+				android:text="Timbang"
 				android:textSize="20sp"
 				android:textStyle="bold" />
 
@@ -71,48 +98,12 @@
 				android:layout_height="1dp"
 				android:background="#a7a5a5" />
 
-			<LinearLayout
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/rv_det_timbang"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp"
-				android:gravity="center"
-				android:orientation="horizontal"
-				android:padding="10dp">
-
-				<TextView
-					android:id="@+id/tvTimbang1"
-					android:layout_width="100dp"
-					android:layout_height="100dp"
-					android:layout_marginStart="5dp"
-					android:layout_marginEnd="5dp"
-					android:drawableTop="@drawable/ic_timbang_1"
-					android:gravity="center_horizontal"
-					android:textAlignment="center"
-					android:textSize="22sp" />
-
-				<TextView
-					android:id="@+id/tvTimbang2"
-					android:layout_width="100dp"
-					android:layout_height="100dp"
-					android:layout_marginStart="5dp"
-					android:layout_marginEnd="5dp"
-					android:drawableTop="@drawable/ic_timbang_2"
-					android:gravity="center_horizontal"
-					android:textAlignment="center"
-					android:textSize="22sp" />
-
-				<TextView
-					android:id="@+id/tvTimbang3"
-					android:layout_width="100dp"
-					android:layout_height="100dp"
-					android:layout_marginStart="5dp"
-					android:layout_marginEnd="5dp"
-					android:drawableTop="@drawable/ic_timbang_3"
-					android:gravity="center_horizontal"
-					android:textAlignment="center"
-					android:textSize="22sp" />
-
-			</LinearLayout>
+				android:layout_height="125dp"
+				android:layout_marginTop="8dp"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 		</LinearLayout>
 
@@ -124,7 +115,6 @@
 		android:layout_height="wrap_content"
 		android:layout_marginStart="20dp"
 		android:layout_marginEnd="20dp"
-		android:visibility="gone"
 		app:cardCornerRadius="10dp">
 
 		<LinearLayout
@@ -151,48 +141,28 @@
 				android:layout_height="wrap_content">
 
 				<TableRow>
-
 					<TextView
 						android:layout_weight="1"
-						android:text="Jumlah Box Timbang ke 1"
+						android:text="Jumlah box"
 						android:textSize="16sp" />
 
 					<EditText
-						android:id="@+id/etBoxTimbang1"
+						android:id="@+id/etJmlTimbang"
 						android:layout_weight="0.5"
 						android:clickable="false"
 						android:cursorVisible="false"
 						android:gravity="center_horizontal"
-						android:inputType="number"
-						android:text="5" />
+						android:inputType="number" />
 				</TableRow>
 
 				<TableRow>
-
 					<TextView
 						android:layout_weight="1"
-						android:text="Jumlah Box Timbang ke 2"
+						android:text="Jumlah box tara"
 						android:textSize="16sp" />
 
 					<EditText
-						android:id="@+id/etBoxTimbang2"
-						android:layout_weight="0.5"
-						android:clickable="false"
-						android:cursorVisible="false"
-						android:gravity="center_horizontal"
-						android:inputType="number"
-						android:text="5" />
-				</TableRow>
-
-				<TableRow>
-
-					<TextView
-						android:layout_weight="1"
-						android:text="Jumlah Box Timbang ke 3"
-						android:textSize="16sp" />
-
-					<EditText
-						android:id="@+id/etBoxTimbang3"
+						android:id="@+id/etBoxTara"
 						android:layout_weight="0.5"
 						android:clickable="false"
 						android:cursorVisible="false"
@@ -246,7 +216,47 @@
 		android:paddingTop="10dp"
 		android:paddingEnd="20dp"
 		android:paddingBottom="10dp"
-		android:text="Penimbangan telah selesai, halaman akan dialihkan ke proses berikutnya setelah 5 detik."
-		android:visibility="gone" />
+		android:text="Penimbangan telah selesai, halaman akan dialihkan ke proses berikutnya setelah 5 detik." />
 
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp">
+		<Button
+			android:id="@+id/btnLanjut"
+			android:layout_width="100dp"
+			android:layout_height="wrap_content"
+			android:layout_alignParentEnd="true"
+			android:layout_marginEnd="16dp"
+			android:text="Lanjut"
+			android:textSize="18sp"/>
+
+		<Button
+			android:id="@+id/btnTara"
+			android:layout_width="100dp"
+			android:layout_height="wrap_content"
+			android:layout_alignParentStart="true"
+			android:layout_marginStart="16dp"
+			android:text="Tara"
+			android:textSize="18sp"/>
+
+		<Button
+			android:id="@+id/btnRefresh"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toStartOf="@id/btnLanjut"
+			android:layout_marginEnd="8dp"
+			android:text="Refresh"
+			android:textSize="18sp"/>
+
+		<Button
+			android:id="@+id/btnSimpan"
+			android:layout_width="100dp"
+			android:layout_height="wrap_content"
+			android:layout_alignParentStart="true"
+			android:layout_marginStart="16dp"
+			android:text="Selesai"
+			android:textSize="18dp"
+			android:visibility="gone" />
+	</RelativeLayout>
 </LinearLayout>

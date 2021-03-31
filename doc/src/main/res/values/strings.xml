@@ -3,8 +3,8 @@
 
 	<string name="hello_blank_fragment">Hello blank fragment</string>
 	<string name="image_icon">Image Icon</string>
-	<string name="rencana">Persiapan DOC In</string>
-	<string name="catatan">Penerimaan BAP DOC</string>
+	<string name="rencana">Lihat Rencana DOCIN</string>
+	<string name="catatan">Penerimaan DOCIN</string>
 
 	<string name="sinkronisasi">Sinkronisasi</string>
 	<string name="verify_finger">Verify Finger</string>

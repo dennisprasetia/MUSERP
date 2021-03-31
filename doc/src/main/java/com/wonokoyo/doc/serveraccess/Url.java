@@ -1,7 +1,8 @@
 package com.wonokoyo.doc.serveraccess;
 
 public class Url {
-    public static final String BASE_PATH = "http://vpn.wonokoyo.co.id:8099/mus.erp2/api/mobile/";
+    public static final String BASE_PATH = "https://vpn.wonokoyo.co.id:8017/mus.erp2/api/mobile/";
+//    public static final String BASE_PATH = "https://vpn.wonokoyo.co.id:8017/mus.erp/api/mobile/";
 
     // doc in
     public static final String GET_PLANNING_DOC = "get_planning_doc";
@@ -17,5 +18,5 @@ public class Url {
     public static final String UPLOAD_ATTACHMENT = "upload_attachment";
 
     // upload semua data dari lokal
-    public static final String UPLOAD_FROM_LOKAL = "upload_from_lokal";
+    public static final String UPLOAD_FROM_LOKAL = "upload_from_local";
 }

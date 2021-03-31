@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
@@ -59,21 +60,12 @@ public class LoginActivity extends AppCompatActivity implements BiometricCallbac
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-                    String deviceId = "";
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                        deviceId = manager.getImei(0);
-                    } else {
-//                        deviceId = manager.getDeviceId();
-                    }
-
-                    loginUser(etUsername.getText().toString(), etPassword.getText().toString(), deviceId);
-                }
+                String imei = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                loginUser(etUsername.getText().toString(), etPassword.getText().toString(), imei);
             }
         });
 
         ivFP = findViewById(R.id.ivFP);
-        ivFP.setVisibility(View.GONE);
         ivFP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,26 +127,19 @@ public class LoginActivity extends AppCompatActivity implements BiometricCallbac
 
     @Override
     public void onAuthenticationSuccessful() {
-        if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-            String deviceId = "";
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                deviceId = manager.getImei(0);
-            } else {
-//                deviceId = manager.getDeviceId();
-            }
-
-            loginUser("", "", deviceId);
-        }
+        Toast.makeText(getApplicationContext(), getString(R.string.biometric_success), Toast.LENGTH_SHORT).show();
+        String imei = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        loginUser("", "", imei);
     }
 
     @Override
     public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
-//        Toast.makeText(getApplicationContext(), helpString, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), helpString, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onAuthenticationError(int errorCode, CharSequence errString) {
-//        Toast.makeText(getApplicationContext(), errString, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), errString, Toast.LENGTH_LONG).show();
     }
 
     public void loginUser(String username, String password, String deviceId) {
@@ -163,8 +148,9 @@ public class LoginActivity extends AppCompatActivity implements BiometricCallbac
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
+                    ResponseBody body = response.body();
                     try {
-                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        JSONObject jsonObject = new JSONObject(body.string());
                         if (jsonObject.getString("status").equalsIgnoreCase("1")) {
                             idUser = jsonObject.getString("id_user");
                             namaUser = jsonObject.getString("nama_user");

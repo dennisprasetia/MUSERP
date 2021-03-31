@@ -5,10 +5,10 @@ android {
     buildToolsVersion "29.0.0"
     defaultConfig {
         applicationId "com.wonokoyo.muserp"
-        minSdkVersion 25
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
-        versionName "1.1"
+        versionName "2.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -22,7 +22,8 @@ android {
 android.applicationVariants.all { variant ->
     variant.outputs.all {
         def appName = "MUS ERP"
-        outputFileName = appName + "-${variant.versionName}.apk"
+        def vers = "HOT FIX"
+        outputFileName = appName + "-${variant.versionName}-" + vers + ".apk"
     }
 }
 
@@ -30,6 +31,7 @@ dependencies {
     implementation project(":login")
     implementation project(":doc")
     implementation project(":voadip")
+    implementation project(":pakan")
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api 'androidx.appcompat:appcompat:1.1.0'

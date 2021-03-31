@@ -48,6 +48,7 @@ public class PlanningAdapter extends RecyclerView.Adapter<PlanningAdapter.Planni
 
         holder.tvDate.setText(doc.getTanggalDoc());
         holder.tvMitraNoreg.setText(doc.getMitra() + " (" + doc.getNoreg() + ")");
+        holder.tvMitraRit.setText("Rit : " + doc.getRit());
         holder.tvPopulation.setText("Populasi " + doc.getPopulasi() + " ekor");
 
         holder.cvPlanning.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +76,7 @@ public class PlanningAdapter extends RecyclerView.Adapter<PlanningAdapter.Planni
         CardView cvPlanning;
         TextView tvDate;
         TextView tvMitraNoreg;
+        TextView tvMitraRit;
         TextView tvPopulation;
 
         public PlanningViewHolder(View itemView) {
@@ -83,6 +85,7 @@ public class PlanningAdapter extends RecyclerView.Adapter<PlanningAdapter.Planni
             cvPlanning = itemView.findViewById(R.id.cvPlanning);
             tvDate = itemView.findViewById(R.id.tvDate);
             tvMitraNoreg = itemView.findViewById(R.id.tvMitraNoreg);
+            tvMitraRit = itemView.findViewById(R.id.tvMitraRit);
             tvPopulation = itemView.findViewById(R.id.tvPopulation);
         }
     }

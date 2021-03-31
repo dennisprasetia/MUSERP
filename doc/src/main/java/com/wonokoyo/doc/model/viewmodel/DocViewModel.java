@@ -10,8 +10,10 @@ import androidx.lifecycle.ViewModel;
 import com.google.gson.Gson;
 import com.wonokoyo.doc.model.Doc;
 import com.wonokoyo.doc.model.DocDetail;
+import com.wonokoyo.doc.model.DocWeighs;
 import com.wonokoyo.doc.model.DocWithLoc;
 import com.wonokoyo.doc.model.Loc;
+import com.wonokoyo.doc.model.Weigh;
 import com.wonokoyo.doc.model.repository.DocRepository;
 import com.wonokoyo.doc.room.repo.DocRepo;
 
@@ -72,8 +74,8 @@ public class DocViewModel extends ViewModel {
         return docRepo.getAllDoc();
     }
 
-    public LiveData<List<DocWithLoc>> getAllDocWithLoc() {
-        return docRepo.getAllDocWithLoc();
+    public LiveData<List<DocWeighs>> getAllDocWithWeigh() {
+        return docRepo.getAllDocWithWeigh();
     }
 
     public void syncDocToPhone(String id_user) {
@@ -81,9 +83,11 @@ public class DocViewModel extends ViewModel {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
+                    ResponseBody body = response.body();
                     try {
-                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        JSONObject jsonObject = new JSONObject(body.string());
                         int status = jsonObject.getInt("status");
+
                         if (status == 1) {
                             JSONArray jsonArray = jsonObject.getJSONArray("content");
                             List<Doc> docs = Arrays.asList(new Gson().fromJson(jsonArray.toString(), Doc[].class));
@@ -119,6 +123,10 @@ public class DocViewModel extends ViewModel {
     public void savePrepDoc(Doc doc) {
         docRepo.updateDoc(doc);
         eventLiveData.setValue("saved_lokal");
+    }
+
+    public void saveWeighs(List<Weigh> weighs) {
+        docRepo.saveWeigh(weighs);
     }
 
     public void saveLocDoc(Loc loc) {
@@ -248,7 +256,7 @@ public class DocViewModel extends ViewModel {
         docRepository.uploadAttachment(path, listener);
     }
 
-    public void uploadFromLokal(List<Doc> docs) {
+    public void uploadFromLokal(final List<Doc> docs, String id_user) {
         Callback<ResponseBody> listener = new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -258,6 +266,10 @@ public class DocViewModel extends ViewModel {
                         JSONObject jsonObject = new JSONObject(result);
                         if (jsonObject.getInt("status") == 1) {
                             eventLiveData.setValue("uploaded");
+                            for (Doc d : docs) {
+                                d.setStat_upload(1);
+                                docRepo.updateDoc(d);
+                            }
                         } else {
                             eventLiveData.setValue("notfound");
                         }
@@ -277,6 +289,6 @@ public class DocViewModel extends ViewModel {
             }
         };
 
-        docRepository.uploadFromLokal(docs, listener);
+        docRepository.uploadFromLokal(docs, id_user, listener);
     }
 }

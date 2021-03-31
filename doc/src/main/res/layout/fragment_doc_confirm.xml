@@ -41,6 +41,21 @@
 				android:layout_weight="1"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
+				android:text="Rit"/>
+			<TextView
+				android:id="@+id/tvInfoRit"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="Rit"/>
+		</TableRow>
+
+		<TableRow
+			android:padding="5dp">
+			<TextView
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
 				android:text="Mitra"/>
 			<TextView
 				android:id="@+id/tvInfoMitra"

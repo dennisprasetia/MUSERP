@@ -115,13 +115,16 @@ public class SolutionFormFragment extends Fragment {
                     @Override
                     protected void onPostExecute(String s) {
                         super.onPostExecute(s);
-                        screenViewModel.clear();
-                        necropsyViewModel.clear();
-                        attachmentViewModel.clear();
-                        entryViewModel.clearAllData();
 
-                        progressDialog.dismiss();
-                        NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_solution_form_to_home);
+                        if (s.equalsIgnoreCase("saved")) {
+                            screenViewModel.clear();
+                            necropsyViewModel.clear();
+                            attachmentViewModel.clear();
+                            entryViewModel.clearAllData();
+
+                            progressDialog.dismiss();
+                            NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_solution_form_to_home);
+                        }
                     }
                 }.execute();
             }

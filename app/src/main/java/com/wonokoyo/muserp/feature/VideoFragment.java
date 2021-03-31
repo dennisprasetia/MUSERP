@@ -58,9 +58,8 @@ public class VideoFragment extends Fragment {
     private boolean isRecord = false;
 
     public VideoFragment() {
-        // Required empty public constructor
-    }
 
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -155,7 +154,7 @@ public class VideoFragment extends Fragment {
 
         videoCap = new VideoCapture(new VideoCaptureConfig.Builder()
                 .setTargetAspectRatio(aspecRatio)
-                .setTargetResolution(screenSize)
+                .setTargetResolution(new Size(1280, 720))
                 .setAudioRecordSource(MediaRecorder.AudioEncoder.DEFAULT)
                 .setBitRate(2500000)
                 .setVideoFrameRate(30).build());

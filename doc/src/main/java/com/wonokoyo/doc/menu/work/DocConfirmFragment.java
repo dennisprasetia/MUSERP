@@ -21,6 +21,7 @@ public class DocConfirmFragment extends Fragment {
 
     private Button btnNext;
     private TextView tvInfoNoOp;
+    private TextView tvInfoRit;
     private TextView tvInfoMitra;
     private TextView tvInfoNoreg;
     private TextView tvInfoKandang;
@@ -47,6 +48,8 @@ public class DocConfirmFragment extends Fragment {
 
         tvInfoNoOp = view.findViewById(R.id.tvInfoNoOp);
         tvInfoNoOp.setText(doc.getNoOpDoc());
+        tvInfoRit = view.findViewById(R.id.tvInfoRit);
+        tvInfoRit.setText(doc.getRit());
         tvInfoMitra = view.findViewById(R.id.tvInfoMitra);
         tvInfoMitra.setText(doc.getMitra());
         tvInfoNoreg = view.findViewById(R.id.tvInfoNoreg);

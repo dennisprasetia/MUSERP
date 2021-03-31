@@ -21,6 +21,7 @@ import com.wonokoyo.doc.DocActivity;
 import com.wonokoyo.login.LoginActivity;
 import com.wonokoyo.muserp.R;
 import com.wonokoyo.muserp.util.SharedPrefManager;
+import com.wonokoyo.pakan.PakanActivity;
 import com.wonokoyo.voadip.VoadipActivity;
 
 public class HomeFragment extends Fragment {
@@ -28,6 +29,7 @@ public class HomeFragment extends Fragment {
     private CardView cvDocin;
     private CardView cvVoadip;
     private CardView cvRhk;
+    private CardView cvPakan;
     private CardView cvPanen;
     private CardView cvTestTimbang;
     private GridLayout gridLayout;
@@ -86,9 +88,9 @@ public class HomeFragment extends Fragment {
         cvVoadip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), VoadipActivity.class);
-                intent.putExtra("id_user", manager.getSpIdUser());
-                startActivity(intent);
+//                Intent intent = new Intent(getContext(), VoadipActivity.class);
+//                intent.putExtra("id_user", manager.getSpIdUser());
+//                startActivity(intent);
 //                onFocus(v);
             }
         });
@@ -97,7 +99,18 @@ public class HomeFragment extends Fragment {
         cvRhk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.nav_daily);
+//                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.nav_daily);
+//                onFocus(v);
+            }
+        });
+
+        cvPakan = view.findViewById(R.id.cvPakan);
+        cvPakan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PakanActivity.class);
+                intent.putExtra("id_user", manager.getSpIdUser());
+                startActivity(intent);
 //                onFocus(v);
             }
         });
@@ -106,7 +119,7 @@ public class HomeFragment extends Fragment {
         cvPanen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.nav_team);
+//                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.nav_team);
 //                onFocus(v);
             }
         });

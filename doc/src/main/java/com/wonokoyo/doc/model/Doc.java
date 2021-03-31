@@ -13,8 +13,20 @@ import java.util.List;
 
 @Entity(tableName = "doc")
 public class Doc implements Serializable {
-//    @PrimaryKey(autoGenerate = true)
-//    private int id;
+
+    @PrimaryKey
+    @NonNull
+    @SerializedName("idSpj")
+    @Expose
+    private String id_spj;
+
+    @SerializedName("rit")
+    @Expose
+    private String rit;
+
+    @SerializedName("idScan")
+    @Expose
+    private String idScan;
 
     @SerializedName("noOpDoc")
     @Expose
@@ -28,8 +40,6 @@ public class Doc implements Serializable {
     @Expose
     private String mitra;
 
-    @PrimaryKey
-    @NonNull
     @SerializedName("noreg")
     @Expose
     private String noreg;
@@ -120,25 +130,58 @@ public class Doc implements Serializable {
     private List<Voadip> voadips;
 
     @Ignore
+    @SerializedName("weighs")
+    @Expose
+    private List<Weigh> weigh;
+
+    @Ignore
     @SerializedName("location")
     @Expose
     private Loc loc;
 
+    @SerializedName("stat_track")
+    @Expose
     private int stat_track;
 
+    @SerializedName("stat_entry")
+    @Expose
     private int stat_entry;
+
+    @SerializedName("stat_recieve")
+    @Expose
+    private int stat_recieve;
+
+    @SerializedName("stat_upload")
+    @Expose
+    private int stat_upload;
 
     public Doc() {
 
     }
 
-//    public int getId() {
-//        return id;
-//    }
+    public String getId_spj() {
+        return id_spj;
+    }
 
-//    public void setId(int id) {
-//        this.id = id;
-//    }
+    public void setId_spj(String id_spj) {
+        this.id_spj = id_spj;
+    }
+
+    public String getRit() {
+        return rit;
+    }
+
+    public void setRit(String rit) {
+        this.rit = rit;
+    }
+
+    public String getIdScan() {
+        return idScan;
+    }
+
+    public void setIdScan(String idScan) {
+        this.idScan = idScan;
+    }
 
     public String getNoOpDoc() {
         return noOpDoc;
@@ -340,6 +383,14 @@ public class Doc implements Serializable {
         this.voadips = voadips;
     }
 
+    public List<Weigh> getWeigh() {
+        return weigh;
+    }
+
+    public void setWeigh(List<Weigh> weigh) {
+        this.weigh = weigh;
+    }
+
     public Loc getLoc() {
         return loc;
     }
@@ -362,5 +413,21 @@ public class Doc implements Serializable {
 
     public void setStat_entry(int stat_entry) {
         this.stat_entry = stat_entry;
+    }
+
+    public int getStat_recieve() {
+        return stat_recieve;
+    }
+
+    public void setStat_recieve(int stat_recieve) {
+        this.stat_recieve = stat_recieve;
+    }
+
+    public int getStat_upload() {
+        return stat_upload;
+    }
+
+    public void setStat_upload(int stat_upload) {
+        this.stat_upload = stat_upload;
     }
 }

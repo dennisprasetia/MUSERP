@@ -12,11 +12,12 @@ import com.wonokoyo.doc.model.Doc;
 import com.wonokoyo.doc.model.ItemVoadip;
 import com.wonokoyo.doc.model.Loc;
 import com.wonokoyo.doc.model.Voadip;
+import com.wonokoyo.doc.model.Weigh;
 import com.wonokoyo.doc.room.dao.DocDao;
 import com.wonokoyo.doc.room.dao.LocDao;
 import com.wonokoyo.doc.room.dao.VoadipDao;
 
-@Database(entities = {Doc.class, Voadip.class, ItemVoadip.class, Loc.class}, version = 6, exportSchema = false)
+@Database(entities = {Doc.class, Voadip.class, ItemVoadip.class, Loc.class, Weigh.class}, version = 8, exportSchema = false)
 public abstract class DocDatabase extends RoomDatabase {
 
     private static volatile DocDatabase INSTANCE;

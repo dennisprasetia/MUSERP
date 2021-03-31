@@ -25,8 +25,10 @@ import com.google.gson.Gson;
 import com.wonokoyo.doc.DocActivity;
 import com.wonokoyo.doc.R;
 import com.wonokoyo.doc.model.Doc;
+import com.wonokoyo.doc.model.DocWeighs;
 import com.wonokoyo.doc.model.DocWithLoc;
 import com.wonokoyo.doc.model.viewmodel.DocViewModel;
+import com.wonokoyo.doc.util.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +37,11 @@ public class DocHomeFragment extends Fragment {
 
     private CardView cvPlan;
     private CardView cvEntry;
-    private Button btnUpload;
+    private CardView btnUpload;
 
     DocViewModel docViewModel;
+
+    SharedPrefManager spm;
 
     ProgressDialog pd;
 
@@ -62,16 +66,20 @@ public class DocHomeFragment extends Fragment {
                 if (s.equalsIgnoreCase("file_uploaded")) {
                     Toast.makeText(getContext(), "FILE TERUPLOAD", Toast.LENGTH_SHORT).show();
                     docViewModel.resetEvent();
+                    pd.dismiss();
                 }
 
                 if (s.equalsIgnoreCase("file_not_uploaded")) {
                     Toast.makeText(getContext(), "FILE TIDAK TERUPLOAD", Toast.LENGTH_SHORT).show();
                     docViewModel.resetEvent();
+                    pd.dismiss();
                 }
 
                 if (s.equalsIgnoreCase("uploaded")) {
-                    Toast.makeText(getContext(), "UPLOAD SPJ SELESAI", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "UPLOAD SELESAI", Toast.LENGTH_LONG).show();
                     docViewModel.resetEvent();
+                    pd.dismiss();
+                } else {
                     pd.dismiss();
                 }
             }
@@ -87,6 +95,8 @@ public class DocHomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        spm = new SharedPrefManager(getContext());
+
         cvPlan = view.findViewById(R.id.cvPlan);
         cvPlan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,22 +118,27 @@ public class DocHomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 pd.show();
-                docViewModel.getAllDocWithLoc().observe(getViewLifecycleOwner(), new Observer<List<DocWithLoc>>() {
+                docViewModel.getAllDocWithWeigh().observe(getViewLifecycleOwner(), new Observer<List<DocWeighs>>() {
                     @Override
-                    public void onChanged(final List<DocWithLoc> docWithLocs) {
+                    public void onChanged(final List<DocWeighs> docWeighs) {
                         List<Doc> docs = new ArrayList<>();
-                        for (DocWithLoc dwl : docWithLocs) {
-                            Doc doc = dwl.getDoc();
-                            doc.setLoc(dwl.getLoc());
+                        if (docWeighs.size() > 0) {
+                            for (DocWeighs dw : docWeighs) {
+                                Doc doc = dw.getDoc();
+                                doc.setWeigh(dw.getWeighs());
 
-                            if (doc.getUrl() != "" && doc.getUrl() != null) {
-                                docViewModel.uploadAttachment(doc.getUrl());
+                                if (doc.getUrl() != "" && doc.getUrl() != null) {
+                                    docViewModel.uploadAttachment(doc.getUrl());
+                                }
+
+                                docs.add(doc);
                             }
 
-                            docs.add(doc);
+                            docViewModel.uploadFromLokal(docs, spm.getSpIdUser());
+                        } else {
+                            Toast.makeText(getContext(), "Data Kosong", Toast.LENGTH_SHORT).show();
+                            pd.dismiss();
                         }
-
-                        docViewModel.uploadFromLokal(docs);
                     }
                 });
             }

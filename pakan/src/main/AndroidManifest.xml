@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.wonokoyo.pakan">
+
+	<application>
+		<activity android:name=".SjActivity"></activity>
+		<activity android:name=".TimbangActivity" />
+		<activity android:name=".MainActivity" />
+	</application>
+
+</manifest>

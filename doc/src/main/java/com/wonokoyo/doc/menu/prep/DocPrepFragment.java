@@ -84,14 +84,13 @@ public class DocPrepFragment extends Fragment {
 
         tvSyncDate = view.findViewById(R.id.tvLastSync);
 
+        docViewModel.syncDocToPhone(spm.getSpIdUser());
         docViewModel.populateListDoc().observe(getViewLifecycleOwner(), new Observer<List<Doc>>() {
             @Override
             public void onChanged(List<Doc> docs) {
                 if (docs.size() > 0) {
                     docViewModel.setMutableLiveData(docs);
                     tvSyncDate.setText("* Sinkronisasi terakhir " + spm.getSpLastSync());
-                } else {
-                    docViewModel.syncDocToPhone(spm.getSpIdUser());
                 }
             }
         });

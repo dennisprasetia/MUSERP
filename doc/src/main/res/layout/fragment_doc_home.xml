@@ -7,30 +7,21 @@
 	android:gravity="center"
 	android:orientation="vertical">
 
-	<Button
-		android:id="@+id/btnUpload"
-		android:layout_width="40dp"
-		android:layout_height="40dp"
-		android:layout_marginBottom="40dp"
-		android:text="*" />
-
 	<androidx.cardview.widget.CardView
 		android:id="@+id/cvPlan"
 		android:layout_width="220dp"
-		android:layout_height="220dp"
-		android:layout_marginBottom="40dp"
+		android:layout_height="170dp"
+		android:layout_marginBottom="20dp"
 		app:cardCornerRadius="20dp">
-
 		<LinearLayout
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:orientation="vertical"
 			android:gravity="center"
 			android:padding="15dp">
-
 			<ImageView
-				android:layout_width="100dp"
-				android:layout_height="100dp"
+				android:layout_width="70dp"
+				android:layout_height="70dp"
 				android:layout_gravity="center"
 				android:contentDescription="@string/image_icon"
 				android:src="@drawable/ic_kitchen_doc" />
@@ -41,7 +32,7 @@
 				android:layout_gravity="center"
 				android:gravity="center"
 				android:text="@string/rencana"
-				android:textSize="24sp"
+				android:textSize="20sp"
 				android:textStyle="bold" />
 		</LinearLayout>
 	</androidx.cardview.widget.CardView>
@@ -49,19 +40,18 @@
 	<androidx.cardview.widget.CardView
 		android:id="@+id/cvEntry"
 		android:layout_width="220dp"
-		android:layout_height="220dp"
+		android:layout_height="170dp"
+		android:layout_marginBottom="20dp"
 		app:cardCornerRadius="20dp">
-
 		<LinearLayout
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:gravity="center"
 			android:orientation="vertical"
 			android:padding="15dp">
-
 			<ImageView
-				android:layout_width="100dp"
-				android:layout_height="100dp"
+				android:layout_width="70dp"
+				android:layout_height="70dp"
 				android:contentDescription="@string/image_icon"
 				android:src="@drawable/ic_entry_doc" />
 
@@ -70,8 +60,41 @@
 				android:layout_height="wrap_content"
 				android:gravity="center"
 				android:text="@string/catatan"
-				android:textSize="24sp"
+				android:textSize="20sp"
 				android:textStyle="bold" />
+		</LinearLayout>
+	</androidx.cardview.widget.CardView>
+
+	<androidx.cardview.widget.CardView
+		android:id="@+id/btnUpload"
+		android:layout_width="220dp"
+		android:layout_height="170dp"
+		app:cardCornerRadius="20dp">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			android:gravity="center"
+			android:padding="15dp">
+			<ImageView
+				android:layout_width="70dp"
+				android:layout_height="70dp"
+				android:src="@drawable/ic_upload" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="Upload"
+				android:textSize="20sp"
+				android:textStyle="bold" />
+
+			<TextView
+				android:id="@+id/tv_count"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Jumlah : 0"
+				android:visibility="gone"/>
 		</LinearLayout>
 	</androidx.cardview.widget.CardView>
 

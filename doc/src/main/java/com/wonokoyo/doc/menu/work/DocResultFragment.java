@@ -106,7 +106,7 @@ public class DocResultFragment extends Fragment implements BiometricCallback {
         tvResultJenisDoc = view.findViewById(R.id.tvResultJenisDoc);
         tvResultJenisDoc.setText(mDoc.getJenis());
         tvResultJumlahBox = view.findViewById(R.id.tvResultJumlahBox);
-        tvResultJumlahBox.setText(String.valueOf(mDoc.getJumlahBox()));
+        tvResultJumlahBox.setText(String.valueOf(mDoc.getTerimaBox()));
         tvResultMati = view.findViewById(R.id.tvResultMati);
         tvResultMati.setText(String.valueOf(mDoc.getMati()));
         tvResultTerima = view.findViewById(R.id.tvResultJumlahTerima);

@@ -7,47 +7,64 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.wonokoyo.doc.R;
 import com.wonokoyo.doc.model.Doc;
+import com.wonokoyo.doc.model.Weigh;
+import com.wonokoyo.doc.model.adapter.WeighAdapter;
+import com.wonokoyo.doc.model.viewmodel.DocViewModel;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DocWeighFragment extends Fragment {
 
     // variable untuk membaca sender
     private static final int SERVERPORT = 5000;
-//    private static final String SERVER_IP = "192.168.0.3";
     private static final String SERVER_IP = "192.168.100.10";
 
-    private int indexTimbang = 1;
+    private int nomor = 0;
+    private int max_count = 0;
+    private List<Weigh> weighs = new ArrayList<>();
 
     private EditText etBerat;
-    private TextView tvTimbang1;
-    private TextView tvTimbang2;
-    private TextView tvTimbang3;
-    private EditText etBoxTimbang1;
-    private EditText etBoxTimbang2;
-    private EditText etBoxTimbang3;
+    private EditText etBox;
+    private RecyclerView rvTimbang;
+    private EditText etJmlTimbang;
+    private EditText etBoxTara;
     private TextView tvBbDoc;
     private TextView tvBbTara;
     private CardView cvHasilHitung;
     private TextView tvSelesaiTimbang;
+    private Button btnLanjut;
+    private Button btnTara;
+    private Button btnSelesai;
+    private Button btnRefresh;
+
+    private WeighAdapter adapter;
 
     Handler handler = new Handler();
 
     Doc mDoc;
 
     Thread thread;
+
+    DocViewModel model;
 
     public DocWeighFragment() {
         // Required empty public constructor
@@ -58,6 +75,13 @@ public class DocWeighFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mDoc = (Doc) getArguments().getSerializable("doc");
+
+        max_count = mDoc.getJumlahBox() / 5;
+
+        adapter = new WeighAdapter(getContext());
+
+        model = new DocViewModel();
+        model.init(getActivity().getApplication());
     }
 
     @Override
@@ -70,22 +94,96 @@ public class DocWeighFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         etBerat = view.findViewById(R.id.etBerat);
+        etBox = view.findViewById(R.id.etBox);
 
-        tvTimbang1 = view.findViewById(R.id.tvTimbang1);
-        tvTimbang2 = view.findViewById(R.id.tvTimbang2);
-        tvTimbang3 = view.findViewById(R.id.tvTimbang3);
+        rvTimbang = view.findViewById(R.id.rv_det_timbang);
+        rvTimbang.setAdapter(adapter);
 
-        etBoxTimbang1 = view.findViewById(R.id.etBoxTimbang1);
-        etBoxTimbang2 = view.findViewById(R.id.etBoxTimbang2);
-        etBoxTimbang3 = view.findViewById(R.id.etBoxTimbang3);
-
+        etJmlTimbang = view.findViewById(R.id.etJmlTimbang);
+        etBoxTara = view.findViewById(R.id.etBoxTara);
         tvBbDoc = view.findViewById(R.id.tvBbDoc);
         tvBbTara = view.findViewById(R.id.tvBbTara);
 
         cvHasilHitung = view.findViewById(R.id.cvHasilHitung);
         tvSelesaiTimbang = view.findViewById(R.id.tvSelesaiTimbang);
 
+        btnLanjut = view.findViewById(R.id.btnLanjut);
+        btnLanjut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validate()) {
+                    nomor++;
+
+                    Weigh w = new Weigh();
+                    w.setId_spj(mDoc.getId_spj());
+                    w.setNomor(nomor);
+                    w.setTipe("chick");
+                    w.setJmlBox(Integer.valueOf(etBox.getText().toString()));
+                    w.setBerat(Double.valueOf(etBerat.getText().toString()));
+                    weighs.add(w);
+
+                    etBerat.setText("");
+
+                    adapter.update(weighs);
+                    rvTimbang.smoothScrollToPosition(weighs.size() - 1);
+                }
+            }
+        });
+
+        btnRefresh = view.findViewById(R.id.btnRefresh);
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopThread();
+
+                startThread();
+            }
+        });
+
+        btnTara = view.findViewById(R.id.btnTara);
+        btnTara.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validate()) {
+                    nomor++;
+
+                    Weigh w = new Weigh();
+                    w.setId_spj(mDoc.getId_spj());
+                    w.setNomor(nomor);
+                    w.setTipe("tara");
+                    w.setJmlBox(Integer.valueOf(etBox.getText().toString()));
+                    w.setBerat(Double.valueOf(etBerat.getText().toString()));
+                    weighs.add(w);
+
+                    etBerat.setText("");
+
+                    adapter.update(weighs);
+                    rvTimbang.smoothScrollToPosition(weighs.size() - 1);
+
+                    startHitung();
+                }
+            }
+        });
+
+        btnSelesai = view.findViewById(R.id.btnSimpan);
+        btnSelesai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startHitung();
+            }
+        });
+
         startThread();
+    }
+
+    public boolean validate() {
+        if (etBerat.getText().toString().equalsIgnoreCase("0.0") || etBerat.getText().toString().equalsIgnoreCase("")) {
+            etBerat.setError("Awas Kosong");
+            return false;
+        }
+
+        etBerat.setError(null);
+        return true;
     }
 
     @Override
@@ -107,25 +205,46 @@ public class DocWeighFragment extends Fragment {
     }
 
     public void startHitung() {
-        double tim1 = Double.valueOf(tvTimbang1.getText().toString());
-        double tim2 = Double.valueOf(tvTimbang2.getText().toString());
-        double tim3 = Double.valueOf(tvTimbang3.getText().toString());
+        double total = 0.0;
+        int box = 0;
 
-        int box1 = Integer.valueOf(etBoxTimbang1.getText().toString());
-        int box2 = Integer.valueOf(etBoxTimbang2.getText().toString());
-        int box3 = Integer.valueOf(etBoxTimbang3.getText().toString());
+        for (Weigh w : weighs) {
+            if (w.getTipe().equalsIgnoreCase("chick")) {
+                total += w.getBerat();
+                box += w.getJmlBox();
+            }
+        }
 
-        double bbDoc = ((tim1 + tim2 - tim3) / ((box1 + box2) * 102)) * 1000;
-        double bbTara = tim3 / box3;
+        double bbTara = (weighs.get(weighs.size() - 1).getBerat() / 10) * 1000;
+        double bbDoc = (((total / box) - (bbTara / 1000)) / 102) * 1000;
 
-        tvBbDoc.setText(String.format("%.2f", bbDoc));
-        tvBbTara.setText(String.format("%.2f", bbTara));
+        tvBbDoc.setText(String.format("%.0f", bbDoc));
+        tvBbTara.setText(String.format("%.0f", bbTara));
+        etJmlTimbang.setText(String.valueOf(box));
 
         cvHasilHitung.setVisibility(View.VISIBLE);
         tvSelesaiTimbang.setVisibility(View.VISIBLE);
+        btnTara.setVisibility(View.GONE);
+        btnLanjut.setVisibility(View.GONE);
 
         mDoc.setBbRata(bbDoc);
         mDoc.setTaraBox(bbTara);
+        mDoc.setWeigh(weighs);
+        mDoc.setEkorTerima(box * 100);
+        mDoc.setTerimaBox(box);
+
+        model.saveWeighs(weighs);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("doc", mDoc);
+
+                NavHostFragment.findNavController(getParentFragment())
+                        .navigate(R.id.action_doc_weigh_to_doc_entry_form, bundle);
+            }
+        }, 7000);
     }
 
     public class RunTimbang implements Runnable {
@@ -137,54 +256,11 @@ public class DocWeighFragment extends Fragment {
                 String res = in.readLine();
 
                 if (res != null) {
-                    String trim = res.trim();
-//                    String[] result = res.split("\\+");
-                    String replace_char = trim.replaceAll("[a-zA-Z]", "");
-                    String replace_sym = replace_char.replaceAll("\\+", "");
-                    String replace_sym2 = replace_sym.replaceAll(",", "");
-                    final double dec = Double.valueOf(replace_sym2);
+                    Pattern pattern = Pattern.compile("\\d+\\.\\d+");
+                    Matcher matcher = pattern.matcher(res);
 
-                    etBerat.setText(String.format("%.2f", dec));
-
-                    if (indexTimbang == 1) {
-                        tvTimbang1.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                tvTimbang1.setText(String.format("%.2f", dec));
-                                indexTimbang++;
-                            }
-                        });
-                    }
-
-                    if (indexTimbang == 2) {
-                        tvTimbang2.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                tvTimbang2.setText(String.format("%.2f", dec));
-                                indexTimbang++;
-                            }
-                        });
-                    }
-
-                    if (indexTimbang == 3) {
-                        tvTimbang3.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                tvTimbang3.setText(String.format("%.2f", dec));
-                                startHitung();
-                            }
-                        });
-
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                Bundle bundle = new Bundle();
-                                bundle.putSerializable("doc", mDoc);
-
-                                NavHostFragment.findNavController(getParentFragment())
-                                        .navigate(R.id.action_doc_weigh_to_doc_entry_form, bundle);
-                            }
-                        }, 10000);
+                    if (matcher.find()) {
+                        etBerat.setText(matcher.group());
                     }
                 }
 

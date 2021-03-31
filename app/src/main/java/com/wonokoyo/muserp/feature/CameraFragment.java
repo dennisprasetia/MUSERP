@@ -56,7 +56,7 @@ public class CameraFragment extends Fragment {
     private final static int REQUEST_STORAGE_CODE = 20;
 
     public CameraFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -130,8 +130,8 @@ public class CameraFragment extends Fragment {
     public void startCamera() {
         CameraX.unbindAll();
 
-        Rational aspecRatio = new Rational(viewCamera.getWidth()/2, viewCamera.getHeight()/2);
-        Size screenSize = new Size(viewCamera.getWidth()/4, viewCamera.getHeight()/4);
+        Rational aspecRatio = new Rational(viewCamera.getWidth(), viewCamera.getHeight());
+        Size screenSize = new Size(viewCamera.getWidth(), viewCamera.getHeight());
 
         PreviewConfig pConfig = new PreviewConfig.Builder()
                 .setTargetAspectRatio(aspecRatio)
@@ -153,7 +153,7 @@ public class CameraFragment extends Fragment {
         ImageCaptureConfig imageCaptureConfig = new ImageCaptureConfig.Builder()
                 .setCaptureMode(ImageCapture.CaptureMode.MIN_LATENCY)
                 .setTargetAspectRatio(aspecRatio)
-                .setTargetResolution(screenSize).build();
+                .setTargetResolution(new Size(1280, 720)).build();
         imgCap = new ImageCapture(imageCaptureConfig);
 
         createImageFolder();

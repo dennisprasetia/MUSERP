@@ -64,6 +64,7 @@ public class DocDetailPrepFragment extends Fragment implements BiometricCallback
 
     // variable detail
     private TextView tvNoOpDoc;
+    private TextView tvRitDoc;
     private TextView tvTglDoc;
     private TextView tvMitraDoc;
     private TextView tvNoregDoc;
@@ -124,6 +125,7 @@ public class DocDetailPrepFragment extends Fragment implements BiometricCallback
         rvDetailVoadip.setAdapter(voadipAdapter);
 
         tvNoOpDoc = view.findViewById(R.id.tvNoOpDoc);
+        tvRitDoc = view.findViewById(R.id.tvRitDoc);
         tvTglDoc = view.findViewById(R.id.tvTglDoc);
         tvMitraDoc = view.findViewById(R.id.tvMitraDoc);
         tvNoregDoc = view.findViewById(R.id.tvNoregDoc);
@@ -195,6 +197,7 @@ public class DocDetailPrepFragment extends Fragment implements BiometricCallback
 
     public void setupDetailDoc(Doc doc) {
         tvNoOpDoc.setText(doc.getNoOpDoc());
+        tvRitDoc.setText(doc.getRit());
         tvTglDoc.setText(doc.getTanggalDoc());
         tvMitraDoc.setText(doc.getMitra());
         tvNoregDoc.setText(doc.getNoreg());

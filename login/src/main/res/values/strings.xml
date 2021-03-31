@@ -14,9 +14,9 @@
     <string name="biometric_error_hardware_not_supported">Device does not support biometric authentication</string>
     <string name="biometric_error_fingerprint_not_available">Fingerprint is not registered in device</string>
     <string name="biometric_error_permission_not_granted">Permission is not granted by user</string>
-    <string name="biometric_failure">Login not successful!</string>
-    <string name="biometric_cancelled">Authentication cancelled by user</string>
-    <string name="biometric_success">Login Successful</string>
+    <string name="biometric_failure">Sidik jari tidak dikenali</string>
+    <string name="biometric_cancelled">Verifikasi dibatalkan</string>
+    <string name="biometric_success">Sidik jari dikenali</string>
 	<string name="login">Login</string>
 
 </resources>

@@ -1,1 +1,2 @@
+include ':pakan'
 include ':app', ':voadip', ':doc', ':login', ':rhk'

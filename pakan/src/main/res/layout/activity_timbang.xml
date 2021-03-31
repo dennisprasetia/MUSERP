@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".TimbangActivity">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="15dp"
+		android:orientation="horizontal"
+		android:gravity="center">
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="8dp"
+			android:text="Berat"
+			android:textSize="20dp"/>
+		<EditText
+			android:id="@+id/etValue"
+			android:layout_width="65dp"
+			android:layout_height="wrap_content"
+			android:clickable="false"
+			android:cursorVisible="false"
+			android:contextClickable="false"
+			android:focusable="false"
+			android:textAlignment="center"
+			android:inputType="numberDecimal"/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:text="KG"
+			android:textSize="20dp"/>
+	</LinearLayout>
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/rv_timbang"
+		android:layout_width="match_parent"
+		android:layout_height="350dp"
+		android:layout_marginHorizontal="15dp"
+		app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+		<Button
+			android:id="@+id/btnNext"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentEnd="true"
+			android:layout_marginEnd="8dp"
+			android:text="Lanjut"/>
+		<Button
+			android:id="@+id/btnRefresh"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toStartOf="@id/btnNext"
+			android:layout_marginEnd="8dp"
+			android:text="Refresh"/>
+		<Button
+			android:id="@+id/btnDone"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentStart="true"
+			android:layout_marginStart="8dp"
+			android:text="Selesai"/>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentTop="true"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="10dp"
+			android:layout_toStartOf="@id/btnRefresh"
+			android:layout_toEndOf="@id/btnDone"
+			android:gravity="center">
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Total : "
+				android:textSize="20dp"/>
+			<TextView
+				android:id="@+id/tvTotal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="0.0"
+				android:textSize="20dp"/>
+		</LinearLayout>
+	</RelativeLayout>
+</LinearLayout>
