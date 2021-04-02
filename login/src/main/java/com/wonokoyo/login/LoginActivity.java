@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -44,10 +45,16 @@ public class LoginActivity extends AppCompatActivity implements BiometricCallbac
 
     private String idUser, namaUser, message;
 
+    private ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
+        dialog.setMessage("Sedang memuat");
 
         etUsername = findViewById(R.id.username);
         etPassword = findViewById(R.id.password);
@@ -127,7 +134,7 @@ public class LoginActivity extends AppCompatActivity implements BiometricCallbac
 
     @Override
     public void onAuthenticationSuccessful() {
-        Toast.makeText(getApplicationContext(), getString(R.string.biometric_success), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), getString(R.string.biometric_success), Toast.LENGTH_SHORT).show();
         String imei = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         loginUser("", "", imei);
     }
@@ -143,12 +150,14 @@ public class LoginActivity extends AppCompatActivity implements BiometricCallbac
     }
 
     public void loginUser(String username, String password, String deviceId) {
+        dialog.show();
         Call<ResponseBody> call = RetrofitInstance.getLoginService().login(username, password, deviceId);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     ResponseBody body = response.body();
+                    dialog.dismiss();
                     try {
                         JSONObject jsonObject = new JSONObject(body.string());
                         if (jsonObject.getString("status").equalsIgnoreCase("1")) {

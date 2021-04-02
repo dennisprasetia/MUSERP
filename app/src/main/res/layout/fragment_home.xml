@@ -8,21 +8,14 @@
 	android:orientation="vertical"
 	tools:context=".menu.HomeFragment">
 
-	<!--<ImageView-->
-		<!--android:id="@+id/imageView"-->
-		<!--android:layout_width="match_parent"-->
-		<!--android:layout_height="match_parent"-->
-		<!--android:layout_alignParentStart="true"-->
-		<!--android:layout_alignParentTop="true"-->
-		<!--android:layout_alignParentEnd="true"-->
-		<!--android:layout_alignParentBottom="true"-->
-		<!--android:layout_marginStart="0dp"-->
-		<!--android:layout_marginTop="0dp"-->
-		<!--android:layout_marginEnd="0dp"-->
-		<!--android:layout_marginBottom="0dp"-->
-		<!--android:alpha="0.4"-->
-		<!--android:src="@drawable/mus"-->
-		<!--android:contentDescription="@string/app_name"/>-->
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentStart="true"
+		android:layout_marginStart="4dp"
+		android:layout_marginTop="4dp"
+		android:text="V 1.0"/>
 
 	<TextView
 		android:id="@+id/tvSlmtDtng"

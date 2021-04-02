@@ -249,6 +249,7 @@ public class DocWeighFragment extends Fragment {
         cvHasilHitung.setVisibility(View.VISIBLE);
         tvSelesaiTimbang.setVisibility(View.VISIBLE);
         btnTara.setVisibility(View.GONE);
+        btnRefresh.setVisibility(View.GONE);
         btnLanjut.setVisibility(View.GONE);
 
         mDoc.setBbRata(bbDoc);
