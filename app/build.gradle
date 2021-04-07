@@ -8,7 +8,8 @@ android {
         minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
-        versionName "2.3"
+//        versionName "2.3"
+        versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -23,7 +24,8 @@ android.applicationVariants.all { variant ->
     variant.outputs.all {
         def appName = "MUS ERP"
         def vers = "HOT FIX"
-        outputFileName = appName + "-${variant.versionName}-" + vers + ".apk"
+        def vers_impl = "IMPL"
+        outputFileName = appName + "-${variant.versionName}-" + vers_impl + ".apk"
     }
 }
 

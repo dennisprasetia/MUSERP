@@ -128,42 +128,12 @@
 					android:layout_weight="0.5"
 					android:layout_width="0dp"
 					android:layout_height="wrap_content"
-					android:text="Mati (Ekor)"/>
+					android:text="Tara Box (gr)"/>
 				<TextView
 					android:layout_weight="0.5"
 					android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:text="BB Rata-rata (gr)"/>
-			</TableRow>
-
-			<TableRow>
-				<EditText
-					android:id="@+id/etMatiEkor"
-					android:layout_weight="0.5"
-					android:layout_width="0dp"
-					android:layout_height="wrap_content"
-					android:inputType="number" />
-
-				<EditText
-					android:id="@+id/etBbRata"
-					android:layout_width="0dp"
-					android:layout_height="wrap_content"
-					android:layout_weight="0.5"
-					android:clickable="false"
-					android:longClickable="false"
-					android:contextClickable="false"
-					android:cursorVisible="false"
-					android:focusable="false"
-					android:inputType="number|numberDecimal" />
-			</TableRow>
-
-			<TableRow>
-
-				<TextView
-					android:layout_width="0dp"
-					android:layout_height="wrap_content"
-					android:layout_weight="0.5"
-					android:text="Tara Box (gr)" />
 			</TableRow>
 
 			<TableRow>
@@ -178,6 +148,43 @@
 					android:cursorVisible="false"
 					android:focusable="false"
 					android:inputType="number|numberDecimal"/>
+
+				<EditText
+					android:id="@+id/etBbRata"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="0.5"
+					android:clickable="false"
+					android:longClickable="false"
+					android:contextClickable="false"
+					android:cursorVisible="false"
+					android:focusable="false"
+					android:inputType="number|numberDecimal" />
+			</TableRow>
+
+			<TableRow
+				android:visibility="gone">
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="0.5"
+					android:text="Mati (ekor)" />
+			</TableRow>
+
+			<TableRow
+				android:visibility="gone">
+				<EditText
+					android:id="@+id/etMatiEkor"
+					android:layout_weight="0.5"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:inputType="number"
+					android:text="0"
+					android:clickable="false"
+					android:longClickable="false"
+					android:contextClickable="false"
+					android:cursorVisible="false"
+					android:focusable="false"/>
 
 				<EditText
 					android:visibility="invisible"
