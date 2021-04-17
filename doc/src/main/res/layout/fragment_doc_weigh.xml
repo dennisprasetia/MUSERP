@@ -167,8 +167,7 @@
 						android:clickable="false"
 						android:cursorVisible="false"
 						android:gravity="center_horizontal"
-						android:inputType="number"
-						android:text="10" />
+						android:inputType="number" />
 				</TableRow>
 
 				<TableRow>

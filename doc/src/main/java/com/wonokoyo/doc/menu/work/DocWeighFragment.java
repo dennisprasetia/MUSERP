@@ -245,6 +245,7 @@ public class DocWeighFragment extends Fragment {
         tvBbDoc.setText(String.format("%.0f", bbDoc));
         tvBbTara.setText(String.format("%.0f", bbTara));
         etJmlTimbang.setText(String.valueOf(box));
+        etBoxTara.setText(String.valueOf(weighs.get(weighs.size() - 1).getJmlBox()));
 
         cvHasilHitung.setVisibility(View.VISIBLE);
         tvSelesaiTimbang.setVisibility(View.VISIBLE);
