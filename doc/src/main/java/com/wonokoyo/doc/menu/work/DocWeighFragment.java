@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.wonokoyo.doc.DocActivity;
 import com.wonokoyo.doc.R;
 import com.wonokoyo.doc.model.Doc;
 import com.wonokoyo.doc.model.Weigh;
@@ -65,7 +66,7 @@ public class DocWeighFragment extends Fragment {
 
     Doc mDoc;
 
-    Thread thread;
+    private Thread thread;
 
     DocViewModel model;
 
@@ -77,13 +78,9 @@ public class DocWeighFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mDoc = (Doc) getArguments().getSerializable("doc");
-
-        max_count = mDoc.getJumlahBox() / 5;
-
         adapter = new WeighAdapter(getContext());
 
-        model = new DocViewModel();
+        model = ((DocActivity) getActivity()).getDocViewModel();
         model.init(getActivity().getApplication());
     }
 
@@ -96,6 +93,9 @@ public class DocWeighFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        mDoc = model.getLiveDoc().getValue();
+        max_count = mDoc.getJumlahBox() / 5;
+
         etBerat = view.findViewById(R.id.etBerat);
         etBox = view.findViewById(R.id.etBox);
 
@@ -115,20 +115,35 @@ public class DocWeighFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (validate()) {
-                    nomor++;
+                    if (nomor < max_count) {
+                        nomor++;
 
-                    Weigh w = new Weigh();
-                    w.setId_spj(mDoc.getId_spj());
-                    w.setNomor(nomor);
-                    w.setTipe("chick");
-                    w.setJmlBox(Integer.valueOf(etBox.getText().toString()));
-                    w.setBerat(Double.valueOf(etBerat.getText().toString()));
-                    weighs.add(w);
+                        Weigh w = new Weigh();
+                        w.setId_spj(mDoc.getId_spj());
+                        w.setNomor(nomor);
+                        w.setTipe("chick");
+                        w.setJmlBox(Integer.valueOf(etBox.getText().toString()));
+                        w.setBerat(Double.valueOf(etBerat.getText().toString()));
+                        weighs.add(w);
 
-                    etBerat.setText("");
+                        etBerat.setText("");
+                        adapter.update(weighs);
+                        rvTimbang.smoothScrollToPosition(weighs.size() - 1);
+                        mDoc.setWeigh(weighs);
 
-                    adapter.update(weighs);
-                    rvTimbang.smoothScrollToPosition(weighs.size() - 1);
+                        // RESET SOCKET TERIMA DATA TIMBANG
+                        if (thread.isAlive()) {
+                            thread.interrupt();
+                        }
+
+                        thread = recieve();
+                        thread.start();
+                    } else {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                        alert.setTitle("Informasi");
+                        alert.setMessage("Timbang doc mencapai batas, silahkan timbang tara");
+                        alert.create().show();
+                    }
                 }
             }
         });
@@ -137,9 +152,12 @@ public class DocWeighFragment extends Fragment {
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopThread();
+                if (thread.isAlive()) {
+                    thread.interrupt();
+                }
 
-                startThread();
+                thread = recieve();
+                thread.start();
             }
         });
 
@@ -178,7 +196,10 @@ public class DocWeighFragment extends Fragment {
             }
         });
 
-        startThread();
+        thread = recieve();
+        thread.start();
+
+        resumeTimbang();
     }
 
     public boolean validate() {
@@ -203,9 +224,9 @@ public class DocWeighFragment extends Fragment {
         weighs.add(w);
 
         etBerat.setText("");
-
         adapter.update(weighs);
         rvTimbang.smoothScrollToPosition(weighs.size() - 1);
+        mDoc.setWeigh(weighs);
 
         startHitung();
     }
@@ -213,8 +234,6 @@ public class DocWeighFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
-        stopThread();
     }
 
     public void startThread() {
@@ -225,6 +244,25 @@ public class DocWeighFragment extends Fragment {
     public void stopThread() {
         if (thread.isAlive()) {
             thread.interrupt();
+        }
+    }
+
+    public void resumeTimbang() {
+        if (mDoc.getWeigh().size() > 0) {
+            weighs = mDoc.getWeigh();
+            nomor = mDoc.getWeigh().size();
+
+            adapter.update(weighs);
+            rvTimbang.smoothScrollToPosition(weighs.size() - 1);
+
+            Weigh w = mDoc.getWeigh().get(nomor - 1);
+            if (w.getTipe().equalsIgnoreCase("tara")) {
+                if (thread.isAlive()) {
+                    thread.interrupt();
+                }
+
+                startHitung();
+            }
         }
     }
 
@@ -255,9 +293,12 @@ public class DocWeighFragment extends Fragment {
 
         mDoc.setBbRata(bbDoc);
         mDoc.setTaraBox(bbTara);
-        mDoc.setWeigh(weighs);
         mDoc.setEkorTerima(box * 100);
         mDoc.setTerimaBox(box);
+
+        if (mDoc.getWeigh() == null) {
+            mDoc.setWeigh(weighs);
+        }
 
         model.saveWeighs(weighs);
 
@@ -270,7 +311,7 @@ public class DocWeighFragment extends Fragment {
                 NavHostFragment.findNavController(getParentFragment())
                         .navigate(R.id.action_doc_weigh_to_doc_entry_form, bundle);
             }
-        }, 7000);
+        }, 5000);
     }
 
     public class RunTimbang implements Runnable {
@@ -295,5 +336,33 @@ public class DocWeighFragment extends Fragment {
                 e.printStackTrace();
             }
         }
+    }
+
+    public Thread recieve() {
+        return new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Socket socket = new Socket(SERVER_IP, SERVERPORT);
+                    if (socket.isConnected()) {
+                        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        final String response = in.readLine();
+                        if (response != null) {
+                            Pattern pattern = Pattern.compile("\\d+\\.\\d+");
+                            Matcher matcher = pattern.matcher(response);
+
+                            if (matcher.find()) {
+                                etBerat.setText(matcher.group());
+                            }
+                        }
+                        socket.close();
+                    }
+                } catch (SocketTimeoutException e) {
+                    e.printStackTrace();
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

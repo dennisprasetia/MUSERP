@@ -120,6 +120,10 @@ public class DocViewModel extends ViewModel {
         return docRepo.getDocByOp(op);
     }
 
+    public LiveData<DocWeighs> loadDocWeighsByOp(String op) {
+        return docRepo.getDocWeighsByOp(op);
+    }
+
     public void savePrepDoc(Doc doc) {
         docRepo.updateDoc(doc);
         eventLiveData.setValue("saved_lokal");

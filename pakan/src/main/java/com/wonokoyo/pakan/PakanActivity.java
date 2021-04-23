@@ -30,10 +30,14 @@ public class PakanActivity extends AppCompatActivity {
     private LifecycleOwner owner = this;
     private Observer<List<Pakan>> observer;
 
+    private String id_user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pakan);
+
+        id_user = getIntent().getStringExtra("id_user");
 
         viewModel = new PakanViewModel();
         viewModel.init(getApplication(), this);
@@ -52,7 +56,7 @@ public class PakanActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Pakan> list) {
                 if (list.size() > 0) {
-                    viewModel.uploadPakanTimbang(list);
+                    viewModel.uploadPakanTimbang(list, id_user);
                 } else {
                     Toast toast = Toast.makeText(PakanActivity.this, "Data Kosong / Data Sudah Upload", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);

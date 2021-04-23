@@ -21,6 +21,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.util.Rational;
 import android.util.Size;
 import android.view.LayoutInflater;
@@ -110,6 +111,8 @@ public class CameraFragment extends Fragment {
                             }
                         }
                     });
+                } else {
+
                 }
             }
         });
@@ -128,7 +131,7 @@ public class CameraFragment extends Fragment {
                     e.printStackTrace();
                 }
             } else {
-                Toast.makeText(getContext(), "App won't run without permission", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Aplikasi tidak bisa jalan tanpa perizinan", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -197,8 +200,8 @@ public class CameraFragment extends Fragment {
     }
 
     private void createImageFolder() {
-        File imageFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        imageFolder = new File(imageFile, "DOC/SJ_DOC");
+        File imageFile = Environment.getDataDirectory();
+        imageFolder = new File(getContext().getFilesDir(), "DOC/SJ_DOC");
         if (!imageFolder.exists()) {
             imageFolder.mkdirs();
         }
@@ -206,7 +209,7 @@ public class CameraFragment extends Fragment {
 
     private File createImageFilename() throws IOException {
         String time = new SimpleDateFormat("yyyyMMdd").format(new Date());
-        String prepend = "DOCIN_" + time;
+        String prepend = "SJ_DOCIN_" + time;
         File imageFile = File.createTempFile(prepend, ".jpg", imageFolder);
 
         imageFilename = imageFile.getAbsolutePath();

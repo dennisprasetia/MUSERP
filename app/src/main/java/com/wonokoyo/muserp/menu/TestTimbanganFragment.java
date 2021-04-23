@@ -19,6 +19,9 @@ import com.wonokoyo.muserp.R;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TestTimbanganFragment extends Fragment {
 
@@ -28,7 +31,7 @@ public class TestTimbanganFragment extends Fragment {
     private TextView tvHasilTest;
     private Button btnResetTest;
 
-    Thread thread;
+    private Thread thread;
 
     public TestTimbanganFragment() {
         // Required empty public constructor
@@ -52,16 +55,23 @@ public class TestTimbanganFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 tvHasilTest.setText("");
+
+                if (thread.isAlive()) {
+                    thread.interrupt();
+                }
+
+                thread = recieve();
+                thread.start();
             }
         });
 
-        startThread();
+        thread = recieve();
+        thread.start();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        stopThread();
     }
 
     public void startThread() {
@@ -92,5 +102,28 @@ public class TestTimbanganFragment extends Fragment {
                 e.printStackTrace();
             }
         }
+    }
+
+    public Thread recieve() {
+        return new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Socket socket = new Socket(SERVER_IP, SERVERPORT);
+                    if (socket.isConnected()) {
+                        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        final String response = in.readLine();
+                        if (response != null) {
+                            tvHasilTest.setText(response);
+                        }
+                        socket.close();
+                    }
+                } catch (SocketTimeoutException e) {
+                    e.printStackTrace();
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

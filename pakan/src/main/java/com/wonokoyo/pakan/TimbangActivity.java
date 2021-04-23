@@ -18,7 +18,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -120,11 +122,15 @@ public class TimbangActivity extends AppCompatActivity {
 
         tvTotal.setText(String.format("%.1f", total));
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = dateFormat.format(new Date());
+
         int nomor = pakans.size() + 1;
         Pakan pakan = new Pakan();
         pakan.setNo_sj(no_sj);
         pakan.setNomor(nomor);
         pakan.setBerat(Double.valueOf(etValue.getText().toString()));
+        pakan.setTgl_terima(date);
 
         if (threadReceive.isAlive()) {
             threadReceive.interrupt();
@@ -163,8 +169,8 @@ public class TimbangActivity extends AppCompatActivity {
                                 }
                             }
                         });
+                        socket.close();
                     }
-                    socket.close();
                 } catch (SocketTimeoutException e) {
                     e.printStackTrace();
                 } catch(Exception e) {

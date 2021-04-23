@@ -7,255 +7,268 @@
 	android:orientation="vertical"
 	tools:context=".menu.work.DocWeighFragment">
 
-	<LinearLayout
+	<ScrollView
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical">
+		android:layout_height="match_parent">
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			android:gravity="center"
-			android:padding="10dp">
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="Berat Timbang :"
-				android:textSize="20sp"
-				android:textStyle="bold"/>
+			android:orientation="vertical">
 
-			<EditText
-				android:id="@+id/etBerat"
-				android:layout_width="80dp"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="5dp"
-				android:layout_marginEnd="5dp"
-				android:clickable="false"
-				android:cursorVisible="false"
-				android:contextClickable="false"
-				android:focusable="false"
-				android:inputType="number|numberDecimal"
-				android:gravity="center_horizontal"
-				android:textAlignment="center"/>
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="Kg"
-				android:textSize="20sp"
-				android:textStyle="bold"
-				android:gravity="center"/>
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			android:gravity="center">
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="Jumlah Box :"
-				android:textSize="20sp"
-				android:textStyle="bold"/>
-
-			<EditText
-				android:id="@+id/etBox"
-				android:layout_width="80dp"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="5dp"
-				android:layout_marginEnd="5dp"
-				android:inputType="number|numberDecimal"
-				android:gravity="center_horizontal"
-				android:textAlignment="center"
-				android:text="5"/>
-		</LinearLayout>
-	</LinearLayout>
-
-	<androidx.cardview.widget.CardView
-		android:id="@+id/cvHasilTimbang"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_margin="16dp"
-		app:cardCornerRadius="10dp">
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			android:padding="10dp">
-
-			<TextView
+			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginBottom="5dp"
-				android:text="Timbang"
-				android:textSize="20sp"
-				android:textStyle="bold" />
-
-			<View
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:background="#a7a5a5" />
-
-			<androidx.recyclerview.widget.RecyclerView
-				android:id="@+id/rv_det_timbang"
-				android:layout_width="match_parent"
-				android:layout_height="125dp"
-				android:layout_marginTop="8dp"
-				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
-		</LinearLayout>
-
-	</androidx.cardview.widget.CardView>
-
-	<androidx.cardview.widget.CardView
-		android:id="@+id/cvHasilHitung"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginStart="20dp"
-		android:layout_marginEnd="20dp"
-		app:cardCornerRadius="10dp">
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			android:padding="10dp">
-
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="5dp"
-				android:text="Hasil Perhitungan"
-				android:textSize="20sp"
-				android:textStyle="bold" />
-
-			<View
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:background="#a7a5a5" />
-
-			<TableLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
-
-				<TableRow>
+				android:orientation="vertical">
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:gravity="center"
+					android:padding="10dp">
 					<TextView
-						android:layout_weight="1"
-						android:text="Jumlah box"
-						android:textSize="16sp" />
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Berat Timbang :"
+						android:textSize="20sp"
+						android:textStyle="bold"/>
 
 					<EditText
-						android:id="@+id/etJmlTimbang"
-						android:layout_weight="0.5"
+						android:id="@+id/etBerat"
+						android:layout_width="80dp"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="5dp"
+						android:layout_marginEnd="5dp"
 						android:clickable="false"
 						android:cursorVisible="false"
+						android:contextClickable="false"
+						android:focusable="false"
+						android:inputType="number|numberDecimal"
 						android:gravity="center_horizontal"
-						android:inputType="number" />
-				</TableRow>
+						android:textAlignment="center"/>
 
-				<TableRow>
 					<TextView
-						android:layout_weight="1"
-						android:text="Jumlah box tara"
-						android:textSize="16sp" />
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Kg"
+						android:textSize="20sp"
+						android:textStyle="bold"
+						android:gravity="center"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:gravity="center">
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Jumlah Box :"
+						android:textSize="20sp"
+						android:textStyle="bold"/>
 
 					<EditText
-						android:id="@+id/etBoxTara"
-						android:layout_weight="0.5"
-						android:clickable="false"
-						android:cursorVisible="false"
+						android:id="@+id/etBox"
+						android:layout_width="80dp"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="5dp"
+						android:layout_marginEnd="5dp"
+						android:inputType="number|numberDecimal"
 						android:gravity="center_horizontal"
-						android:inputType="number" />
-				</TableRow>
+						android:textAlignment="center"
+						android:text="5"/>
+				</LinearLayout>
+			</LinearLayout>
 
-				<TableRow>
+			<androidx.cardview.widget.CardView
+				android:id="@+id/cvHasilTimbang"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="16dp"
+				app:cardCornerRadius="10dp">
 
-					<TextView
-						android:layout_weight="1"
-						android:text="BB Rata-rata Doc"
-						android:textSize="16sp" />
-
-					<TextView
-						android:id="@+id/tvBbDoc"
-						android:layout_height="40dp"
-						android:layout_weight="0.5"
-						android:gravity="center"
-						android:textSize="18sp" />
-				</TableRow>
-
-				<TableRow>
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:padding="10dp">
 
 					<TextView
-						android:layout_weight="1"
-						android:text="Berat Rata Tara Box"
-						android:textSize="16sp" />
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="5dp"
+						android:text="Timbang"
+						android:textSize="20sp"
+						android:textStyle="bold" />
+
+					<View
+						android:layout_width="match_parent"
+						android:layout_height="1dp"
+						android:background="#a7a5a5" />
+
+					<androidx.recyclerview.widget.RecyclerView
+						android:id="@+id/rv_det_timbang"
+						android:layout_width="match_parent"
+						android:layout_height="125dp"
+						android:layout_marginTop="8dp"
+						app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+				</LinearLayout>
+
+			</androidx.cardview.widget.CardView>
+
+			<androidx.cardview.widget.CardView
+				android:id="@+id/cvHasilHitung"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="20dp"
+				android:layout_marginEnd="20dp"
+				android:visibility="gone"
+				app:cardCornerRadius="10dp">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:padding="10dp">
 
 					<TextView
-						android:id="@+id/tvBbTara"
-						android:layout_height="40dp"
-						android:layout_weight="0.5"
-						android:gravity="center"
-						android:textSize="18sp" />
-				</TableRow>
-			</TableLayout>
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="5dp"
+						android:text="Hasil Perhitungan"
+						android:textSize="20sp"
+						android:textStyle="bold" />
+
+					<View
+						android:layout_width="match_parent"
+						android:layout_height="1dp"
+						android:background="#a7a5a5" />
+
+					<TableLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+						<TableRow>
+							<TextView
+								android:layout_weight="1"
+								android:text="Jumlah box"
+								android:textSize="16sp" />
+
+							<EditText
+								android:id="@+id/etJmlTimbang"
+								android:layout_weight="0.5"
+								android:clickable="false"
+								android:cursorVisible="false"
+								android:gravity="center_horizontal"
+								android:inputType="number" />
+						</TableRow>
+
+						<TableRow>
+							<TextView
+								android:layout_weight="1"
+								android:text="Jumlah box tara"
+								android:textSize="16sp" />
+
+							<EditText
+								android:id="@+id/etBoxTara"
+								android:layout_weight="0.5"
+								android:clickable="false"
+								android:cursorVisible="false"
+								android:gravity="center_horizontal"
+								android:inputType="number" />
+						</TableRow>
+
+						<TableRow>
+
+							<TextView
+								android:layout_weight="1"
+								android:text="BB Rata-rata Doc"
+								android:textSize="16sp" />
+
+							<TextView
+								android:id="@+id/tvBbDoc"
+								android:layout_height="40dp"
+								android:layout_weight="0.5"
+								android:gravity="center"
+								android:textSize="18sp" />
+						</TableRow>
+
+						<TableRow>
+
+							<TextView
+								android:layout_weight="1"
+								android:text="Berat Rata Tara Box"
+								android:textSize="16sp" />
+
+							<TextView
+								android:id="@+id/tvBbTara"
+								android:layout_height="40dp"
+								android:layout_weight="0.5"
+								android:gravity="center"
+								android:textSize="18sp" />
+						</TableRow>
+					</TableLayout>
+
+				</LinearLayout>
+
+			</androidx.cardview.widget.CardView>
+
+			<TextView
+				android:id="@+id/tvSelesaiTimbang"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:gravity="center"
+				android:paddingStart="20dp"
+				android:paddingTop="10dp"
+				android:paddingEnd="20dp"
+				android:paddingBottom="10dp"
+				android:text="Penimbangan telah selesai, halaman akan dialihkan ke proses berikutnya setelah 5 detik."
+				android:visibility="gone"/>
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp">
+				<Button
+					android:id="@+id/btnLanjut"
+					android:layout_width="100dp"
+					android:layout_height="wrap_content"
+					android:layout_alignParentEnd="true"
+					android:layout_marginEnd="16dp"
+					android:text="Lanjut"
+					android:textSize="18sp"/>
+
+				<Button
+					android:id="@+id/btnTara"
+					android:layout_width="100dp"
+					android:layout_height="wrap_content"
+					android:layout_alignParentStart="true"
+					android:layout_marginStart="16dp"
+					android:text="Tara"
+					android:textSize="18sp"/>
+
+				<Button
+					android:id="@+id/btnRefresh"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_toStartOf="@id/btnLanjut"
+					android:layout_marginEnd="8dp"
+					android:text="Refresh"
+					android:textSize="18sp"/>
+
+				<Button
+					android:id="@+id/btnSimpan"
+					android:layout_width="100dp"
+					android:layout_height="wrap_content"
+					android:layout_alignParentStart="true"
+					android:layout_marginStart="16dp"
+					android:text="Selesai"
+					android:textSize="18dp"
+					android:visibility="gone" />
+			</RelativeLayout>
 
 		</LinearLayout>
-
-	</androidx.cardview.widget.CardView>
-
-	<TextView
-		android:id="@+id/tvSelesaiTimbang"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="10dp"
-		android:gravity="center"
-		android:paddingStart="20dp"
-		android:paddingTop="10dp"
-		android:paddingEnd="20dp"
-		android:paddingBottom="10dp"
-		android:text="Penimbangan telah selesai, halaman akan dialihkan ke proses berikutnya setelah 5 detik." />
-
-	<RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="8dp">
-		<Button
-			android:id="@+id/btnLanjut"
-			android:layout_width="100dp"
-			android:layout_height="wrap_content"
-			android:layout_alignParentEnd="true"
-			android:layout_marginEnd="16dp"
-			android:text="Lanjut"
-			android:textSize="18sp"/>
-
-		<Button
-			android:id="@+id/btnTara"
-			android:layout_width="100dp"
-			android:layout_height="wrap_content"
-			android:layout_alignParentStart="true"
-			android:layout_marginStart="16dp"
-			android:text="Tara"
-			android:textSize="18sp"/>
-
-		<Button
-			android:id="@+id/btnRefresh"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_toStartOf="@id/btnLanjut"
-			android:layout_marginEnd="8dp"
-			android:text="Refresh"
-			android:textSize="18sp"/>
-
-		<Button
-			android:id="@+id/btnSimpan"
-			android:layout_width="100dp"
-			android:layout_height="wrap_content"
-			android:layout_alignParentStart="true"
-			android:layout_marginStart="16dp"
-			android:text="Selesai"
-			android:textSize="18dp"
-			android:visibility="gone" />
-	</RelativeLayout>
+	</ScrollView>
 </LinearLayout>

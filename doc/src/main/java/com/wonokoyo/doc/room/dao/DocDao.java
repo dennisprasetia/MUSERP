@@ -72,6 +72,10 @@ public interface DocDao {
     LiveData<Doc> loadDocByOp(String op);
 
     @Transaction
+    @Query("SELECT * FROM doc WHERE idScan = :op AND stat_recieve <> 1")
+    LiveData<DocWeighs> loadDocWeighsByOp(String op);
+
+    @Transaction
     @Query("SELECT * FROM doc WHERE noreg = :noreg")
     LiveData<DocWithLoc> loadDocWithLocByNoreg(String noreg);
 

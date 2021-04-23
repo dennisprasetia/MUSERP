@@ -25,6 +25,7 @@ import com.wonokoyo.doc.DocActivity;
 import com.wonokoyo.doc.R;
 import com.wonokoyo.doc.model.Doc;
 import com.wonokoyo.doc.model.DocDetail;
+import com.wonokoyo.doc.model.DocWeighs;
 import com.wonokoyo.doc.model.viewmodel.DocViewModel;
 import com.wonokoyo.doc.serveraccess.sqlite.DbService;
 import com.wonokoyo.doc.util.CustomDialog;
@@ -105,34 +106,6 @@ public class DocScanFragment extends Fragment implements ZXingScannerView.Result
                             mScannerView.resumeCameraPreview(DocScanFragment.this);
                         }
                     }, 1500);
-
-                    /*
-                    countscan++;
-                    if (countscan < 3) {
-                        Toast.makeText(getActivity(), "No OP Tidak ditemukan",
-                                Toast.LENGTH_SHORT).show();
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                mScannerView.resumeCameraPreview(DocScanFragment.this);
-                            }
-                        }, 1500);
-                    } else {
-                        dialog.alertScanGagal(getContext(), new CustomDialog.alertDialogCallBack() {
-                            @Override
-                            public void action(Boolean val) {
-                                if (val) {
-                                    NavHostFragment.findNavController(getParentFragment()).navigate(
-                                            R.id.action_doc_scan_to_doc_entry_op);
-                                } else {
-                                    countscan = 0;
-                                    mScannerView.resumeCameraPreview(DocScanFragment.this);
-                                }
-                            }
-                        });
-                    }
-                    */
                 }
             }
         });
@@ -160,10 +133,18 @@ public class DocScanFragment extends Fragment implements ZXingScannerView.Result
     public void handleResult(Result rawResult) {
         final String noOp = rawResult.getText();
 
-        docViewModel.loadDocByOp(noOp).observe(getParentFragment(), new Observer<Doc>() {
+        docViewModel.loadDocWeighsByOp(noOp).observe(getParentFragment(), new Observer<DocWeighs>() {
             @Override
-            public void onChanged(Doc doc) {
-                docViewModel.setDocMutableLiveData(doc);
+            public void onChanged(DocWeighs docWeighs) {
+                if (docWeighs != null) {
+                    Doc doc = docWeighs.getDoc();
+                    doc.setWeigh(docWeighs.getWeighs());
+
+                    docViewModel.setDocMutableLiveData(doc);
+                } else {
+                    Toast.makeText(getContext(), "Order DOC kosong / sudah selesai", Toast.LENGTH_LONG).show();
+                    mScannerView.resumeCameraPreview(DocScanFragment.this);
+                }
             }
         });
 

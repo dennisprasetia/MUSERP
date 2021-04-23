@@ -20,5 +20,5 @@ public interface PakanService {
 
     @FormUrlEncoded
     @POST(Url.SAVE_PAKAN_TIMBANG)
-    Call<ResponseBody> uploadPakanTimbang(@Field("data") String data);
+    Call<ResponseBody> uploadPakanTimbang(@Field("data") String data, @Field("id_user") String id_user);
 }

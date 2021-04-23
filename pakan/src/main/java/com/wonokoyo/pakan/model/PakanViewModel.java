@@ -203,7 +203,7 @@ public class PakanViewModel {
         repository.getSjByNoreg(noreg, listener);
     }
 
-    public void uploadPakanTimbang(final List<Pakan> pakans) {
+    public void uploadPakanTimbang(final List<Pakan> pakans, String id_user) {
         String data = new Gson().toJson(pakans);
         dialog.show();
 
@@ -241,6 +241,6 @@ public class PakanViewModel {
             }
         };
 
-        repository.uploadPakanTimbang(data, listener);
+        repository.uploadPakanTimbang(data, id_user, listener);
     }
 }

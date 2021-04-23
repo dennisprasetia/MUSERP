@@ -31,8 +31,8 @@ public class PakanRepository {
         call.enqueue(listener);
     }
 
-    public void uploadPakanTimbang(String data, Callback<ResponseBody> listener) {
-        Call<ResponseBody> call = RetrofitInstance.getMitraService().uploadPakanTimbang(data);
+    public void uploadPakanTimbang(String data, String id_user, Callback<ResponseBody> listener) {
+        Call<ResponseBody> call = RetrofitInstance.getMitraService().uploadPakanTimbang(data, id_user);
         call.enqueue(listener);
     }
 }

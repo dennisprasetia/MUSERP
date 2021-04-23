@@ -106,6 +106,10 @@ public class DocRepo {
         return docDao.loadDocByOp(op);
     }
 
+    public LiveData<DocWeighs> getDocWeighsByOp(String op) {
+        return docDao.loadDocWeighsByOp(op);
+    }
+
     public LiveData<Doc> getDocById(String id) {
         return docDao.getDocById(id);
     }

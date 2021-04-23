@@ -73,9 +73,7 @@ public class DocResultFragment extends Fragment implements BiometricCallback {
 
         docViewModel.resetEvent();
 
-        if (getArguments() != null) {
-            mDoc = (Doc) getArguments().getSerializable("doc");
-        }
+        mDoc = docViewModel.getLiveDoc().getValue();
 
         spm = new SharedPrefManager(getContext());
     }

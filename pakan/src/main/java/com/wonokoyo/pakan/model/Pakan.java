@@ -27,6 +27,10 @@ public class Pakan implements Serializable {
     @Expose
     private double berat;
 
+    @SerializedName("tgl_terima")
+    @Expose
+    private String tgl_terima;
+
     private int stat_upload;
 
     public int getId() {
@@ -59,6 +63,14 @@ public class Pakan implements Serializable {
 
     public void setBerat(double berat) {
         this.berat = berat;
+    }
+
+    public String getTgl_terima() {
+        return tgl_terima;
+    }
+
+    public void setTgl_terima(String tgl_terima) {
+        this.tgl_terima = tgl_terima;
     }
 
     public int getStat_upload() {
