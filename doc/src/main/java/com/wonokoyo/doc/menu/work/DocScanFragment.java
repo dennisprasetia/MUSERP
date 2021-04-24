@@ -133,7 +133,7 @@ public class DocScanFragment extends Fragment implements ZXingScannerView.Result
     public void handleResult(Result rawResult) {
         final String noOp = rawResult.getText();
 
-        docViewModel.loadDocWeighsByOp(noOp).observe(getParentFragment(), new Observer<DocWeighs>() {
+        docViewModel.loadDocWeighsByOp(noOp).observe(this, new Observer<DocWeighs>() {
             @Override
             public void onChanged(DocWeighs docWeighs) {
                 if (docWeighs != null) {
@@ -142,7 +142,6 @@ public class DocScanFragment extends Fragment implements ZXingScannerView.Result
 
                     docViewModel.setDocMutableLiveData(doc);
                 } else {
-                    Toast.makeText(getContext(), "Order DOC kosong / sudah selesai", Toast.LENGTH_LONG).show();
                     mScannerView.resumeCameraPreview(DocScanFragment.this);
                 }
             }
