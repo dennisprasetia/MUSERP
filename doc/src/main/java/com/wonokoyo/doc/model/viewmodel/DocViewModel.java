@@ -129,6 +129,10 @@ public class DocViewModel extends ViewModel {
         eventLiveData.setValue("saved_lokal");
     }
 
+    public void saveWeigh(Weigh weigh) {
+        docRepo.saveWeigh(weigh);
+    }
+
     public void saveWeighs(List<Weigh> weighs) {
         docRepo.saveWeigh(weighs);
     }

@@ -37,6 +37,10 @@ public interface DocDao {
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insert_weigh(Weigh weigh);
+
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert_weigh(List<Weigh> weighs);
 
     @Transaction

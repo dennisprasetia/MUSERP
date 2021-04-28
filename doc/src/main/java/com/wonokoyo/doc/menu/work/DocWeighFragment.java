@@ -131,9 +131,12 @@ public class DocWeighFragment extends Fragment {
                         rvTimbang.smoothScrollToPosition(weighs.size() - 1);
                         mDoc.setWeigh(weighs);
 
+                        model.saveWeigh(w);
+
                         // RESET SOCKET TERIMA DATA TIMBANG
                         if (thread.isAlive()) {
                             thread.interrupt();
+                            thread = null;
                         }
 
                         thread = recieve();
@@ -154,6 +157,10 @@ public class DocWeighFragment extends Fragment {
             public void onClick(View v) {
                 if (thread.isAlive()) {
                     thread.interrupt();
+                    thread = null;
+
+                    etBerat.setText("");
+                    etBerat.setError(null);
                 }
 
                 thread = recieve();
@@ -228,6 +235,8 @@ public class DocWeighFragment extends Fragment {
         rvTimbang.smoothScrollToPosition(weighs.size() - 1);
         mDoc.setWeigh(weighs);
 
+        model.saveWeigh(w);
+
         startHitung();
     }
 
@@ -300,7 +309,7 @@ public class DocWeighFragment extends Fragment {
             mDoc.setWeigh(weighs);
         }
 
-        model.saveWeighs(weighs);
+//        model.saveWeighs(weighs);
 
         handler.postDelayed(new Runnable() {
             @Override

@@ -60,6 +60,16 @@ public class DocRepo {
         }.execute();
     }
 
+    public void saveWeigh(final Weigh weigh) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                docDao.insert_weigh(weigh);
+                return null;
+            }
+        }.execute();
+    }
+
     public void saveWeigh(final List<Weigh> weighs) {
         new AsyncTask<Void, Void, Void>() {
             @Override

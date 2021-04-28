@@ -143,6 +143,7 @@ public class DocScanFragment extends Fragment implements ZXingScannerView.Result
                     docViewModel.setDocMutableLiveData(doc);
                 } else {
                     mScannerView.resumeCameraPreview(DocScanFragment.this);
+                    Toast.makeText(getContext(), "Data tidak ditemukan / sudah selesai", Toast.LENGTH_SHORT).show();
                 }
             }
         });
