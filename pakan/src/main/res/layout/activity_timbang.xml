@@ -70,28 +70,5 @@
 			android:layout_alignParentStart="true"
 			android:layout_marginStart="8dp"
 			android:text="Selesai"/>
-
-		<LinearLayout
-			android:orientation="horizontal"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignParentTop="true"
-			android:layout_marginStart="16dp"
-			android:layout_marginTop="10dp"
-			android:layout_toStartOf="@id/btnRefresh"
-			android:layout_toEndOf="@id/btnDone"
-			android:gravity="center">
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="Total : "
-				android:textSize="20dp"/>
-			<TextView
-				android:id="@+id/tvTotal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="0.0"
-				android:textSize="20dp"/>
-		</LinearLayout>
 	</RelativeLayout>
 </LinearLayout>

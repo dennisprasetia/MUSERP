@@ -9,7 +9,7 @@ android {
         targetSdkVersion 29
         versionCode 1
 //        versionName "2.3"
-        versionName "1.3"
+        versionName "1.4.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -25,7 +25,7 @@ android.applicationVariants.all { variant ->
         def appName = "MUS ERP"
         def vers = "HOT FIX"
         def vers_impl = "IMPL"
-        outputFileName = appName + "-${variant.versionName}-" + vers_impl + ".apk"
+        outputFileName = appName + "-${variant.versionName}" + ".apk"
     }
 }
 

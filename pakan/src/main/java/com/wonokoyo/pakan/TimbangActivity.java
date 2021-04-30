@@ -37,7 +37,6 @@ public class TimbangActivity extends AppCompatActivity {
     private Button btnNext;
     private Button btnRefresh;
     private Button btnDone;
-    private TextView tvTotal;
 
     private List<Pakan> pakans;
     private double total = 0.0;
@@ -61,7 +60,6 @@ public class TimbangActivity extends AppCompatActivity {
         adapter = new PakanAdapter();
 
         etValue = findViewById(R.id.etValue);
-        tvTotal = findViewById(R.id.tvTotal);
 
         rvTimbang = findViewById(R.id.rv_timbang);
         rvTimbang.setAdapter(adapter);
@@ -119,8 +117,6 @@ public class TimbangActivity extends AppCompatActivity {
 
     public void calculate() {
         total += Double.valueOf(etValue.getText().toString());
-
-        tvTotal.setText(String.format("%.1f", total));
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = dateFormat.format(new Date());

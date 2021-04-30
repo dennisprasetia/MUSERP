@@ -229,6 +229,9 @@ public class PakanViewModel {
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
+
+                        if (dialog.isShowing())
+                            dialog.dismiss();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
