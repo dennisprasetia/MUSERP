@@ -43,7 +43,6 @@ public class DocWeighFragment extends Fragment {
     private static final String SERVER_IP = "192.168.100.10";
 
     private int nomor = 0;
-    private int max_count = 0;
     private List<Weigh> weighs = new ArrayList<>();
 
     private EditText etBerat;
@@ -94,7 +93,6 @@ public class DocWeighFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         mDoc = model.getLiveDoc().getValue();
-        max_count = mDoc.getJumlahBox() / 5;
 
         etBerat = view.findViewById(R.id.etBerat);
         etBox = view.findViewById(R.id.etBox);
@@ -115,38 +113,31 @@ public class DocWeighFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (validate()) {
-                    if (nomor < max_count) {
-                        nomor++;
+                    nomor++;
 
-                        Weigh w = new Weigh();
-                        w.setId_spj(mDoc.getId_spj());
-                        w.setNomor(nomor);
-                        w.setTipe("chick");
-                        w.setJmlBox(Integer.valueOf(etBox.getText().toString()));
-                        w.setBerat(Double.valueOf(etBerat.getText().toString()));
-                        weighs.add(w);
+                    Weigh w = new Weigh();
+                    w.setId_spj(mDoc.getId_spj());
+                    w.setNomor(nomor);
+                    w.setTipe("chick");
+                    w.setJmlBox(Integer.valueOf(etBox.getText().toString()));
+                    w.setBerat(Double.valueOf(etBerat.getText().toString()));
+                    weighs.add(w);
 
-                        etBerat.setText("");
-                        adapter.update(weighs);
-                        rvTimbang.smoothScrollToPosition(weighs.size() - 1);
-                        mDoc.setWeigh(weighs);
+                    etBerat.setText("");
+                    adapter.update(weighs);
+                    rvTimbang.smoothScrollToPosition(weighs.size() - 1);
+                    mDoc.setWeigh(weighs);
 
-                        model.saveWeigh(w);
+                    model.saveWeigh(w);
 
-                        // RESET SOCKET TERIMA DATA TIMBANG
-                        if (thread.isAlive()) {
-                            thread.interrupt();
-                            thread = null;
-                        }
-
-                        thread = recieve();
-                        thread.start();
-                    } else {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-                        alert.setTitle("Informasi");
-                        alert.setMessage("Timbang doc mencapai batas, silahkan timbang tara");
-                        alert.create().show();
+                    // RESET SOCKET TERIMA DATA TIMBANG
+                    if (thread.isAlive()) {
+                        thread.interrupt();
+                        thread = null;
                     }
+
+                    thread = recieve();
+                    thread.start();
                 }
             }
         });
